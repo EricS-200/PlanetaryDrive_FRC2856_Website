@@ -61,7 +61,7 @@ export default function Navbar() {
   }
 
   return (
-    <div>
+    <div className={`${mNav ? "" : "sticky top-0"} z-50`}>
       <div
         className={`${openNav()} z-10 absolute h-full bg-neutral-700 left-0 flex flex-col items-center w-full`}
       >
@@ -97,7 +97,9 @@ export default function Navbar() {
             <span>
               <Image
                 src="/dropdown.png"
-                className="absolute top-1/4"
+                className={`absolute top-1/4 transition-all duration-500 ${
+                  mNavDropdown ? "-rotate-180" : "rotate-0"
+                }`}
                 height={20}
                 width={20}
               />
@@ -150,7 +152,7 @@ export default function Navbar() {
       {/* ABOVE WAS CODE FOR SIDE NAV BAR FOR SMALL SCREENS
        * BELOW IS CODE FOR MAIN NAV BAR*/}
 
-      <div className="w-full bg-neutral-700 h-16 flex justify-center items-center relative mb-0 p-0">
+      <div className="w-full bg-slate-950 h-16 flex justify-center items-center relative mb-0 p-0">
         <Image
           onClick={() => setMNav((prev) => !prev)}
           src="/menu-icon.png"
@@ -158,12 +160,14 @@ export default function Navbar() {
           width={35}
           className="left-5 absolute md:hidden cursor-pointer"
         />
-        <div className="absolute flex md:items-center md:left-[8%] lg:left-[10%]">
-          <Image src="/logo.png" height={50} width={50}></Image>
-          <h1 className="m-4 font-semibold text-2xl xl:block hidden">
-            Planetary Drive
-          </h1>
-        </div>
+        <Link href="/" className="absolute md:left-[8%] lg:left-[10%]">
+          <div className="flex md:items-center ">
+            <Image src="/logo.png" height={50} width={50}></Image>
+            <h1 className="m-4 font-semibold text-2xl xl:block hidden">
+              Planetary Drive
+            </h1>
+          </div>
+        </Link>
 
         {pages.map((link) => (
           <Link
@@ -181,7 +185,15 @@ export default function Navbar() {
               otherPages.includes(pathname) && "text-white"
             }`}
           >
-            More
+            More{" "}
+            <span>
+              <Image
+                src="/dropdown.png"
+                className="absolute top-[15%] transition duration-500 group-hover:-rotate-180"
+                height={20}
+                width={20}
+              />
+            </span>
           </p>
           <div className="pointer-events-none	group-hover:pointer-events-auto	overflow-hidden absolute left-5 top-full">
             <div className="opacity-0 bg-neutral-700 w-44 p-4 -translate-y-full group-hover:translate-y-0 transition-transform duration-500 group-hover:opacity-100">
