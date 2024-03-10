@@ -61,9 +61,9 @@ export default function Navbar() {
   }
 
   return (
-    <div className={`${mNav ? "" : "sticky top-0"} z-50`}>
+    <nav className={`${mNav ? "" : "sticky top-0"} z-50`}>
       <div
-        className={`${openNav()} z-10 absolute h-full bg-slate-950 left-0 flex flex-col items-center w-full`}
+        className={`${openNav()} z-10 h-full fixed bg-slate-950 left-0 flex flex-col items-center w-full`}
       >
         <svg
           onClick={() => setMNav((prev) => !prev)}
@@ -86,13 +86,6 @@ export default function Navbar() {
             stroke-linejoin="round"
           />
         </svg>
-        {/* <Image
-          onClick={() => setMNav((prev) => !prev)}
-          src="/menu-close.png"
-          height={35}
-          width={35}
-          className="cursor-pointer absolute top-3 right-2"
-        /> */}
         <h2 className="m-4 text-2xl font-semibold">Planetary Drive</h2>
         {pages.map((link) => (
           <Link
@@ -181,7 +174,7 @@ export default function Navbar() {
       {/* ABOVE WAS CODE FOR SIDE NAV BAR FOR SMALL SCREENS
        * BELOW IS CODE FOR MAIN NAV BAR*/}
 
-      <div className="w-full bg-slate-950 h-16 flex justify-center items-center relative mb-0 p-0">
+      <div className="w-full bg-slate-950 h-16 flex justify-center items-center relative mb-0 p-0 border-b-[1px] border-slate-700">
         <svg
           onClick={() => setMNav((prev) => !prev)}
           className="left-5 absolute md:hidden cursor-pointer fill-gray-300 stroke-gray-300"
@@ -197,13 +190,6 @@ export default function Navbar() {
             d="M5 7C5 6.44772 5.44772 6 6 6H18C18.5523 6 19 6.44772 19 7C19 7.55228 18.5523 8 18 8H6C5.44772 8 5 7.55228 5 7ZM5 12C5 11.4477 5.44772 11 6 11H18C18.5523 11 19 11.4477 19 12C19 12.5523 18.5523 13 18 13H6C5.44772 13 5 12.5523 5 12ZM5 17C5 16.4477 5.44772 16 6 16H18C18.5523 16 19 16.4477 19 17C19 17.5523 18.5523 18 18 18H6C5.44772 18 5 17.5523 5 17Z"
           />
         </svg>
-        {/* <Image
-          onClick={() => setMNav((prev) => !prev)}
-          src="/menu-icon.png"
-          height={35}
-          width={35}
-          className="left-5 absolute md:hidden cursor-pointer"
-        /> */}
         <Link href="/" className="absolute md:left-[8%] lg:left-[10%]">
           <div className="flex md:items-center ">
             <Image src="/logo.png" height={50} width={50}></Image>
@@ -269,6 +255,6 @@ export default function Navbar() {
           </div>
         </div>
       </div>
-    </div>
+    </nav>
   );
 }
