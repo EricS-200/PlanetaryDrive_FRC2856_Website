@@ -18,6 +18,14 @@ export default function Home() {
         <p className="text-center	text-2xl mb-4 m-2">
           First Robotics Team #2856
         </p>
+        <h2 className="text-xl mt-2">
+          Thanks to all the sponsors that allow us to keep working!
+        </h2>
+        <Link href="/sponsors">
+          <Button variant="outline" className="dark m-4">
+            Our Sponsors
+          </Button>
+        </Link>
       </section>
       <section className="flex flex-col lg:flex-row justify-center items-center mt-8 ">
         <div className="lg:mr-20 flex flex-col justify-center">
@@ -31,7 +39,9 @@ export default function Home() {
             programming our yearly robot.
           </p>
           <Link className="dark self-center m-4" href="/about">
-            <Button variant="outline">Learn More</Button>
+            <Button variant="outline" size="lg">
+              Learn More
+            </Button>
           </Link>
         </div>
         <Image
@@ -40,6 +50,44 @@ export default function Home() {
           height={100}
           className="w-1/2 mt-8 lg:mt-0 lg:w-1/3 lg:ml-20 rounded-md"
         ></Image>
+      </section>
+      <section className="flex flex-col lg:flex-row justify-center items-center mt-16">
+        <Image
+          src="/home/home2.png"
+          width={100000}
+          height={100}
+          className="w-1/2 mt-8 lg:mt-0 lg:w-1/3 lg:ml-20 rounded-md"
+        ></Image>
+        <div className="lg:ml-20 flex flex-col justify-center">
+          <h2 className="text-center text-4xl font-semibold mb-2">
+            Our Sponsors
+          </h2>
+          <p className="text-center  w-96  leading-loose">
+            The sponsors of Team Planteray Drive are the ones who allow our team
+            to build a robot and compete each year in FRC! Sponsoring us comes
+            with many benefits. We encourage you to check out our sponsors. If
+            you are willing to sponsor us, please contact us!
+          </p>
+          <p className="max-w-96 flex flex-col items-center mt-4">
+            Special thanks to our current biggest sponsor:{" "}
+            <span className="">
+              <Link href="https://www.se.com/us/en/" target="_blank">
+                <Button
+                  variant="link"
+                  className="dark p-0 m-0 text-md font-semibold"
+                  size="lg"
+                >
+                  Schneider Electric
+                </Button>
+              </Link>
+            </span>
+          </p>
+          <Link className="dark self-center m-4" href="/sponsors">
+            <Button variant="outline" size="lg">
+              Our Sponsors
+            </Button>
+          </Link>
+        </div>
       </section>
     </main>
   );

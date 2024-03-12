@@ -5,36 +5,54 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 
+export const pages = [
+  {
+    name: "Home",
+    page: "/",
+  },
+  {
+    name: "About Us",
+    page: "/about",
+  },
+  {
+    name: "Contact",
+    page: "/contact",
+  },
+  {
+    name: "Members",
+    page: "/members",
+  },
+  {
+    name: "Sponsors",
+    page: "/sponsors",
+  },
+];
+
+export const otherPages = [
+  {
+    name: "Join",
+    page: "/join",
+  },
+  {
+    name: "Photos",
+    page: "/gallery",
+  },
+  {
+    name: "Robots",
+    page: "/robots",
+  },
+  {
+    name: "FRC",
+    page: "/frc",
+  },
+];
+
 export default function Navbar() {
   const pathname = usePathname(); // checks which page you are on
   const [mNav, setMNav] = useState(false); // whether the dropdown menu under "more" is open or not (big screens)
   const [mNavDropdown, setMNavDropdown] = useState(false); // whether the dropdown menu under more is open or not (small screens)
 
   // all pages on the navbar
-  const pages = [
-    {
-      name: "Home",
-      page: "/",
-    },
-    {
-      name: "About Us",
-      page: "/about",
-    },
-    {
-      name: "Contact",
-      page: "/contact",
-    },
-    {
-      name: "Members",
-      page: "/members",
-    },
-    {
-      name: "Sponsors",
-      page: "/sponsors",
-    },
-  ];
-
-  const otherPages = ["/join", "/gallery", "/robots", "/frc"];
 
   // Checks which page you are on, and highlights it in the navbar.
   function isActive(url) {
@@ -104,7 +122,9 @@ export default function Navbar() {
           <p
             onClick={() => setMNavDropdown((prev) => !prev)}
             className={`select-none m-2 text-xl transition duration-100 hover:text-neutral-100 cursor-pointer relative pr-4 ${
-              otherPages.includes(pathname) ? "text-white" : "text-neutral-300"
+              otherPages.map((item) => item.page).includes(pathname)
+                ? "text-white"
+                : "text-neutral-300"
             }`}
           >
             More
@@ -130,42 +150,19 @@ export default function Navbar() {
 
           <div className={`absolute top-10 overflow-hidden`}>
             <ul className={`flex flex-col items-center ${openMNavDropdown()}`}>
-              <li
-                onClick={() => {
-                  setMNav((prev) => !prev);
-                  setMNavDropdown((prev) => !prev);
-                }}
-                className="py-2 text-xl text-neutral-400 transition duration-100 hover:text-neutral-100"
-              >
-                <Link href="/join">Join</Link>
-              </li>
-              <li
-                onClick={() => {
-                  setMNav((prev) => !prev);
-                  setMNavDropdown((prev) => !prev);
-                }}
-                className="py-2 text-xl text-neutral-400 transition duration-100 hover:text-neutral-200"
-              >
-                <Link href="/gallery">Photos</Link>
-              </li>
-              <li
-                onClick={() => {
-                  setMNav((prev) => !prev);
-                  setMNavDropdown((prev) => !prev);
-                }}
-                className="py-2 text-xl text-neutral-400 transition duration-100 hover:text-neutral-200"
-              >
-                <Link href="/robots">Our Robots</Link>
-              </li>
-              <li
-                onClick={() => {
-                  setMNav((prev) => !prev);
-                  setMNavDropdown((prev) => !prev);
-                }}
-                className="pt-2 text-xl text-neutral-400 transition duration-100 hover:text-neutral-200"
-              >
-                <Link href="/frc">FRC Info</Link>
-              </li>
+              {otherPages.map((link) => (
+                <li
+                  onClick={() => {
+                    setMNav((prev) => !prev);
+                    setMNavDropdown((prev) => !prev);
+                  }}
+                  className="pt-2 text-xl text-neutral-400 transition duration-100 hover:text-neutral-200"
+                >
+                  <Link href={link.page} key={link.name}>
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
@@ -212,14 +209,17 @@ export default function Navbar() {
         <div className={`${isActive()} group relative pl-8 cursor-default`}>
           <p
             className={`select-none md:block md:pointer-events-auto hidden pointer-events-none ${
-              otherPages.includes(pathname) && "text-white"
+              otherPages.map((item) => item.page).includes(pathname)
+                ? "text-white"
+                : "text-neutral-300"
             }`}
           >
             More{" "}
             <span>
               <svg
                 className={`absolute top-[15%] transition duration-500 group-hover:-rotate-180 fill-neutral-300 stroke-neutral-300 hover:fill-neutral-100 hover:stroke-neutral-300 ${
-                  otherPages.includes(pathname) && "text-white"
+                  otherPages.map((item) => item.page).includes(pathname) &&
+                  "text-white"
                 }`}
                 width="20px"
                 height="20px"
@@ -238,18 +238,13 @@ export default function Navbar() {
           <div className="pointer-events-none	group-hover:pointer-events-auto	overflow-hidden absolute left-5 top-full">
             <div className="opacity-0 bg-slate-950 w-44 p-4 -translate-y-full group-hover:translate-y-0 transition-transform duration-500 group-hover:opacity-100">
               <ul>
-                <li className="py-2 text-neutral-300 transition duration-100 hover:text-neutral-100">
-                  <Link href="/join">Join</Link>
-                </li>
-                <li className="py-2 text-neutral-300 transition duration-100 hover:text-neutral-100">
-                  <Link href="/gallery">Photos</Link>
-                </li>
-                <li className="py-2 text-neutral-300 transition duration-100 hover:text-neutral-100">
-                  <Link href="/robots">Robots</Link>
-                </li>
-                <li className="pt-2 text-neutral-300 transition duration-100 hover:text-neutral-100">
-                  <Link href="/frc">FRC</Link>
-                </li>
+                {otherPages.map((link) => (
+                  <li className="py-2 text-neutral-300 transition duration-100 hover:text-neutral-100">
+                    <Link key={link.name} href={link.page}>
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
