@@ -1,5 +1,11 @@
 "use client";
 
+/*
+
+THIS FOOTER IS NOT NEARLY FINISHED AND THE FOOTER THAT WE USE DOES NOT HAVE TO LOOK LIKE THIS
+
+*/
+
 import Link from "next/link";
 import { Button } from "./ui/button";
 import { pages, otherPages } from "./Navbar.jsx";
