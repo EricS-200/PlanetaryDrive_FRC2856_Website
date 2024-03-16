@@ -11,7 +11,7 @@ export default function AboutUs() {
                 <div className={"w-full flex flex-col pr-5 sm:pr-28"}>
                     <h2 className="mb-8 mt-8 lg:mb-12 lg:mt-8 text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-semibold">
                         Our <span className={"text-purple-600"}>achievements
-                            </span> \**IN PROGRESS**\
+                            </span>
                     </h2>
 
                     <div className={"flex flex-row w-full"}>
