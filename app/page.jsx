@@ -99,7 +99,7 @@ export default function Home() {
               Our Sponsors
             </Button>
           </Link>
-          
+
         </div>
       </section>
 
