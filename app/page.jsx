@@ -12,7 +12,7 @@ export default function Home() {
               </div>
 
               <h1 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-semibold mt-8 mb-4">
-                  Planetary Drive Robotics
+                  <span className={"text-green-300"}>Planetary Drive</span> Robotics
               </h1>
               <h4 className="mb-8 lg:mb-12 text-lg sm:text-lg md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-semibold">Team #2856</h4>
 
@@ -25,9 +25,6 @@ export default function Home() {
                   the skills they have
                   developed from previous competitions.<strong>**__**yap more here later**__**</strong>
               </p>
-
-
-
           </div>
       </div>
   );
