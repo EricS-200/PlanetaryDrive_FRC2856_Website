@@ -1,23 +1,31 @@
 "use client"
 import Image from "next/image";
+import AOS from 'aos';
+import 'aos/dist/aos.css'; // You can also use <link> for styles
 
 export default function AboutUs() {
     // It's a joke dw
     let reallyLargeNumber = 999_999_999_999_999_999;
+    AOS.init();
+    document.addEventListener("DOMContentLoaded", function() {
+        setTimeout(function() { AOS.refresh(); }, 500);
+    });
+    AOS.refresh();
+
 
     return (
         <div className={"bg-slate-900 pb-48 sm:pb-96"}>
             <div className={"w-full flex justify-center flex-col items-start pl-5 sm:pl-28"}>
                 <div className={"w-full flex flex-col pr-5 sm:pr-28"}>
-                    <h2 className="mb-8 mt-8 lg:mb-12 lg:mt-8 text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-semibold">
-                        Our <span className={"text-purple-600"}>achievements
-                            </span>
+                    <h2 className="mb-8 mt-8 lg:mb-12 lg:mt-8 text-4xl sm:text-4xl md:text-4xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-semibold">
+                        Our <span className={"text-green-300"}>Philosophy </span>
                     </h2>
 
                     <div className={"flex flex-row w-full"}>
-                        <p>
+                        <p className={"aos-init aos-animate"} data-aos={"fade-right"} data-aos-duration={1000}>
                             <strong className={"text-blue-400"}>
-                                Important Yap Yap Yap Yap Yap Yap Yap Yap Yap Yap Yap Yap Yap Yap Yap Yap Yap Yap Yap Yap Yap
+                                Important Yap Yap Yap Yap Yap Yap Yap Yap Yap Yap Yap Yap Yap Yap Yap Yap Yap Yap Yap
+                                Yap Yap
                             </strong><br/><br/>
                             Yap Yap Yap Yap Yap Yap Yap Yap Yap Yap Yap Yap Yap Yap Yap Yap Yap Yap Yap Yap Yap Yap Yap
                             Yap Yap Yap Yap Yap Yap Yap Yap Yap Yap Yap Yap Yap Yap Yap Yap Yap Yap Yap Yap Yap Yap Yap
@@ -39,10 +47,6 @@ export default function AboutUs() {
                     </div>
 
                 </div>
-            </div>
-
-            <div className={"w-10/12 justify-center items-start pl-5 sm:pl-28 pt-7 sm:pt-14"}>
-                Add more stuff here if we want to
             </div>
         </div>
     );
