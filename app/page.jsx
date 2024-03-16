@@ -45,7 +45,7 @@ export default function Home() {
         <br/><br/>
       </section>
 
-      <section className="flex flex-col lg:flex-row justify-center items-center mt-8 aos-init aos-animate" data-aos={"fade-right"} data-aos-duration={1000} data-aos-offset={400} data-aos-delay={0}>
+      <section className="flex flex-col lg:flex-row justify-center items-center mt-8 aos-init aos-animate" data-aos={"fade-right"} data-aos-duration={1000} data-aos-offset={300} data-aos-delay={0}>
         <div className="lg:mr-20 flex flex-col justify-center">
           <h2 className="text-center text-4xl font-semibold mb-2">Our Team</h2>
           <p className="text-center max-w-96  leading-loose">
