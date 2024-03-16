@@ -1,17 +1,28 @@
+"use client"
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 export default function Home() {
+
+  AOS.init();
+  document.addEventListener("DOMContentLoaded", function() {
+    setTimeout(function() { AOS.refresh(); }, 500);
+  });
+  AOS.refresh();
+
+
   return (
-    <main className="">
+    <main className="overflow-x-hidden">
       <section className="w-full flex justify-center flex-col items-center">
         <Image
-          src="/team_pics/main-banner5.png"
-          width={5000}
-          height={10}
-          className="w-auto lg:w-full"
-          alt={"group picture of robotics team in front of a river in knoxville"}>
+            src="/team_pics/main-banner5.png"
+            width={5000}
+            height={10}
+            className="w-auto lg:w-full"
+            alt={"group picture of robotics team in front of a river in knoxville"}>
         </Image>
 
         <h1 className="text-center text-8xl font-semibold mt-6 mb-2">
@@ -21,8 +32,8 @@ export default function Home() {
         <p className="text-center	text-2xl mb-4 m-2">
           First Robotics Team #2856
         </p>
-
-        <h2 className="text-xl mt-2">
+        <br/><br/><br/>
+        <h2 className="text-2xl mt-2">
           Thanks to all the sponsors that allow us to keep working!
         </h2>
 
@@ -31,9 +42,10 @@ export default function Home() {
             Our Sponsors
           </Button>
         </Link>
+        <br/><br/>
       </section>
 
-      <section className="flex flex-col lg:flex-row justify-center items-center mt-8 ">
+      <section className="flex flex-col lg:flex-row justify-center items-center mt-8 aos-init aos-animate" data-aos={"fade-right"} data-aos-duration={1000} data-aos-offset={400} data-aos-delay={50}>
         <div className="lg:mr-20 flex flex-col justify-center">
           <h2 className="text-center text-4xl font-semibold mb-2">Our Team</h2>
           <p className="text-center max-w-96  leading-loose">
@@ -59,7 +71,7 @@ export default function Home() {
         </Image>
       </section>
 
-      <section className="flex flex-col lg:flex-row justify-center items-center mt-16">
+      <section className="flex flex-col lg:flex-row justify-center items-center mt-16 aos-init aos-animate" data-aos={"fade-left"} data-aos-duration={1000} data-aos-offset={400} data-aos-delay={300}>
         <Image
           src="/robot2024NotCropped.jpg"
           width={100000}

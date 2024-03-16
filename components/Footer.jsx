@@ -12,7 +12,7 @@ import { pages, otherPages } from "./Navbar.jsx";
 
 export default function Footer() {
   return (
-    <div className="bg-slate-950 w-full h-96 border-t-[2px] border-slate-700 p-4 pl-6 md:pl-16 mt-20">
+    <div className="bg-slate-950 w-full h-96 border-t-[2px] border-slate-700 p-4 pl-6 md:pl-16 mt-10">
       <div>
         <h2>Contact & Information</h2>{" "}
         <p>
