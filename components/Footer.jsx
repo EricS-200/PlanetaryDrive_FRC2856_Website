@@ -12,7 +12,7 @@ import { pages, otherPages } from "./Navbar.jsx";
 
 export default function Footer() {
   return (
-    <div className="bg-black w-full h-full mt-8 p-6 border-t-[1px] border-slate-700 flex px-8 md:px-32 xl:px-64 relative pb-16 md:pb-12 flex-col items-center md:flex-row md:justify-around">
+    <div className="bg-slate-800 w-full h-full mt-8 p-6 border-t-[1px] border-slate-700 flex px-8 md:px-32 xl:px-64 relative pb-16 md:pb-12 flex-col items-center md:flex-row md:justify-around">
       <div className="flex flex-col items-center md:block">
         <h2 className="pl-2 text-xl font-semibold mb-3">
           Contact & Information
@@ -51,12 +51,15 @@ export default function Footer() {
           </span>
           planetarydrive2856@gmail.com
         </p>
-        <Button variant="outline" className="dark md:mb-0 mb-2">
+        <Button
+          variant="outline"
+          className="dark md:mb-0 mb-2 bg-zinc-900 hover:bg-zinc-800 border-zing-700"
+        >
           <Link href="/contact">Contact Us</Link>
         </Button>
       </div>
       <div>
-        <ul>
+        <ul className="md:block flex flex-col items-center">
           <li>
             <Link
               href="https://www.firstinspires.org/robotics/frc"
