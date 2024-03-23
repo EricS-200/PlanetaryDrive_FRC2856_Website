@@ -1,5 +1,31 @@
 export default function Contact() {
     //Here we want to have a contact page that will be like a google form but embedded in the page
+
+    function inputStuff() {
+        return (
+            <div className={""}>
+                <label className={"pr-4"} htmlFor="name">Name:</label>
+                <input className={"absolute left-[15vw]"} type="text" id="name" name="name"/><br/>
+                <div className="mb-5"></div>
+
+                <label className={"pr-4"} htmlFor="email">Email:</label>
+                <input className={"absolute left-[15vw]"} type="text" id="email" name="email"/><br/>
+                <div className="mb-5"></div>
+
+                <label className={"pr-1"} htmlFor="email">Company:</label>
+                <input className={"absolute left-[15vw]"} type="text" id="compant" name="compant"/><br/><br/>
+                <div className="mb-5"></div>
+
+                <label className={"pr-4"} htmlFor="message">Message:</label>
+                <textarea className={"absolute left-[15vw]"} id="message" name="message"/><br/>
+
+                <button className={"bg-green-700 p-3 hover:bg-green-600 mt-10"}>Submit</button>
+                <p></p>
+            </div>
+        );
+    }
+
+
     return (
         <div className={"bg-slate-950 pb-2 border-t-2"}>
             <h1 className={"text-4xl sm:text-4xl md:text-4xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-semibold text-green-300 text-center pt-5"}>NOT EVEN CLOSE TO DONE - SEND FUNCTIONALITY NOT IMPLEMENTED</h1>
@@ -13,21 +39,7 @@ export default function Contact() {
 
                     <div className={"flex flex-row w-full"}>
                         <form className={"aos-init aos-animate"} data-aos={"fade-right"} data-aos-duration={1000}>
-                            <label className={"pr-4"} htmlFor="name">Name:</label>
-                            <input type="text" id="name" name="name"/><br/>
-
-                            <div className="mb-5"></div>
-
-                            <label className={"pr-4"} htmlFor="email">Email:</label>
-                            <input type="text" id="email" name="email"/><br/><br/>
-
-                            <div className="mb-5"></div>
-
-                            <label className={"pr-4"} htmlFor="message">Message:</label>
-                            <textarea id="message" name="message"/><br/>
-
-                            <button className={"bg-green-700 p-3 hover:bg-green-600 mt-10"}>Submit</button>
-                            <p></p>
+                            {inputStuff()}
                         </form>
                     </div>
                 </div>
