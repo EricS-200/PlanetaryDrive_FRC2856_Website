@@ -2,6 +2,7 @@ export default function Contact() {
     //Here we want to have a contact page that will be like a google form but embedded in the page
     return (
         <div className={"bg-slate-950 pb-2 border-t-2"}>
+            <h1 className={"text-4xl sm:text-4xl md:text-4xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-semibold text-green-300 text-center pt-5"}>NOT EVEN CLOSE TO DONE - SEND FUNCTIONALITY NOT IMPLEMENTED</h1>
             <div className={"w-full flex justify-center flex-col items-start pl-5 sm:pl-28"}>
                 <div className={"w-full flex flex-col pr-5 sm:pr-28"}>
                     <h2 className="mb-8 mt-8 lg:mb-12 lg:mt-8 text-4xl sm:text-4xl md:text-4xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-semibold">
