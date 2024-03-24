@@ -1,11 +1,5 @@
 "use client";
 
-/*
-
-THIS FOOTER IS NOT NEARLY FINISHED AND THE FOOTER THAT WE USE DOES NOT HAVE TO LOOK LIKE THIS
-
-*/
-
 import Link from "next/link";
 import { Button } from "./ui/button";
 import { pages, otherPages } from "./Navbar.jsx";
@@ -53,7 +47,7 @@ export default function Footer() {
         </p>
         <Button
           variant="outline"
-          className="dark md:mb-0 mb-2 bg-zinc-900 hover:bg-zinc-800 border-zing-700"
+          className="dark md:mb-0 mb-2 bg-slate-800 border-gray-600 hover:bg-slate-600"
         >
           <Link href="/contact">Contact Us</Link>
         </Button>
@@ -125,6 +119,24 @@ export default function Footer() {
               </span>
               <Button variant="link" className="dark p-0">
                 Official Instagram
+              </Button>
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="https://discord.gg/NZDgnFAnzm"
+              target="_blank"
+              className="flex items-center"
+            >
+              <span>
+                <img
+                  src="/footer/discord-icon.svg"
+                  alt=""
+                  className="h-5 mr-2"
+                />
+              </span>
+              <Button variant="link" className="dark p-0">
+                Member Discord
               </Button>
             </Link>
           </li>

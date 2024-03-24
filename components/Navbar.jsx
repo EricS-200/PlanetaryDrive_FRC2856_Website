@@ -152,6 +152,7 @@ export default function Navbar() {
             <ul className={`flex flex-col items-center ${openMNavDropdown()}`}>
               {otherPages.map((link) => (
                 <li
+                  key={link.name}
                   onClick={() => {
                     setMNav((prev) => !prev);
                     setMNavDropdown((prev) => !prev);
@@ -239,7 +240,10 @@ export default function Navbar() {
             <div className="opacity-0 bg-slate-950 w-44 p-4 -translate-y-full group-hover:translate-y-0 transition-transform duration-500 group-hover:opacity-100">
               <ul>
                 {otherPages.map((link) => (
-                  <li className="py-2 text-neutral-300 transition duration-100 hover:text-neutral-100">
+                  <li
+                    key={link.name}
+                    className="py-2 text-neutral-300 transition duration-100 hover:text-neutral-100"
+                  >
                     <Link key={link.name} href={link.page}>
                       {link.name}
                     </Link>
