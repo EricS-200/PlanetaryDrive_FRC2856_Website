@@ -70,9 +70,9 @@ export default function Home() {
               </p>
               <p className="text-lg leading-loose mt-2 lg:max-w-[45%]">
                 Robots are made from scratch, and a new one is made every year
-                to meet that year's event specifications. For the 2024 event
-                CRESCENDO, we had to build a robot able to pick up a note from
-                the ground and shoot it into a speaker on the game field to
+                to meet that year&apos;s event specifications. For the 2024
+                event CRESCENDO, we had to build a robot able to pick up a note
+                from the ground and shoot it into a speaker on the game field to
                 score against other teams.
               </p>
             </div>
