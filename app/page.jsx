@@ -25,6 +25,7 @@ export default function Home() {
       <section className="flex justify-center">
         <div className="flex flex-col lg:flex-row justify-around items-center ">
           <Image
+            alt=""
             src="/home/home2.png"
             width={100000}
             height={100}

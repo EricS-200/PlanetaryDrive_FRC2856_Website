@@ -190,7 +190,7 @@ export default function Navbar() {
         </svg>
         <Link href="/" className="absolute md:left-[8%] lg:left-[10%]">
           <div className="flex md:items-center ">
-            <Image src="/logo.png" height={50} width={50}></Image>
+            <Image alt="" src="/logo.png" height={50} width={50}></Image>
             <h1 className="m-4 font-semibold text-2xl xl:block hidden">
               Planetary Drive
             </h1>
