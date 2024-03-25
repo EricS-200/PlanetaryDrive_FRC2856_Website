@@ -95,7 +95,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="w-full bg-slate-700 flex justify-center items-center flex-col">
+      <section className="w-full bg-gray-950 flex justify-center items-center flex-col">
         <h2>Why We Love Robotics</h2>
         <div>
           <div className="border-[1px] rounded-lg p-3 w-1/4">

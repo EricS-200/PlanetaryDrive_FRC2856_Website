@@ -6,7 +6,7 @@ import { pages, otherPages } from "./Navbar.jsx";
 
 export default function Footer() {
   return (
-    <div className="bg-slate-800 w-full h-full mt-8 p-6 border-t-[1px] border-slate-700 flex px-8 md:px-32 xl:px-64 relative pb-16 md:pb-12 flex-col items-center md:flex-row md:justify-around">
+    <div className="bg-zinc-950 w-full h-full mt-8 p-6 border-t-[1px] border-slate-700 flex px-8 md:px-32 xl:px-64 relative pb-16 md:pb-12 flex-col items-center md:flex-row md:justify-around">
       <div className="flex flex-col items-center md:block">
         <h2 className="pl-2 text-xl font-semibold mb-3">
           Contact & Information
@@ -47,7 +47,7 @@ export default function Footer() {
         </p>
         <Button
           variant="outline"
-          className="dark md:mb-0 mb-2 bg-slate-800 border-gray-600 hover:bg-slate-600"
+          className="dark md:mb-0 mb-2 bg-zinc-950 hover:bg-zinc-800"
         >
           <Link href="/contact">Contact Us</Link>
         </Button>
