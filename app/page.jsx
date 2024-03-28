@@ -96,7 +96,7 @@ export default function Home() {
         </div>
       </section>
       <section className="w-full flex justify-center items-center flex-col mt-12">
-        <h2>Why We Love Robotics</h2>
+        <h2 className="text-center">Why We Love Robotics</h2>
         <div className="flex my-8 w-[95%] xl:w-3/4 2xl:w-2/3 lg:flex-row flex-col items-center lg:items-start">
           <div className="flex w-[85%] sm:w-[90%] lg:w-2/3 sm:space-x-10 sm:flex-row flex-col items-center sm:items-start">
             <div className="flex flex-col items-center sm:w-1/2 w-full">
