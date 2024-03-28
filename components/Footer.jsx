@@ -6,7 +6,7 @@ import { pages, otherPages } from "./Navbar.jsx";
 
 export default function Footer() {
   return (
-    <div className="bg-zinc-950 w-full h-full mt-8 p-6 border-t-[1px] border-slate-700 flex px-8 md:px-32 xl:px-64 relative pb-16 md:pb-12 flex-col items-center md:flex-row md:justify-around">
+    <footer className="bg-zinc-950 w-full h-full mt-8 p-6 border-t-[1px] border-slate-700 flex px-8 md:px-32 xl:px-64 relative pb-16 md:pb-12 flex-col items-center md:flex-row md:justify-around">
       <div className="flex flex-col items-center md:block">
         <h2 className="pl-2 text-xl font-semibold mb-3">
           Contact & Information
@@ -64,7 +64,9 @@ export default function Footer() {
                 <img src="/footer/frc-icon.png" alt="" className="h-5 mr-2" />
               </span>
               <Button variant="link" className="dark p-0">
-                About FIRST Robotics
+                <p>
+                  About <i>FIRST</i> Robotics
+                </p>
               </Button>
             </Link>
           </li>
@@ -142,9 +144,9 @@ export default function Footer() {
           </li>
         </ul>
       </div>
-      <p className="absolute bottom-2 left-1/2 -translate-x-1/2 text-slate-300 text-center">
+      <p className="absolute bottom-2 left-1/2 -translate-x-1/2 text-slate-300 text-center w-2/3 sm:w-1/2">
         © 2024 Team Planetary Drive. All rights reserved.
       </p>
-    </div>
+    </footer>
   );
 }

@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <main className="flex items-center flex-col">
-      <section className="w-full flex justify-center flex-col items-center overflow-hidden">
+      <section className="w-full flex justify-center flex-col items-center overflow-hidden ">
         <div className="bg-[url('/team_pics/main-banner5.png')] w-full h-[50vh] xl:h-[60vh] bg-cover bg-center"></div>
         <h1 className="text-center sm:text-8xl text-6xl mt-6 mb-2">
           Planetary Drive Robotics
@@ -31,9 +31,9 @@ export default function Home() {
             height={100}
             className="w-2/3 mb-8 lg:mt-0 lg:w-1/2 rounded-md"
           ></Image>
-          <div className=" flex flex-col justify-center lg:order-first">
+          <div className="flex flex-col items-center justify-center lg:order-first">
             <h2 className="text-center mb-2">Our Team</h2>
-            <p className="text-center max-w-md text-lg leading-loose">
+            <p className="text-center max-w-[90%] sm:max-w-lg md:max-w-md text-lg leading-loose">
               Established in 2009, Planetary Drive is a high school robotics
               team competing in the <i>FIRST</i> Robotics Competition. Each
               year, our extremely driven team of students along with our mentour
@@ -95,16 +95,73 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="w-full bg-gray-950 flex justify-center items-center flex-col">
+      <section className="w-full flex justify-center items-center flex-col mt-12">
         <h2>Why We Love Robotics</h2>
-        <div>
-          <div className="border-[1px] rounded-lg p-3 w-1/4">
-            <h3>Teamwork</h3>
-            <p>
-              Through robotics, we have the opportunity to meet smart and
-              like-minded people from all types of backgrounds that all enjoy
-              engineering or programming.
+        <div className="flex my-8 w-[95%] xl:w-3/4 2xl:w-2/3 lg:flex-row flex-col items-center lg:items-start">
+          <div className="flex w-[85%] sm:w-[90%] lg:w-2/3 sm:space-x-10 sm:flex-row flex-col items-center sm:items-start">
+            <div className="flex flex-col items-center sm:w-1/2 w-full">
+              <img src="/home/teamwork-icon.svg" alt="" className="w-32 mb-4" />
+              <h3 className="text-center">Teamwork</h3>
+              <p className="text-center leading-loose">
+                Through robotics, we get to meet, work with, and learn from many
+                smart and dedicated people from all different types of
+                backgrounds that love engineering & programming and it is an
+                amazing environment for anyone interested in STEM.
+              </p>
+            </div>
+
+            <div className="flex flex-col items-center sm:w-1/2 mt-12 w-[85%] sm:mt-0">
+              <img src="/home/gears-icon.svg" alt="" className="w-32 mb-4" />
+              <h3 className="text-center">Learn & Apply Skills</h3>
+              <p className="text-center leading-loose">
+                Robotics allows us to apply skills learned in classrooms and
+                beyond, and learn new skills through designing and building our
+                yearly robot while being guided by our mentour. We also get
+                experience in programming with Java and the WPI Library.
+              </p>
+            </div>
+          </div>
+
+          <div className="lg:ml-6 flex flex-col items-center w-[85%] sm:w-1/2 lg:w-1/3 mt-12 lg:mt-0">
+            <img src="/home/coins-icon.svg" alt="" className="w-32 mb-4" />
+            <h3 className="text-center">Opportunities</h3>
+            <p className="text-center leading-loose">
+              Through robotics, we gain leadership and communication skills and
+              are given opportunities to stand out and even win awards.
+              Furthermore, there are many scholarship opportunities associated
+              with <i>FIRST</i> - learn more on their website.
             </p>
+          </div>
+        </div>
+        <div className="flex flex-col items-center justify-center">
+          <h3 className="text-center">Interested?</h3>
+          <p className="leading-loose text-xl text-center w-[95%] md:w-2/3">
+            If you are a student in Fayette County Public Schools (Lexington,
+            KY) and interested in STEM, consider joining us! Feel free to
+            contact us if you have any questions or concerns, or continue
+            reading about our team!
+          </p>
+          <div className="sm:space-x-8 flex sm:flex-row flex-col items-center justify-center">
+            <Button className="dark mt-5" variant="outline" size="lg">
+              <Link href="/join" className="text-lg">
+                Join the Team
+              </Link>
+            </Button>
+            <Button className="dark mt-5" variant="outline" size="lg">
+              <Link href="/about" className="text-lg">
+                More About Us
+              </Link>
+            </Button>
+
+            <Button
+              className="dark mt-5 hidden sm:block"
+              variant="outline"
+              size="lg"
+            >
+              <Link href="/contact" className="text-lg">
+                Contact Us
+              </Link>
+            </Button>
           </div>
         </div>
       </section>
