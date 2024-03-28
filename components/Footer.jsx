@@ -11,7 +11,7 @@ export default function Footer() {
         <h2 className="pl-2 text-xl font-semibold mb-3">
           Contact & Information
         </h2>{" "}
-        <p className="flex items-center mb-2">
+        <p className="flex items-center mb-2 text-center">
           <span>
             <svg
               className="fill-white stroke-white mx-2"

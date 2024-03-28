@@ -77,7 +77,7 @@ export default function Home() {
               </p>
             </div>
           </div>
-          <div className="flex justify-around w-full mb-6">
+          <div className="flex justify-around w-full mb-6 sm:flex-row flex-col items-center sm:space-y-0 space-y-4">
             <Button className="dark mt-2" variant="outline" size="lg">
               <Link
                 href="https://www.firstinspires.org/robotics/frc"
@@ -98,8 +98,8 @@ export default function Home() {
       <section className="w-full flex justify-center items-center flex-col mt-12">
         <h2 className="text-center">Why We Love Robotics</h2>
         <div className="flex my-8 w-[95%] xl:w-3/4 2xl:w-2/3 lg:flex-row flex-col items-center lg:items-start">
-          <div className="flex w-[85%] sm:w-[90%] lg:w-2/3 sm:space-x-10 sm:flex-row flex-col items-center sm:items-start">
-            <div className="flex flex-col items-center sm:w-1/2 w-full">
+          <div className="flex w-full sm:w-[90%] lg:w-2/3 sm:space-x-10 sm:flex-row flex-col items-center sm:items-start">
+            <div className="flex flex-col items-center sm:w-1/2 w-[80%]">
               <img src="/home/teamwork-icon.svg" alt="" className="w-32 mb-4" />
               <h3 className="text-center">Teamwork</h3>
               <p className="text-center leading-loose">
@@ -110,7 +110,7 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="flex flex-col items-center sm:w-1/2 mt-12 w-[85%] sm:mt-0">
+            <div className="flex flex-col items-center sm:w-1/2 mt-12 w-[80%] sm:mt-0">
               <img src="/home/gears-icon.svg" alt="" className="w-32 mb-4" />
               <h3 className="text-center">Learn & Apply Skills</h3>
               <p className="text-center leading-loose">
@@ -122,7 +122,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="lg:ml-6 flex flex-col items-center w-[85%] sm:w-1/2 lg:w-1/3 mt-12 lg:mt-0">
+          <div className="lg:ml-6 flex flex-col items-center w-[80%] sm:w-1/2 lg:w-1/3 mt-12 lg:mt-0">
             <img src="/home/coins-icon.svg" alt="" className="w-32 mb-4" />
             <h3 className="text-center">Opportunities</h3>
             <p className="text-center leading-loose">
@@ -153,11 +153,7 @@ export default function Home() {
               </Link>
             </Button>
 
-            <Button
-              className="dark mt-5 hidden sm:block"
-              variant="outline"
-              size="lg"
-            >
+            <Button className="dark mt-5" variant="outline" size="lg">
               <Link href="/contact" className="text-lg">
                 Contact Us
               </Link>
