@@ -81,7 +81,7 @@ export default function Navbar() {
   return (
     <nav className={`${mNav ? "" : "sticky top-0"} z-50`}>
       <div
-        className={`${openNav()} z-10 h-full fixed bg-slate-950 left-0 flex flex-col items-center w-full`}
+        className={`${openNav()} z-10 h-full fixed bg-black left-0 flex flex-col items-center w-full`}
       >
         <svg
           onClick={() => setMNav((prev) => !prev)}
@@ -152,6 +152,7 @@ export default function Navbar() {
             <ul className={`flex flex-col items-center ${openMNavDropdown()}`}>
               {otherPages.map((link) => (
                 <li
+                  key={link.name}
                   onClick={() => {
                     setMNav((prev) => !prev);
                     setMNavDropdown((prev) => !prev);
@@ -171,7 +172,7 @@ export default function Navbar() {
       {/* ABOVE WAS CODE FOR SIDE NAV BAR FOR SMALL SCREENS
        * BELOW IS CODE FOR MAIN NAV BAR*/}
 
-      <div className="w-full bg-slate-950 h-16 flex justify-center items-center relative mb-0 p-0 border-b-[1px] border-slate-700">
+      <div className="w-full bg-black h-16 flex justify-center items-center relative mb-0 p-0 border-b-[1px] border-zinc-950">
         <svg
           onClick={() => setMNav((prev) => !prev)}
           className="left-5 absolute md:hidden cursor-pointer fill-gray-300 stroke-gray-300"
@@ -189,7 +190,7 @@ export default function Navbar() {
         </svg>
         <Link href="/" className="absolute md:left-[8%] lg:left-[10%]">
           <div className="flex md:items-center ">
-            <Image src="/logo.png" height={50} width={50}></Image>
+            <Image alt="" src="/logo.png" height={50} width={50}></Image>
             <h1 className="m-4 font-semibold text-2xl xl:block hidden">
               Planetary Drive
             </h1>
@@ -236,10 +237,13 @@ export default function Navbar() {
             </span>
           </p>
           <div className="pointer-events-none	group-hover:pointer-events-auto	overflow-hidden absolute left-5 top-full">
-            <div className="opacity-0 bg-slate-950 w-44 p-4 -translate-y-full group-hover:translate-y-0 transition-transform duration-500 group-hover:opacity-100">
+            <div className="opacity-0 bg-black w-44 p-4 -translate-y-full group-hover:translate-y-0 transition-transform duration-500 group-hover:opacity-100">
               <ul>
                 {otherPages.map((link) => (
-                  <li className="py-2 text-neutral-300 transition duration-100 hover:text-neutral-100">
+                  <li
+                    key={link.name}
+                    className="py-2 text-neutral-300 transition duration-100 hover:text-neutral-100"
+                  >
                     <Link key={link.name} href={link.page}>
                       {link.name}
                     </Link>

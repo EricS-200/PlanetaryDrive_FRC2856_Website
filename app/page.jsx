@@ -18,13 +18,13 @@ export default function Home() {
           Planetary Drive Robotics
         </h1>
         <p className="text-center	text-2xl mb-4 m-2">
-          First Robotics Team #2856
+          <i>FIRST</i> Robotics Team #2856
         </p>
-        <h2 className="text-xl mt-2">
+        <h2 className="text-3xl font-semibold mt-2 text-center">
           Thanks to all the sponsors that allow us to keep working!
         </h2>
         <Link href="/sponsors">
-          <Button variant="outline" className="dark m-4">
+          <Button variant="outline" className="dark m-6 text-xl" size="lg">
             Our Sponsors
           </Button>
         </Link>
@@ -230,3 +230,4 @@ forming the top engineers and programmers of the future. */
   );
 */
 }
+("");
