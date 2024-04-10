@@ -1,19 +1,19 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import frc1 from "/public/home/frc-1-compressed.jpg";
+import ParallaxBanner from "@/components/ParallaxBanner";
+import mainBanner from "/public/team_pics/main-banner.png";
 
 export default function Home() {
   return (
-    <main className="flex items-center flex-col">
-      <section className="w-full flex justify-center flex-col items-center overflow-hidden ">
-        <div className="h-[50vh] xl:h-[60vh] w-full overflow-hidden relative">
-          <Image
-            className="object-cover object-center"
-            fill
-            src="/team_pics/main-banner.png"
-            alt=""
-          />
-        </div>
+    <main className="flex items-center flex-col h-full">
+      <ParallaxBanner
+        src={mainBanner}
+        className="h-[50vh] xl:h-[60vh]"
+        speed={0.5}
+      />
+      <section className="w-full flex justify-center flex-col items-center overflow-hidden bg-black">
         <h1 className="text-center sm:text-8xl text-6xl mt-6 mb-2">
           Planetary Drive Robotics
         </h1>
@@ -29,7 +29,7 @@ export default function Home() {
           </Button>
         </Link>
       </section>
-      <section className="flex justify-center">
+      <section className="flex justify-center bg-black w-full">
         <div className="flex flex-col lg:flex-row justify-around items-center ">
           <Image
             alt=""
@@ -55,15 +55,16 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <div className="border-t-[1px] w-[80%] my-8 border-slate-700"></div>
-      <section className="flex justify-center flex-col items-center">
+      <section className="flex justify-center flex-col items-center bg-black">
+        <div className="border-t-[1px] w-[80%] my-8 border-slate-700 bg-black"></div>
         <h2 className="my-4">
           What is <i>FIRST</i>?
         </h2>
         <div className="flex justify-center items-center flex-col w-[90%] lg:w-[85%] 2xl:w-1/2">
           <Image
-            src="/home/frc-1-compressed.jpg"
+            src={frc1}
             alt=""
+            placeholder="blur"
             className="rounded-lg mb-4"
             height={3989}
             width={5983}
@@ -109,7 +110,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="w-full flex justify-center items-center flex-col mt-12">
+      <section className="w-full flex justify-center items-center flex-col pt-12 bg-black">
         <h2 className="text-center">Why We Love Robotics</h2>
         <div className="flex my-8 w-[95%] xl:w-3/4 2xl:w-2/3 lg:flex-row flex-col items-center lg:items-start">
           <div className="flex w-full sm:w-[90%] lg:w-2/3 sm:space-x-10 sm:flex-row flex-col items-center sm:items-start">
