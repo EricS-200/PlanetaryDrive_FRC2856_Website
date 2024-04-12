@@ -147,7 +147,7 @@ export default function Members() {
   // }
 
   return (
-    <main className="flex flex-col items-center justify-center">
+    <main className="flex flex-col items-center justify-center overflow-hidden w-full">
       <ParallaxBanner
         src={mainBanner}
         className="w-full h-[50vh] lg:h-[65vh]"
@@ -199,8 +199,10 @@ export default function Members() {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
+            <div className="relative flex mx-[100px] mb-6 sm:static">
+              <CarouselPrevious className="" />
+              <CarouselNext />
+            </div>
           </Carousel>
         </div>
 
@@ -235,8 +237,10 @@ export default function Members() {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
+            <div className="relative flex mx-[100px] mb-6 sm:static">
+              <CarouselPrevious className="" />
+              <CarouselNext />
+            </div>
           </Carousel>
         </div>
         <p className="text-center text-lg w-[95%] md:w-2/3 lg:w-1/2">
@@ -263,8 +267,10 @@ export default function Members() {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
+            <div className="relative flex mx-[100px] mb-6 sm:static">
+              <CarouselPrevious className="" />
+              <CarouselNext />
+            </div>
           </Carousel>
         </div>
         <p className="text-center text-lg w-[95%] md:w-2/3 lg:w-1/2">
@@ -292,8 +298,10 @@ export default function Members() {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
+            <div className="relative flex mx-[120px] mb-6 sm:static">
+              <CarouselPrevious className="" />
+              <CarouselNext />
+            </div>
           </Carousel>
         </div>
         <p className="text-center text-lg w-[95%] md:w-2/3 lg:w-1/2">
