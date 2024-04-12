@@ -1,12 +1,20 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import frc1 from "/public/home/frc-1-compressed.jpg";
+import ParallaxBanner from "@/components/ParallaxBanner";
+import mainBanner from "/public/team_pics/main-banner.png";
+import frcLogo from "/public/home/frc-logo.png";
 
 export default function Home() {
   return (
-    <main className="flex items-center flex-col">
-      <section className="w-full flex justify-center flex-col items-center overflow-hidden ">
-        <div className="bg-[url('/team_pics/main-banner5.png')] w-full h-[50vh] xl:h-[60vh] bg-cover bg-center"></div>
+    <main className="flex items-center flex-col h-full">
+      <ParallaxBanner
+        src={mainBanner}
+        className="h-[50vh] xl:h-[65vh]"
+        speed={0.5}
+      />
+      <section className="w-full flex justify-center flex-col items-center overflow-hidden bg-black">
         <h1 className="text-center sm:text-8xl text-6xl mt-6 mb-2">
           Planetary Drive Robotics
         </h1>
@@ -22,7 +30,7 @@ export default function Home() {
           </Button>
         </Link>
       </section>
-      <section className="flex justify-center">
+      <section className="flex justify-center bg-black w-full">
         <div className="flex flex-col lg:flex-row justify-around items-center ">
           <Image
             alt=""
@@ -36,7 +44,7 @@ export default function Home() {
             <p className="text-center max-w-[90%] sm:max-w-lg md:max-w-md text-lg leading-loose">
               Established in 2009, Planetary Drive is a high school robotics
               team competing in the <i>FIRST</i> Robotics Competition. Each
-              year, our extremely driven team of students along with our mentour
+              year, our extremely driven team of students along with our mentor
               design, build, and code a fully fledged metal robot to then play
               and compete against other teams from all over the country.
             </p>
@@ -48,13 +56,28 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <div className="border-t-[1px] w-[80%] my-8 border-slate-700"></div>
-      <section className="flex justify-center flex-col items-center">
+      <section className="flex justify-center flex-col items-center bg-black">
+        <div className="border-t-[1px] w-[80%] my-8 border-slate-700 bg-black"></div>
         <h2 className="my-4">
           What is <i>FIRST</i>?
         </h2>
         <div className="flex justify-center items-center flex-col w-[90%] lg:w-[85%] 2xl:w-1/2">
-          <img src="/home/frc-1.jpg" alt="" className="rounded-lg mb-4" />
+          <div className="relative">
+            <Image
+              src={frcLogo}
+              alt=""
+              className="absolute bottom-6 -right-4 w-32"
+            />
+            <Image
+              src={frc1}
+              alt=""
+              placeholder="blur"
+              className="rounded-lg mb-4"
+              height={3989}
+              width={5983}
+            />
+          </div>
+
           <div className="flex flex-col items-center mb-4 xl:w-[90%]">
             <h3 className="my-4 lg:w-[95%]">
               <i>FIRST</i> inpires the engineers of tomorrow by giving us
@@ -78,24 +101,26 @@ export default function Home() {
             </div>
           </div>
           <div className="flex justify-around w-full mb-6 sm:flex-row flex-col items-center sm:space-y-0 space-y-4">
-            <Button className="dark mt-2" variant="outline" size="lg">
-              <Link
-                href="https://www.firstinspires.org/robotics/frc"
-                target="_blank"
-                className=""
-              >
-                More About <i>FIRST</i>
-              </Link>
-            </Button>
-            <Button className="dark mt-2" variant="outline" size="lg">
-              <Link href="/gallery" className="">
+            <Link
+              href="https://www.firstinspires.org/robotics/frc"
+              target="_blank"
+              className=""
+            >
+              <Button className="dark mt-2" variant="outline" size="lg">
+                <p>
+                  More About <i>FIRST</i>
+                </p>
+              </Button>
+            </Link>
+            <Link href="/gallery" className="">
+              <Button className="dark mt-2" variant="outline" size="lg">
                 Team Pictures
-              </Link>
-            </Button>
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
-      <section className="w-full flex justify-center items-center flex-col mt-12">
+      <section className="w-full flex justify-center items-center flex-col pt-12 bg-black">
         <h2 className="text-center">Why We Love Robotics</h2>
         <div className="flex my-8 w-[95%] xl:w-3/4 2xl:w-2/3 lg:flex-row flex-col items-center lg:items-start">
           <div className="flex w-full sm:w-[90%] lg:w-2/3 sm:space-x-10 sm:flex-row flex-col items-center sm:items-start">
@@ -116,7 +141,7 @@ export default function Home() {
               <p className="text-center leading-loose">
                 Robotics allows us to apply skills learned in classrooms and
                 beyond, and learn new skills through designing and building our
-                yearly robot while being guided by our mentour. We also get
+                yearly robot while being guided by our mentor. We also get
                 experience in programming with Java and the WPI Library.
               </p>
             </div>
@@ -142,22 +167,21 @@ export default function Home() {
             reading about our team!
           </p>
           <div className="sm:space-x-8 flex sm:flex-row flex-col items-center justify-center">
-            <Button className="dark mt-5" variant="outline" size="lg">
-              <Link href="/join" className="text-lg">
+            <Link href="/join" className="text-lg">
+              <Button className="dark mt-5" variant="outline" size="lg">
                 Join the Team
-              </Link>
-            </Button>
-            <Button className="dark mt-5" variant="outline" size="lg">
-              <Link href="/about" className="text-lg">
+              </Button>
+            </Link>
+            <Link href="/about" className="text-lg">
+              <Button className="dark mt-5" variant="outline" size="lg">
                 More About Us
-              </Link>
-            </Button>
-
-            <Button className="dark mt-5" variant="outline" size="lg">
-              <Link href="/contact" className="text-lg">
+              </Button>
+            </Link>
+            <Link href="/contact" className="text-lg">
+              <Button className="dark mt-5" variant="outline" size="lg">
                 Contact Us
-              </Link>
-            </Button>
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -212,6 +236,9 @@ forming the top engineers and programmers of the future. */
             </Button>
           </Link>
         </div>
-      </section> */
+      </section>
+    </main>
+  );
+*/
 }
 ("");

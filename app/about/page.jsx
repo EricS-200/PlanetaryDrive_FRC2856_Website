@@ -1,3 +1,7 @@
 export default function AboutUs() {
-    return <div>AboutUs</div>
+  return (
+    <div className="">
+      <div className="bg-red-400 h-[400vh]"></div>
+    </div>
+  );
 }
