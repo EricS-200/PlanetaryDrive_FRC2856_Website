@@ -244,7 +244,7 @@ export default function Members() {
           members that organize everything including meetings, team structure,
           as well as individual assignments. They help guide new members, and
           plan the team strategy as well as the construction and design of the
-          robot based on the season event and everyone's input.
+          robot based on the season event and everyone&apos;s input.
         </p>
       </section>
       <section className="flex flex-col items-center w-full">
@@ -297,12 +297,12 @@ export default function Members() {
           </Carousel>
         </div>
         <p className="text-center text-lg w-[95%] md:w-2/3 lg:w-1/2">
-          The electromechanical (build) team is characterized by all of it's
-          brilliant engineering students who, each year, work hand in hand with
-          the programming team and mentors to plan, design, and assemble a fully
-          functional robot with great care and precision. The hands-on
-          experience with electronics, pneumatics, and mechanics in an actual
-          workshop prepares them to become great engineers in the future.
+          The electromechanical (build) team is characterized by all of
+          it&apos;s brilliant engineering students who, each year, work hand in
+          hand with the programming team and mentors to plan, design, and
+          assemble a fully functional robot with great care and precision. The
+          hands-on experience with electronics, pneumatics, and mechanics in an
+          actual workshop prepares them to become great engineers in the future.
         </p>
       </section>
       <div className="border-t-[1px] w-[80%] my-8 border-slate-700 bg-black"></div>
