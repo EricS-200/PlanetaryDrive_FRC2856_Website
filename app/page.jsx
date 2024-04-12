@@ -4,13 +4,14 @@ import Link from "next/link";
 import frc1 from "/public/home/frc-1-compressed.jpg";
 import ParallaxBanner from "@/components/ParallaxBanner";
 import mainBanner from "/public/team_pics/main-banner.png";
+import frcLogo from "/public/home/frc-logo.png";
 
 export default function Home() {
   return (
     <main className="flex items-center flex-col h-full">
       <ParallaxBanner
         src={mainBanner}
-        className="h-[50vh] xl:h-[60vh]"
+        className="h-[50vh] xl:h-[65vh]"
         speed={0.5}
       />
       <section className="w-full flex justify-center flex-col items-center overflow-hidden bg-black">
@@ -43,7 +44,7 @@ export default function Home() {
             <p className="text-center max-w-[90%] sm:max-w-lg md:max-w-md text-lg leading-loose">
               Established in 2009, Planetary Drive is a high school robotics
               team competing in the <i>FIRST</i> Robotics Competition. Each
-              year, our extremely driven team of students along with our mentour
+              year, our extremely driven team of students along with our mentor
               design, build, and code a fully fledged metal robot to then play
               and compete against other teams from all over the country.
             </p>
@@ -61,14 +62,21 @@ export default function Home() {
           What is <i>FIRST</i>?
         </h2>
         <div className="flex justify-center items-center flex-col w-[90%] lg:w-[85%] 2xl:w-1/2">
-          <Image
-            src={frc1}
-            alt=""
-            placeholder="blur"
-            className="rounded-lg mb-4"
-            height={3989}
-            width={5983}
-          />
+          <div className="relative">
+            <Image
+              src={frcLogo}
+              alt=""
+              className="absolute bottom-6 -right-4 w-32"
+            />
+            <Image
+              src={frc1}
+              alt=""
+              placeholder="blur"
+              className="rounded-lg mb-4"
+              height={3989}
+              width={5983}
+            />
+          </div>
 
           <div className="flex flex-col items-center mb-4 xl:w-[90%]">
             <h3 className="my-4 lg:w-[95%]">
@@ -99,7 +107,9 @@ export default function Home() {
               className=""
             >
               <Button className="dark mt-2" variant="outline" size="lg">
-                More About <i>FIRST</i>
+                <p>
+                  More About <i>FIRST</i>
+                </p>
               </Button>
             </Link>
             <Link href="/gallery" className="">
@@ -131,7 +141,7 @@ export default function Home() {
               <p className="text-center leading-loose">
                 Robotics allows us to apply skills learned in classrooms and
                 beyond, and learn new skills through designing and building our
-                yearly robot while being guided by our mentour. We also get
+                yearly robot while being guided by our mentor. We also get
                 experience in programming with Java and the WPI Library.
               </p>
             </div>

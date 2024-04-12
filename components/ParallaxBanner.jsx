@@ -17,6 +17,7 @@ export default function ParallaxBanner({
   height,
   width,
   alt = "",
+  imgClassName,
   ...props
 }) {
   const [scrollY, setScrollY] = useState();
@@ -39,7 +40,7 @@ export default function ParallaxBanner({
       {...props}
     >
       <Image
-        className="object-cover object-center"
+        className={cn("object-cover object-center", imgClassName)}
         fill={fill}
         src={src}
         alt={alt}

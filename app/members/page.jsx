@@ -1,288 +1,326 @@
+// "use client";
+
 /*
 This section lists all the active/main members of our team.
 We might merge this page into the About Us page.
 */
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import MemberCard from "@/components/MemberCard";
+import ParallaxBanner from "@/components/ParallaxBanner";
+// import { useRef } from "react";
+import mainBanner from "/public/team_pics/main-banner2.png";
+// members
+import ade from "/public/team_pics/ade.jpg";
+import anthony from "/public/team_pics/anthony.jpg";
+import daniel from "/public/team_pics/daniel.jpg";
+import jacoby from "/public/team_pics/jacoby.jpg";
+import jake from "/public/team_pics/jake.jpg";
+import mukhil from "/public/team_pics/mukhil.jpg";
+import myles from "/public/team_pics/myles.jpg";
+import natalie from "/public/team_pics/natalie.jpg";
+import wayne from "/public/team_pics/wayne.png";
+import zach from "/public/team_pics/zach.jpg";
+
+import malePlaceholder from "/public/placeholder/male-profile-placeholder.jpg";
+import femalePlaceholder from "/public/placeholder/female-profile-placeholder.jpg";
+
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+
+// placeholders for: andrew, siddhi, karthika, kaiwen, andrew
+
+const mentors = [
+  {
+    name: "placeholder",
+    picture: malePlaceholder,
+    role: "Team Mentor",
+  },
+  {
+    name: "placeholder",
+    picture: femalePlaceholder,
+    role: "Team Mentor",
+  },
+  {
+    name: "placeholder",
+    picture: malePlaceholder,
+    role: "Team Mentor",
+  },
+];
+
+const leads = [
+  {
+    name: "Daniel",
+    picture: daniel,
+    role: "Team Captain/Build Lead",
+  },
+  {
+    name: "Anthony",
+    picture: anthony,
+    role: "Programming Lead",
+  },
+  {
+    name: "Andrew",
+    picture: malePlaceholder,
+    role: "Build Lead",
+  },
+];
+
+const programming = [
+  {
+    name: "Mukhil",
+    picture: mukhil,
+    role: "Programmer",
+  },
+  {
+    name: "Eric",
+    picture: malePlaceholder,
+    role: "Programmer",
+  },
+  {
+    name: "Jake",
+    picture: jake,
+    role: "Programmer",
+  },
+];
+
+const build = [
+  {
+    name: "Myles",
+    picture: myles,
+    role: "Build & Engineering/Safety Captain",
+  },
+  {
+    name: "Kaiwen",
+    picture: malePlaceholder,
+    role: "Build & Engineering",
+  },
+  {
+    name: "Jacoby",
+    picture: jacoby,
+    role: "Build & Engineering",
+  },
+  {
+    name: "Zach",
+    picture: zach,
+    role: "Build & Engineering",
+  },
+  {
+    name: "Ade",
+    picture: ade,
+    role: "Build & Engineering",
+  },
+  {
+    name: "Natalie",
+    picture: natalie,
+    role: "Build & Engineering",
+  },
+  {
+    name: "Siddhi",
+    picture: femalePlaceholder,
+    role: "Build & Engineering",
+  },
+  {
+    name: "Karthika",
+    picture: femalePlaceholder,
+    role: "Build & Engineering",
+  },
+];
 
 export default function Members() {
-  return;
+  // const teamDescriptions = useRef(null);
+
+  // function scrollToDescriptions() {
+  //   teamDescriptions.current.scrollIntoView({ behavior: "smooth" });
+  // }
+
+  // function scrollToTop() {
+  //   window.scrollTo({
+  //     top: 0,
+  //     behavior: "smooth",
+  //   });
+  // }
+
+  return (
+    <main className="flex flex-col items-center justify-center">
+      <ParallaxBanner
+        src={mainBanner}
+        className="w-full h-[50vh] lg:h-[65vh]"
+        imgClassName="object-top"
+        speed={0.5}
+      />
+      <section className="flex flex-col items-center bg-black">
+        <h1 className="text-center mt-4">Meet Our Team</h1>
+        <h3 className="text-center mx-auto md:w-1/2 my-3">Teamwork is Key!</h3>
+        <p className=" text-center mx-auto w-[95%] md:w-1/2 text-lg">
+          We have an amazing and diverse team of students and mentors that all
+          love robotics! The students are divided into two teams: the
+          electromechanical (build) and programming teams. Check out all of our
+          members below, and learn more about what each team does.
+        </p>
+        <p className="text-center mx-auto w-[95%] md:w-1/2 mt-3">
+          <i>
+            Students can come at all times to help out with the creation of the
+            robot - the following members are people who participate regularly
+            and go to competition.
+          </i>
+        </p>
+        {/* <button onClick={scrollToDescriptions}>
+          <p className="text-xl text-center flex items-center justify-center mt-4 underline underline-offset-2">
+            Jump to team descriptions
+            <span className="ml-2">
+              <img
+                src="/down-arrow.svg"
+                width={20}
+                className="fill-white stroke-white text-white"
+              />
+            </span>
+          </p>
+        </button> */}
+      </section>
+      <section className="flex flex-col items-center w-full bg-black">
+        <h2 className="text-center mt-8 mb-2">Mentors</h2>
+        <div className="justify-center items-center flex-wrap hidden lg:flex">
+          {mentors.map((mentor) => (
+            <MemberCard member={mentor} key={mentor.name} />
+          ))}
+        </div>
+        <div className="flex justify-center w-auto lg:hidden">
+          <Carousel className="w-1/3 dark">
+            <CarouselContent className="">
+              {mentors.map((mentor) => (
+                <CarouselItem key={mentor.name} className="">
+                  <MemberCard member={mentor} />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
+        </div>
+
+        <p className="text-center text-lg w-[95%] md:w-2/3 lg:w-1/2">
+          Our mentors, driven by their love for robotics, are the ones with the
+          most experience, and they help guide and supervise the team with their
+          expertise. They are also the ones who handle all the documentation,
+          registration, and logistics of going to the competition! Their
+          astounding commitment to the team and robotics as a whole is what
+          allows this team to function.
+        </p>
+        <p className="text-center text-lg w-[95%] md:w-2/3 lg:w-1/2 mt-3">
+          <strong>Special thanks to our former mentor Wayne Brumfield</strong>,
+          who helped mentor the robotics team for over 12 years and retired in
+          2024. His incredible contribution to the team has allowed to become
+          what it is today.
+        </p>
+      </section>
+      <section className="flex flex-col items-center w-full bg-black">
+        <h2 className="text-center my-6">Leadership</h2>
+        <div className="lg:flex hidden justify-center items-center flex-wrap">
+          {leads.map((member) => (
+            <MemberCard member={member} key={member.name} />
+          ))}
+        </div>
+        <div className="flex justify-center w-auto lg:hidden">
+          <Carousel className="w-1/3 dark">
+            <CarouselContent className="">
+              {leads.map((member) => (
+                <CarouselItem key={member.name} className="">
+                  <MemberCard member={member} />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
+        </div>
+        <p className="text-center text-lg w-[95%] md:w-2/3 lg:w-1/2">
+          The extremely driven and caring leadership is composed of experienced
+          members that organize everything including meetings, team structure,
+          as well as individual assignments. They help guide new members, and
+          plan the team strategy as well as the construction and design of the
+          robot based on the season event and everyone's input.
+        </p>
+      </section>
+      <section className="flex flex-col items-center w-full">
+        <h2 className="text-center my-6">Programming Team</h2>
+        <div className="lg:flex hidden justify-center items-center flex-wrap">
+          {programming.map((member) => (
+            <MemberCard member={member} key={member.name} />
+          ))}
+        </div>
+        <div className="flex justify-center w-auto lg:hidden">
+          <Carousel className="w-1/3 dark">
+            <CarouselContent className="">
+              {programming.map((member) => (
+                <CarouselItem key={member.name} className="">
+                  <MemberCard member={member} />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
+        </div>
+        <p className="text-center text-lg w-[95%] md:w-2/3 lg:w-1/2">
+          The programming team is composed of dedicated and driven computer
+          science students. They are the ones responsible for creating and
+          implementing the software used in the robot. They are also the ones
+          who test, debug, and maintain the code base. Furthermore, during parts
+          of the build process, when the programming team is ahead of the build
+          team, they may assist in the assemblage of the robot.
+        </p>
+      </section>
+      <section className="flex flex-col items-center w-full">
+        <h2 className="text-center my-6">Electromechanical Team</h2>
+        <div className="lg:flex hidden justify-center items-center flex-wrap 2xl:w-[80%]">
+          {build.map((member) => (
+            <MemberCard member={member} key={member.name} />
+          ))}
+        </div>
+        <div className="flex justify-center w-auto lg:hidden">
+          <Carousel className="w-[450px] dark">
+            <CarouselContent className="">
+              {build.map((member) => (
+                <CarouselItem key={member.name} className="">
+                  <MemberCard member={member} />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
+        </div>
+        <p className="text-center text-lg w-[95%] md:w-2/3 lg:w-1/2">
+          The electromechanical (build) team is characterized by all of it's
+          brilliant engineering students who, each year, work hand in hand with
+          the programming team and mentors to plan, design, and assemble a fully
+          functional robot with great care and precision. The hands-on
+          experience with electronics, pneumatics, and mechanics in an actual
+          workshop prepares them to become great engineers in the future.
+        </p>
+      </section>
+      <div className="border-t-[1px] w-[80%] my-8 border-slate-700 bg-black"></div>
+      {/* <section>programming team explained</section>
+      <section>build team explained</section>
+      <section>honorable mentions/extra contributors/info</section> */}
+      <section className="flex flex-col items-center justify-center">
+        <p className="font-semibold text-2xl text-center lg:w-1/2 md:w-2/3 w-[95%]">
+          If you are a student who likes STEM in the Fayette Country school
+          district (Lex, KY), or if you are interested in becoming a mentor, we
+          would be honored to have you on our team.
+        </p>
+        <Link href="/join" className="text-lg">
+          <Button className="dark mt-5" variant="outline" size="lg">
+            Join the Team
+          </Button>
+        </Link>
+      </section>
+    </main>
+  );
 }
-
-// 'use client'
-
-// import React from "react"
-// import Head from 'next/head';
-// import { siteConfig } from "@/config/site"
-// import { mouseLeave, mouseMove } from "../lib/mouseTracking"
-// import Link from "next/link";
-// import { useEffect } from 'react';
-// import Spline from '@splinetool/react-spline';
-// import Image from 'next/image'
-// import { cn } from "@/lib/utils"
-// import { useTheme } from 'next-themes'
-// import { useState } from "react";
-// import { grid } from 'ldrs'
-
-// export default function Home() {
-//   const [loaded, setLoaded] = useState(false);
-
-//   const delay = ms => new Promise(res => setTimeout(res, ms));
-//   useEffect(() => {
-//     (
-//       async () => {
-//         const LocomotiveScroll = (await import('locomotive-scroll')).default
-//         const locomotiveScroll = new LocomotiveScroll();
-//       }
-//     )()
-//   }, [])
-
-//   const hideLoader = async () => {
-//     await delay(2000);
-//     console.log("loading should be complete");
-//     window.scrollTo(0,0);
-//     setLoaded(true);
-//     sessionStorage.setItem('hasLoaded', true);
-//   };
-
-//   useEffect(() => {
-//     // Check if the flag exists in session storage
-//     const hasLoaded = sessionStorage.getItem('hasLoaded');
-
-//     // If the flag is true, hide the loader immediately
-//     if (hasLoaded === 'true') {
-//       setLoaded(true);
-//     } else {
-//       // If the flag doesn't exist or is false, show the loader and hide it after delay
-//       hideLoader();
-
-//     }
-//   }, []);
-
-//   return (
-//     <div className="">
-
-//       <div className={`${loaded ? "opacity-0 hidden" : "opacity-100"} fixed inset-0 z-50 transition-all bg-emerald-400 overflow-hidden w-screen h-screen flex justify-center items-center flex-col duration-500`} id="page-loader">
-//               <l-grid
-//           size="125"
-//           speed="1.5"
-//           color="white"
-//         ></l-grid>
-//         <h1 className="text-white font-normal mt-10 text-3xl text-center">
-//           Loading...
-//         </h1>
-//         <h1 className="text-white font-thin mt-5 text-xl text-center">
-//           Please use fullscreen for best experience.
-//         </h1>
-//       </div>
-
-//       <Head>
-//         <title>{siteConfig.name}</title>
-//         <meta name="description" content="Generated by create next app" />
-//         <meta name="viewport" content="width=device-width, initial-scale=1" />
-//       </Head>
-
-//       <main onMouseMove={mouseMove} onMouseLeave={mouseLeave}>
-//         <section className="">
-//           <div className="hero h-screen overflow-hidden perspective bg-black">
-
-//             <div className="h-screen min-h-[500px] transform-3d rotate-x-[var(--move-y)] rotate-y-[var(--move-x)] will-change-transform transition-transform ease-out duration-1000">
-//               <div className="layer-bg bg-layer-1 -translate-z-[55px] scale-[1.06]" />
-//               <div className="layer-bg bg-layer-2 translate-z-20 scale-[.88]" />
-
-//               <div className="layer-content translate-z-[180px] scale-[.8]">
-//                 <div className=" mt-[calc(var(--index)*4)] text-[calc(var(--index)*4.35)] text-center uppercase tracking-[calc(var(--index)*-.15)] leading-[.9em]">
-//                   <h1 className="text-white text-shadow font-bold">
-
-//                     <span className="lg:hover:font-stretch font-stretch-zero transition-all ease-out duration-500">B</span>
-//                     <span className="lg:hover:font-stretch font-stretch-zero transition-all ease-out duration-500">E</span>
-//                     <span className=""> </span>
-//                     <span className="lg:hover:font-stretch font-stretch-zero transition-all ease-out duration-500">M</span>
-//                     <span className="lg:hover:font-stretch font-stretch-zero transition-all ease-out duration-500">I</span>
-//                     <span className="lg:hover:font-stretch font-stretch-zero transition-all ease-out duration-500">N</span>
-//                     <span className="lg:hover:font-stretch font-stretch-zero transition-all ease-out duration-500">D</span>
-//                     <span className="lg:hover:font-stretch font-stretch-zero transition-all ease-out duration-500">F</span>
-//                     <span className="lg:hover:font-stretch font-stretch-zero transition-all ease-out duration-500">U</span>
-//                     <span className="lg:hover:font-stretch font-stretch-zero transition-all ease-out duration-500">L</span>
-//                     <span className="lg:hover:font-stretch font-stretch-zero transition-all ease-out duration-500">.</span>
-//                   </h1>
-
-//                   <p className="text-white normal-case tracking-normal text-[calc(var(--index)*.8)] leading-[3] text-shadow">
-//                     Have a look around: this could be our future. But how do we get there?
-//                   </p>
-//                   <p className="text-white normal-case tracking-normal text-[calc(var(--index)*.8)] leading-[.1] text-shadow">
-
-//                   Greenful can help.
-//                   </p>
-//                 </div>
-//               </div>
-
-//               <div className="layer-content translate-z-[190px] scale-[.9] pointer-events-none">
-//                 <canvas className="rain" />
-//               </div>
-
-//               <div className="layer-bg bg-layer-5 translate-z-[300px] scale-[.9] pointer-events-none" />
-//               <div className="layer-bg bg-layer-6 translate-z-[380px] pointer-events-none" />
-//             </div>
-
-//             <div className="flex flex-row text-lg absolute bottom-0 left-0 z-[1] mb-10 lg:ml-16 ml-10 items-center text-white">
-//               <Link href="/" className="hidden lg:flex">
-//                 Scroll to Explore
-//               </Link>
-//               <Link href="/" className="material-symbols-outlined scale-120 lg:ml-2 pointer-events-auto [color:white]">expand_more</Link>
-//             </div>
-
-//           </div>
-//         </section>
-
-//         <div  className="sticky top-0 left-0">
-//           <section className={cn(
-//             "flex justify-center items-center font-semibold h-screen ",
-//             "dark:bg-black bg-white",
-//             "xl:text-6xl",
-//             "lg:text-5xl",
-//             "md:text-5xl",
-//             "sm:text-5xl",
-//             "text-3xl",
-//             )}>
-//             <Link href="/carbon-footprint-calculator"
-//             data-scroll data-scroll-css-progress data-scroll-offset="105%,105%"
-//             className={cn(
-//               "sm:h-[90vh] sm:w-[95vw] bg-cover bg-background rounded-xl bg-center flex flex-col justify-center",
-//               "dark:bg-[url('/front_cards/cc_light.png')]",
-//               "bg-[url('/front_cards/cc_dark.png')]",
-//               "h-[80vh] w-[95vw]",
-//               "opacity-[calc(1-var(--progress))] scale-[calc(1-var(--progress))] blur-[calc( (1-var(--progress)) * 1000 )]")}>
-//               <div className={cn(
-//                 "xl:mt-[55vh] xl:ml-[6vw]",
-//                 "lg:mt-[55vh] lg:ml-[5vw]",
-//                 "md:mt-[55vh] md:ml-[5vw]",
-//                 "sm:mt-[55vh] sm:ml-[4vw]",
-//                 "mt-[55vh] ml-[5vw]"
-//               )}>
-//                 <h1 className={cn(
-//                   "dark:text-black text-white"
-//                   )}>
-//                   CARBON CALCULATOR
-//                 </h1>
-//                 <p className={cn(
-//                   "font-thin",
-//                   "dark:text-black text-white",
-//                   "lg:text-3xl lg:mt-5 lg:max-w-4xl",
-//                   "md:text-2xl md:mt-4",
-//                   "sm:text-2xl sm:mt-3",
-//                   "text-xl mt-2 max-w-lg"
-//                   )}>
-//                   Discover your annual carbon footprint and compare it to the average US household using our calculator.
-//                 </p>
-
-//               </div>
-//             </Link>
-//           </section>
-//         </div>
-
-//         <div className="sticky top-0 left-0">
-//           <section className={cn(
-//             "flex justify-center items-center font-semibold h-screen bg-transparent",
-//             "xl:text-6xl",
-//             "lg:text-5xl",
-//             "md:text-5xl",
-//             "sm:text-5xl",
-//             "text-3xl")}>
-//             <Link href="solutions" data-scroll data-scroll-css-progress data-scroll-offset="105%,105%" className={cn(
-//               "sm:h-[90vh] sm:w-[95vw] bg-[length:110%] bg-background rounded-xl bg-center flex flex-col justify-center",
-//               "bg-[url('/front_cards/articles.png')]",
-//               "h-[80vh] w-[95vw]",
-//               "opacity-[calc(1-var(--progress))] scale-[calc(1-var(--progress))] blur-[calc( (1-var(--progress)) * 1000 )]")}>
-//               <div className={cn(
-//                 "xl:mt-[55vh] xl:ml-[6vw]",
-//                 "lg:mt-[55vh] lg:ml-[5vw]",
-//                 "md:mt-[55vh] md:ml-[5vw]",
-//                 "sm:mt-[55vh] sm:ml-[4vw]",
-//                 "mt-[55vh] ml-[5vw]"
-//               )}>
-//                 <h1 className={cn(
-//                   "text-white"
-//                   )}>
-//                   SOLUTIONS
-//                 </h1>
-//                 <p className={cn(
-//                   "font-thin",
-//                   "text-white",
-//                   "lg:text-3xl lg:mt-5 lg:max-w-4xl",
-//                   "md:text-2xl md:mt-4",
-//                   "sm:text-2xl sm:mt-3",
-//                   "text-xl mt-2 max-w-lg"
-//                   )}>
-//                     View some of our hand-picked solutions on how we believe carbon emissions could best be reduced.
-//                 </p>
-
-//               </div>
-//             </Link>
-//           </section>
-//         </div>
-
-//         <div className="relative top-0 left-0">
-//           <section className={cn(
-//             "flex justify-center items-center font-semibold h-screen bg-transparent",
-//             "xl:text-6xl",
-//             "lg:text-5xl",
-//             "md:text-5xl",
-//             "sm:text-5xl",
-//             "text-3xl",)}
-//             >
-//             <Link href="/interactive" className={cn(
-//               "sm:h-[90vh] sm:w-[95vw] bg-cover bg-background rounded-xl bg-center flex flex-col justify-center",
-//               "bg-[url('/front_cards/interactive_house.png')]",
-//               "h-[80vh] w-[95vw]")}>
-//               <div className={cn(
-//                 "xl:mt-[55vh] xl:ml-[6vw]",
-//                 "lg:mt-[55vh] lg:ml-[5vw]",
-//                 "md:mt-[55vh] md:ml-[5vw]",
-//                 "sm:mt-[55vh] sm:ml-[4vw]",
-//                 "mt-[55vh] ml-[5vw]"
-//               )}>
-//                 <h1 className={cn(
-//                   "text-white"
-//                   )}>
-//                   INTERACTIVE HOUSE
-//                 </h1>
-//                 <p className={cn(
-//                   "font-thin",
-//                   "text-white",
-//                   "lg:text-3xl lg:mt-5 lg:max-w-4xl",
-//                   "md:text-2xl md:mt-4",
-//                   "sm:text-2xl sm:mt-3",
-//                   "text-xl mt-2 max-w-lg"
-//                   )}>
-//                     Learn different ways to save energy around the house by exploring our virtual house.
-//                 </p>
-
-//               </div>
-//             </Link>
-//           </section>
-//         </div>
-
-//         <section className={cn(
-//           "h-screen flex justify-center items-center font-semibold bg-black")}>
-//               <div className="bg-black mt-[calc(var(--index)*4)] text-[calc(var(--index)*4.35)] text-center uppercase tracking-[calc(var(--index)*-.15)] leading-[.5em] align-center">
-//                 <h1 className="dark:text-white text-black dark:text-shadow font-bold">
-//                   <span className="lg:hover:font-stretch font-stretch-zero transition-all ease-out duration-500">B</span>
-//                   <span className="lg:hover:font-stretch font-stretch-zero transition-all ease-out duration-500">E</span>
-//                   <span className=""> </span>
-//                   <span className="lg:hover:font-stretch font-stretch-zero transition-all ease-out duration-500">G</span>
-//                   <span className="lg:hover:font-stretch font-stretch-zero transition-all ease-out duration-500">R</span>
-//                   <span className="lg:hover:font-stretch font-stretch-zero transition-all ease-out duration-500">E</span>
-//                   <span className="lg:hover:font-stretch font-stretch-zero transition-all ease-out duration-500">E</span>
-//                   <span className="lg:hover:font-stretch font-stretch-zero transition-all ease-out duration-500">N</span>
-//                   <span className="lg:hover:font-stretch font-stretch-zero transition-all ease-out duration-500">F</span>
-//                   <span className="lg:hover:font-stretch font-stretch-zero transition-all ease-out duration-500">U</span>
-//                   <span className="lg:hover:font-stretch font-stretch-zero transition-all ease-out duration-500">L</span>
-//                 </h1>
-
-//               </div>
-
-//         </section>
-
-//       </main>
-//     </div>
-//   );
-// }
