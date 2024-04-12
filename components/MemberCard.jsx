@@ -10,11 +10,11 @@ export default function MemberCard({
   return (
     <div
       className={cn(
-        "h-[500px] w-[400px] m-6 space-y-2 overflow-hidden border-[1px] rounded-lg border-gray-800 flex flex-col",
+        "w-[80vw]  sm:w-[400px] m-6 pb-2 space-y-2 overflow-hidden border-[1px] rounded-lg border-gray-800",
         className
       )}
     >
-      <div className="relative w-full h-[80%] overflow-hidden flex items-center mb-1">
+      <div className="relative w-full  h-[400px] overflow-hidden flex items-center lg:mb-1">
         <Image
           src={member.picture}
           placeholder="blur"
@@ -23,8 +23,8 @@ export default function MemberCard({
         />
       </div>
 
-      <p className="font-bold text-2xl text-center">{member.name}</p>
-      <p className="text-xl text-center">{member.role}</p>
+      <p className="font-bold text-2xl text-center pt-1">{member.name}</p>
+      <p className="text-xl text-center pb-1">{member.role}</p>
     </div>
   );
 }
