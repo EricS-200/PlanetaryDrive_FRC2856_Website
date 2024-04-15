@@ -153,9 +153,11 @@ export default function Members() {
         className="w-full h-[50vh] lg:h-[65vh]"
         imgClassName="object-top"
         speed={0.5}
-      />
-      <section className="flex flex-col items-center bg-black">
-        <h1 className="text-center mt-4">Meet Our Team</h1>
+      ></ParallaxBanner>
+
+      <section className="flex flex-col items-center bg-black relative">
+        <div className="absolute w-full h-[200px] top-0 bg-gradient-to-t from-black -translate-y-full"></div>
+        <h1 className="text-center mt-4 sm:text-8xl text-6xl">Meet Our Team</h1>
         <h3 className="text-center mx-auto md:w-1/2 my-3">Teamwork is Key!</h3>
         <p className=" text-center mx-auto w-[95%] md:w-1/2 text-lg">
           We have an amazing and diverse team of students and mentors that all
@@ -259,7 +261,7 @@ export default function Members() {
           ))}
         </div>
         <div className="flex justify-center w-auto lg:hidden">
-          <Carousel className="w-1/3 dark">
+          <Carousel className="w-[450px] dark">
             <CarouselContent className="">
               {programming.map((member) => (
                 <CarouselItem key={member.name} className="">

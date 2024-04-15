@@ -5,6 +5,7 @@ import frc1 from "/public/home/frc-1-compressed.jpg";
 import ParallaxBanner from "@/components/ParallaxBanner";
 import mainBanner from "/public/team_pics/main-banner.png";
 import frcLogo from "/public/home/frc-logo.png";
+import homeIntroImg from "/public/home/home2.png";
 
 export default function Home() {
   return (
@@ -14,7 +15,9 @@ export default function Home() {
         className="h-[50vh] xl:h-[65vh]"
         speed={0.5}
       />
-      <section className="w-full flex justify-center flex-col items-center overflow-hidden bg-black">
+      <section className="w-full flex justify-center flex-col items-center bg-black relative">
+        <div className="absolute w-full h-[300px] top-0 bg-gradient-to-t from-black -translate-y-full"></div>
+
         <h1 className="text-center sm:text-8xl text-6xl mt-6 mb-2">
           Planetary Drive Robotics
         </h1>
@@ -37,7 +40,7 @@ export default function Home() {
             src="/home/home2.png"
             width={100000}
             height={100}
-            className="w-2/3 mb-8 lg:mt-0 lg:w-1/2 rounded-md"
+            className="w-[90%] sm:w-2/3 mb-8 lg:w-1/2 rounded-md"
           ></Image>
           <div className="flex flex-col items-center justify-center lg:order-first">
             <h2 className="text-center mb-2">Our Team</h2>
@@ -73,8 +76,6 @@ export default function Home() {
               alt=""
               placeholder="blur"
               className="rounded-lg mb-4"
-              height={3989}
-              width={5983}
             />
           </div>
 
@@ -122,9 +123,9 @@ export default function Home() {
       </section>
       <section className="w-full flex justify-center items-center flex-col pt-12 bg-black">
         <h2 className="text-center">Why We Love Robotics</h2>
-        <div className="flex my-8 w-[95%] xl:w-3/4 2xl:w-2/3 lg:flex-row flex-col items-center lg:items-start">
+        <div className="flex my-8 w-full xl:w-3/4 2xl:w-2/3 lg:flex-row flex-col items-center lg:items-start">
           <div className="flex w-full sm:w-[90%] lg:w-2/3 sm:space-x-10 sm:flex-row flex-col items-center sm:items-start">
-            <div className="flex flex-col items-center sm:w-1/2 w-[80%]">
+            <div className="flex flex-col items-center sm:w-1/2 w-[90%]">
               <img src="/home/teamwork-icon.svg" alt="" className="w-32 mb-4" />
               <h3 className="text-center">Teamwork</h3>
               <p className="text-center leading-loose">
@@ -135,7 +136,7 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="flex flex-col items-center sm:w-1/2 mt-12 w-[80%] sm:mt-0">
+            <div className="flex flex-col items-center sm:w-1/2 mt-12 w-[90%] sm:mt-0">
               <img src="/home/gears-icon.svg" alt="" className="w-32 mb-4" />
               <h3 className="text-center">Learn & Apply Skills</h3>
               <p className="text-center leading-loose">
@@ -147,7 +148,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="lg:ml-6 flex flex-col items-center w-[80%] sm:w-1/2 lg:w-1/3 mt-12 lg:mt-0">
+          <div className="lg:ml-6 flex flex-col items-center w-[90%] sm:w-1/2 lg:w-1/3 mt-12 lg:mt-0">
             <img src="/home/coins-icon.svg" alt="" className="w-32 mb-4" />
             <h3 className="text-center">Opportunities</h3>
             <p className="text-center leading-loose">
