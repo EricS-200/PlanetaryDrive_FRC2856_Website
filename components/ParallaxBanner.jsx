@@ -10,6 +10,7 @@ Known problem: loading frameshift.
 */
 
 export default function ParallaxBanner({
+  children,
   className = "",
   speed = 0,
   src,
@@ -40,12 +41,13 @@ export default function ParallaxBanner({
       {...props}
     >
       <Image
-        className={cn("object-cover object-center", imgClassName)}
+        className={cn("object-center object-cover", imgClassName)}
         fill={fill}
         src={src}
         alt={alt}
         placeholder="blur"
       />
+      {children}
     </div>
   );
 }

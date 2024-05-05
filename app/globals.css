@@ -93,6 +93,22 @@ body {
   @apply bg-black text-slate-200;
 }
 
+html::-webkit-scrollbar {
+  @apply w-3;
+}
+
+html::-webkit-scrollbar-thumb {
+  @apply bg-zinc-800 rounded-lg;
+}
+
+html::-webkit-scrollbar-thumb:hover {
+  @apply bg-zinc-600;
+}
+
+html::-webkit-scrollbar-track {
+  @apply bg-zinc-950;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

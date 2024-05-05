@@ -1,14 +1,23 @@
-IN DEVELOPMENT
+# About our website
 
-This repository contains all the code for the website [WEBSITE LINK PLACEHOLDER].
+This repository contains all the code for the website Team Planetary Drive First Robotics Team #2856
+
+[placeholder]
 
 It was created and maintained by the First Robotics Team 2856 - Planetary Drive, based in Lexington, Kentucky.
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+If there is anything you believe we can improve on for this website, please feel free to contact us through the contact page or email us directly at [planetarydrive2856@gmail.com](mailto:planetarydrive2856@gmail.com).
 
-## Getting Started
+This application uses the following software and libraries (additional software might be in use, check package.json file to full list)
+[Next.js](https://nextjs.org/)
+[TailwindCSS](https://tailwindcss.com/)
+[ShadCN](https://ui.shadcn.com/)
 
-First, install all dependencies:
+## Check it out locally
+
+First, download all the files from this repository at the main branch.
+
+Then, open it in VSCode or another code editor and install all dependencies:
 
 ```bash
 npm i
@@ -22,13 +31,6 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Contact Us
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+If you need to contact us for any reason, please use the contact page on our website or email us at [planetarydrive2856@gmail.com](mailto:planetarydrive2856@gmail.com).
