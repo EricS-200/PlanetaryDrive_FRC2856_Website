@@ -18,8 +18,8 @@ export const pages = [
     page: "/contact",
   },
   {
-    name: "Members",
-    page: "/members",
+    name: "Join",
+    page: "/join",
   },
   {
     name: "Sponsors",
@@ -29,8 +29,8 @@ export const pages = [
 
 export const otherPages = [
   {
-    name: "Join",
-    page: "/join",
+    name: "Members",
+    page: "/members",
   },
   {
     name: "Photos",
@@ -40,10 +40,10 @@ export const otherPages = [
     name: "Robots",
     page: "/robots",
   },
-  {
-    name: "FRC",
-    page: "/frc",
-  },
+  // {
+  //   name: "FRC",
+  //   page: "/frc",
+  // },
 ];
 
 export default function Navbar() {

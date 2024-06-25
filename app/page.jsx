@@ -9,14 +9,14 @@ import homeIntroImg from "/public/home/home2.png";
 
 export default function Home() {
   return (
-    <main className="flex items-center flex-col h-full">
+    <main className="flex items-center flex-col h-full w-full">
       <ParallaxBanner
         src={mainBanner}
         className="h-[50vh] xl:h-[65vh]"
         speed={0.5}
       />
       <section className="w-full flex justify-center flex-col items-center bg-black relative">
-        <div className="absolute w-full h-[300px] top-0 bg-gradient-to-t from-black -translate-y-full"></div>
+        <div className="absolute w-full h-[150px] top-0 bg-gradient-to-t from-black -translate-y-full"></div>
 
         <h1 className="text-center sm:text-8xl text-6xl mt-6 mb-2">
           Planetary Drive Robotics
@@ -159,7 +159,7 @@ export default function Home() {
             </p>
           </div>
         </div>
-        <div className="flex flex-col items-center justify-center">
+        <div className="flex flex-col items-center justify-center py-4">
           <h3 className="text-center">Interested?</h3>
           <p className="leading-loose text-xl text-center w-[95%] md:w-2/3">
             If you are a student in Fayette County Public Schools (Lexington,

@@ -38,7 +38,7 @@ export default function SponsorLogos() {
     if (image === undefined)
       return (
         <h2 key={name} className="font-bold text-6xl text-center">
-          <i>{name}</i>
+          <i className="font-serif">{name}</i>
         </h2>
       );
     if (website === undefined) return <Image src={image} alt={name}></Image>;

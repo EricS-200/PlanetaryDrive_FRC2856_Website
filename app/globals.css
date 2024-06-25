@@ -88,9 +88,12 @@
     --background-end-rgb: 0, 0, 0;
   }
 }
-
+/* 
+Slate-200: #E2E8F0
+*/
 body {
   @apply bg-black text-slate-200;
+  box-sizing: border-box;
 }
 
 html::-webkit-scrollbar {
@@ -137,4 +140,31 @@ h4 {
 
 h5 {
   @apply text-xl;
+}
+
+@keyframes slide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.logos {
+  overflow: hidden;
+  padding: 60px 0;
+  background: white;
+  white-space: nowrap;
+  position: relative;
+}
+
+.logos-slide {
+  display: inline-block;
+  animation: 35s slide infinite linear;
+}
+
+.logos-slide img {
+  height: 50px;
+  margin: 0 40px;
 }
