@@ -28,7 +28,7 @@ export default function AboutUs() {
           </div>
         </div>
       </ParallaxBanner>
-      <article className="bg-black relative flex flex-col items-center ">
+      <article className="w-full bg-black relative flex flex-col items-center ">
         <div className="absolute w-full h-[150px] top-0 bg-gradient-to-t from-black -translate-y-full "></div>
 
         <section className="flex flex-col items-center justify-center mt-7">
