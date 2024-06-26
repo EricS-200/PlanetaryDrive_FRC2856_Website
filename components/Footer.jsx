@@ -30,7 +30,9 @@ export default function Footer() {
               className="dark text-slate-200 font-normal text-lg m-0 p-0"
               variant="link"
             >
-              4974 Old US Hwy 60, Lexington, KY 40510
+              <p className="w-full text-wrap">
+                4974 Old US Hwy 60, Lexington, KY 40510
+              </p>
             </Button>
           </Link>
         </p>
@@ -103,7 +105,7 @@ export default function Footer() {
               </Button>
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link
               href="https://github.com/Eric-NoBraincells/PlanetaryDrive_FRC2856_Website"
               target="_blank"
@@ -120,7 +122,7 @@ export default function Footer() {
                 Our Website
               </Button>
             </Link>
-          </li>
+          </li> */}
           <li>
             <Link
               href="https://www.instagram.com/frc_2856/"
