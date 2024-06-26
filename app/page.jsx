@@ -5,7 +5,7 @@ import frc1 from "/public/home/frc-1-compressed.jpg";
 import ParallaxBanner from "@/components/ParallaxBanner";
 import mainBanner from "/public/team_pics/main-banner.png";
 import frcLogo from "/public/home/frc-logo.png";
-import homeIntroImg from "/public/home/home2.png";
+import SponsorsSlider from "@/components/SponsorsSlider";
 
 export default function Home() {
   return (
@@ -24,16 +24,8 @@ export default function Home() {
         <p className="text-center	text-2xl mb-4 m-2">
           <i>FIRST</i> Robotics Team #2856
         </p>
-        <h2 className="text-3xl font-semibold mt-2 text-center">
-          Thanks to all the sponsors that allow us to keep working!
-        </h2>
-        <Link href="/sponsors">
-          <Button variant="outline" className="dark m-6 text-xl" size="lg">
-            Our Sponsors
-          </Button>
-        </Link>
       </section>
-      <section className="flex justify-center bg-black w-full">
+      <section className="flex flex-col items-center justify-center bg-black w-full pt-8">
         <div className="flex flex-col lg:flex-row justify-around items-center ">
           <Image
             alt=""
@@ -58,6 +50,15 @@ export default function Home() {
             </Link>
           </div>
         </div>
+        <h2 className="text-3xl font-semibold mt-5 text-center">
+          Thanks to all the sponsors that allow us to keep working!
+        </h2>
+        <SponsorsSlider />
+        <Link href="/sponsors">
+          <Button variant="outline" className="dark m-6 text-xl" size="lg">
+            Our Sponsors
+          </Button>
+        </Link>
       </section>
       <section className="flex justify-center flex-col items-center bg-black">
         <div className="border-t-[1px] w-[80%] my-8 border-slate-700 bg-black"></div>

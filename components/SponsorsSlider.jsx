@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import Image from "next/image";
 
@@ -8,116 +6,89 @@ import schneiderElectricLogo from "/public/sponsors/white-version/schneider-elec
 import newtonsAtticLogo from "/public/sponsors/white-version/newton's-attic-logo.svg";
 import ukEngineeringLogo from "/public/sponsors/white-version/uk-engineering-logo.svg";
 
-import testImg from "/public/placeholder/female-profile-placeholder.jpg";
+// this list of sponsors is different from the one in SponsorLogos.jsx as it uses white colored logos instead of the colored ones.
+const sponsors = [
+  {
+    name: "Schneider Electric",
+    image: schneiderElectricLogo,
+    website: "https://www.se.com/us/en/",
+  },
+  {
+    name: "University of Kentucky - College of Engineering",
+    image: ukEngineeringLogo,
+    website: "https://www.engr.uky.edu/",
+  },
+  {
+    name: "Newton's Attic",
+    image: newtonsAtticLogo,
+    website: "https://newtonsattic.com/",
+  },
 
-// helper
-const logos = [
-  batesSecurityLogo,
-  schneiderElectricLogo,
-  newtonsAtticLogo,
-  ukEngineeringLogo,
+  {
+    name: "Bates Security",
+    image: batesSecurityLogo,
+    website: "https://batessecurity.com/",
+  },
+
+  { name: "Baines Builders Products", image: undefined, website: undefined },
 ];
 
 export default function SponsorsSlider() {
-  return (
-    <div className="overflow-hidden py-8 bg-gray-900 whitespace-nowrap w-1/3">
-      <div className=" space-x-16 inline-block animate-slide-left">
+  function displayLogos(sponsor) {
+    if (sponsor.image === undefined || sponsor.website === undefined) {
+      if (sponsor.website === undefined) {
+        return (
+          <div className="inline-block">
+            <p>
+              <i className="font-serif text-4xl text-center ">{sponsor.name}</i>
+            </p>
+          </div>
+        );
+      }
+      return (
         <Link
-          href="https://google.com"
+          href={sponsor.website}
           target="_blank"
           className="inline-block self-center"
         >
-          <div className="w-28">
-            <img src="/sponsors/white-version/bates-security-logo.svg" alt="" />
-          </div>
-        </Link>
-        <Link
-          href="https://google.com"
-          target="_blank"
-          className="inline-block"
-        >
-          <div className="w-28 ">
-            <img
-              src="/sponsors/white-version/schneider-electric-logo.svg"
-              alt=""
-            />
-          </div>
-        </Link>
-        <Link
-          href="https://google.com"
-          target="_blank"
-          className="inline-block"
-        >
-          <div className="w-28  ">
-            <img src="/sponsors/white-version/newton's-attic-logo.svg" alt="" />
-          </div>
-        </Link>
-        <Link
-          href="https://google.com"
-          target="_blank"
-          className="inline-block"
-        >
-          <div className="w-28 ">
-            <img src="/sponsors/white-version/uk-engineering-logo.svg" alt="" />
-          </div>
-        </Link>
-        <div className="inline-block">
           <p>
-            <i className="font-serif text-4xl text-center ">
-              Baines Builders Products
-            </i>
+            <i className="font-serif text-4xl text-center ">{sponsor.name}</i>
           </p>
-        </div>
-      </div>
+        </Link>
+      );
+    }
 
-      <div className=" space-x-16 inline-block animate-slide-left">
-        <Link
-          href="https://google.com"
-          target="_blank"
-          className="inline-block"
-        >
-          <div className="w-28">
-            <img src="/sponsors/white-version/bates-security-logo.svg" alt="" />
-          </div>
-        </Link>
-        <Link
-          href="https://google.com"
-          target="_blank"
-          className="inline-block"
-        >
-          <div className="w-28">
-            <img
-              src="/sponsors/white-version/schneider-electric-logo.svg"
-              alt=""
-            />
-          </div>
-        </Link>
-        <Link
-          href="https://google.com"
-          target="_blank"
-          className="inline-block"
-        >
-          <div className="w-28">
-            <img src="/sponsors/white-version/newton's-attic-logo.svg" alt="" />
-          </div>
-        </Link>
-        <Link
-          href="https://google.com"
-          target="_blank"
-          className="inline-block"
-        >
-          <div className="w-28">
-            <img src="/sponsors/white-version/uk-engineering-logo.svg" alt="" />
-          </div>
-        </Link>
-        <div className="inline-block">
-          <p>
-            <i className="font-serif text-4xl text-center ">
-              Baines Builders Products
-            </i>
-          </p>
+    return (
+      <Link
+        href={sponsor.website}
+        target="_blank"
+        className="inline-block self-center"
+        key={sponsor.name}
+      >
+        <div className="w-28">
+          <Image src={sponsor.image} alt={sponsor.name} />
         </div>
+      </Link>
+    );
+  }
+
+  return (
+    <section className="w-full flex justify-center">
+      <div className="overflow-hidden py-8 whitespace-nowrap w-[95vw] xl:w-[1200px] relative">
+        <div className="absolute h-full w-[15%] inset-0 bg-gradient-to-r from-black z-50 "></div>
+        <div className="inline-block animate-slide-left">
+          <div className="flex items-center space-x-20 mx-10">
+            {sponsors.map((sponsor) => displayLogos(sponsor))}
+          </div>
+        </div>
+
+        <div className="inline-block animate-slide-left">
+          <div className="flex items-center mx-10 space-x-20">
+            {sponsors.map((sponsor) => displayLogos(sponsor))}
+          </div>
+        </div>
+        <div className="h-full w-[15%] absolute top-0 right-0 bg-gradient-to-l from-black z-50"></div>
       </div>
-    </div>
+    </section>
   );
 }

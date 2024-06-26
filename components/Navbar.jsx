@@ -40,10 +40,6 @@ export const otherPages = [
     name: "Robots",
     page: "/robots",
   },
-  // {
-  //   name: "FRC",
-  //   page: "/frc",
-  // },
 ];
 
 export default function Navbar() {
@@ -198,7 +194,7 @@ export default function Navbar() {
 
         {pages.map((link) => (
           <Link
-            className={`${isActive(link.page)} pl-8 md:block hidden`}
+            className={`${isActive(link.page)} px-4 md:block hidden`}
             key={link.name}
             href={link.page}
           >
@@ -206,7 +202,7 @@ export default function Navbar() {
           </Link>
         ))}
 
-        <div className={`${isActive()} group relative pl-8 cursor-default`}>
+        <div className={`${isActive()} group relative pl-4 cursor-default`}>
           <p
             className={`select-none md:block md:pointer-events-auto hidden pointer-events-none ${
               otherPages.map((item) => item.page).includes(pathname)
@@ -235,8 +231,8 @@ export default function Navbar() {
               </svg>
             </span>
           </p>
-          <div className="pointer-events-none	group-hover:pointer-events-auto	overflow-hidden absolute left-5 top-full">
-            <div className="opacity-0 bg-black w-44 p-4 -translate-y-full group-hover:translate-y-0 transition-transform duration-500 group-hover:opacity-100">
+          <div className="pointer-events-none	group-hover:pointer-events-auto	overflow-hidden absolute left-0 top-full">
+            <div className="opacity-0 bg-black w-44 px-4 pt-4 pb-2 -translate-y-full group-hover:translate-y-0 transition-transform duration-500 group-hover:opacity-100">
               <ul>
                 {otherPages.map((link) => (
                   <li
