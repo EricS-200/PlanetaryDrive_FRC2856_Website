@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import frc1 from "/public/home/frc-1-compressed.jpg";
+import home1 from "/public/home/home2.png"
 import ParallaxBanner from "@/components/ParallaxBanner";
 import mainBanner from "/public/team_pics/main-banner.png";
 import frcLogo from "/public/home/frc-logo.png";
@@ -14,9 +15,10 @@ export default function Home() {
         src={mainBanner}
         className="h-[50vh] xl:h-[65vh]"
         speed={0.5}
+        priority={true}
       />
       <section className="w-full flex justify-center flex-col items-center bg-black relative">
-        <div className="absolute w-full h-[150px] top-0 bg-gradient-to-t from-black -translate-y-full"></div>
+        <div className="absolute w-full h-[150px] top-0 bg-gradient-to-t from-black -translate-y-[99%]"></div>
 
         <h1 className="text-center sm:text-8xl text-6xl mt-6 mb-2">
           Planetary Drive Robotics
@@ -29,9 +31,7 @@ export default function Home() {
         <div className="flex flex-col lg:flex-row justify-around items-center ">
           <Image
             alt=""
-            src="/home/home2.png"
-            width={100000}
-            height={100}
+            src={home1}
             className="w-[90%] sm:w-2/3 mb-8 lg:w-1/2 rounded-md"
           ></Image>
           <div className="flex flex-col items-center justify-center lg:order-first">

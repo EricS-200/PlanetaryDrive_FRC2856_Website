@@ -18,6 +18,7 @@ export default function ParallaxBanner({
   height,
   width,
   alt = "",
+  priority = false, 
   imgClassName,
   ...props
 }) {
@@ -46,6 +47,7 @@ export default function ParallaxBanner({
         src={src}
         alt={alt}
         placeholder="blur"
+        priority={priority}
       />
       {children}
     </div>

@@ -29,7 +29,7 @@ export default function AboutUs() {
         </div>
       </ParallaxBanner>
       <article className="w-full bg-black relative flex flex-col items-center ">
-        <div className="absolute w-full h-[150px] top-0 bg-gradient-to-t from-black -translate-y-full "></div>
+        <div className="absolute w-full h-[150px] top-0 bg-gradient-to-t from-black -translate-y-[99%] "></div>
 
         <section className="flex flex-col items-center justify-center mt-7">
           <h2 className="text-center text-5xl">Who We Are</h2>
