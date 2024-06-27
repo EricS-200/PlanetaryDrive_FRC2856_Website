@@ -157,7 +157,7 @@ export default function Members({ banner = true }) {
         ></ParallaxBanner>
       )}
       <section className="flex flex-col items-center bg-black relative">
-        <div className="absolute w-full h-[150px] top-0 bg-gradient-to-t from-black -translate-y-full"></div>
+        <div className="absolute w-full h-[150px] top-0 bg-gradient-to-t from-black -translate-y-[99%]"></div>
         <h1
           className={`text-center mt-4 ${
             banner ? "sm:text-8xl text-6xl" : "text-6xl"

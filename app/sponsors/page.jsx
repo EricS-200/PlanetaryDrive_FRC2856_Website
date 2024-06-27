@@ -16,7 +16,7 @@ export default function Sponsors() {
     <main className="flex flex-col items-center w-full">
       <ParallaxBanner src={mainBanner} className="h-[65vh]" speed={0.5} />
       <section className="from-96% md:from-90% bg-gradient-to-b from-zinc-950 to-black flex flex-col items-center pt-6 pb-10 min-h-[50vh] w-full relative">
-        <div className="absolute w-full h-[150px] top-0 bg-gradient-to-t from-zinc-950 -translate-y-full"></div>
+        <div className="absolute w-full h-[150px] top-0 bg-gradient-to-t from-zinc-950 -translate-y-[99%]"></div>
 
         <div className="space-y-5 w-[90vw] lg:w-2/3 2xl:w-1/2 flex flex-col ">
           <h1 className="text-white text-center sm:text-8xl text-6xl">

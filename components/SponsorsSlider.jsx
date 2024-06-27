@@ -66,7 +66,7 @@ export default function SponsorsSlider() {
         key={sponsor.name}
       >
         <div className="w-28">
-          <Image src={sponsor.image} alt={sponsor.name} />
+          <Image src={sponsor.image} alt={sponsor.name} priority={true}/>
         </div>
       </Link>
     );
