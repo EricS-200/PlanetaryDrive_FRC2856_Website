@@ -2,7 +2,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import frc1 from "/public/home/frc-1-compressed.jpg";
-import home1 from "/public/home/home2.png"
+import home1 from "/public/home/home2.png";
 import ParallaxBanner from "@/components/ParallaxBanner";
 import mainBanner from "/public/team_pics/main-banner.png";
 import frcLogo from "/public/home/frc-logo.png";
@@ -33,6 +33,7 @@ export default function Home() {
             alt=""
             src={home1}
             className="w-[90%] sm:w-2/3 mb-8 lg:w-1/2 rounded-md"
+            placeholder="blur"
           ></Image>
           <div className="flex flex-col items-center justify-center lg:order-first">
             <h2 className="text-center mb-2">Our Team</h2>
@@ -50,7 +51,7 @@ export default function Home() {
             </Link>
           </div>
         </div>
-        <h2 className="text-3xl font-semibold mt-5 text-center">
+        <h2 className="text-3xl font-semibold mt-5 text-center lg:w-3/4 w-[95vw]">
           Thanks to all the sponsors that allow us to keep working!
         </h2>
         <SponsorsSlider />

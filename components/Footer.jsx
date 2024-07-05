@@ -80,7 +80,7 @@ export default function Footer() {
               <span>
                 <img src="/footer/frc-icon.png" alt="" className="h-5 mr-2" />
               </span>
-              <Button variant="link" className="dark p-0">
+              <Button variant="link" className="dark p-0 text-slate-200">
                 <p>
                   About <i>FIRST</i> Robotics
                 </p>
@@ -100,29 +100,11 @@ export default function Footer() {
                   className="h-5 mr-2"
                 />
               </span>
-              <Button variant="link" className="dark p-0">
+              <Button variant="link" className="dark p-0 text-slate-200">
                 Our Robots
               </Button>
             </Link>
           </li>
-          {/* <li>
-            <Link
-              href="https://github.com/Eric-NoBraincells/PlanetaryDrive_FRC2856_Website"
-              target="_blank"
-              className="flex items-center"
-            >
-              <span>
-                <img
-                  src="/footer/github-icon.svg"
-                  alt=""
-                  className="h-5 mr-2 fill-white stroke-white"
-                />
-              </span>
-              <Button variant="link" className="dark p-0">
-                Our Website
-              </Button>
-            </Link>
-          </li> */}
           <li>
             <Link
               href="https://www.instagram.com/frc_2856/"
@@ -136,7 +118,7 @@ export default function Footer() {
                   className="h-5 mr-2"
                 />
               </span>
-              <Button variant="link" className="dark p-0">
+              <Button variant="link" className="dark p-0 text-slate-200">
                 Official Instagram
               </Button>
             </Link>
@@ -154,7 +136,7 @@ export default function Footer() {
                   className="h-5 mr-2"
                 />
               </span>
-              <Button variant="link" className="dark p-0">
+              <Button variant="link" className="dark p-0 text-slate-200">
                 Member Discord
               </Button>
             </Link>

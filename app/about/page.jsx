@@ -6,7 +6,7 @@ import engineeringImage from "/public/about-us/engineering-image.jpg";
 import teamworkImage from "/public/about-us/robot-work.jpg";
 import teamworkImage2 from "/public/about-us/robot-work2.jpg";
 import SponsorsSlider from "@/components/SponsorsSlider";
-import Members from "/app/members/page.jsx";
+import Members from "/app/(more)/members/page.jsx";
 
 export default function AboutUs() {
   return (
@@ -30,7 +30,6 @@ export default function AboutUs() {
       </ParallaxBanner>
       <article className="w-full bg-black relative flex flex-col items-center ">
         <div className="absolute w-full h-[150px] top-0 bg-gradient-to-t from-black -translate-y-[99%] "></div>
-
         <section className="flex flex-col items-center justify-center mt-7">
           <h2 className="text-center text-5xl">Who We Are</h2>
           <p className="text-center text-lg leading-loose w-[90vw] sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-1/3 my-2">
