@@ -136,7 +136,7 @@ export default function Join() {
           >
             <Button variant="link" className="dark p-0">
               <p className=" font-semibold text-slate-200 text-lg">
-                Newton's Attic
+                Newton&apos;s Attic
               </p>
             </Button>
           </Link>
