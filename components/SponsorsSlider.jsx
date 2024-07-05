@@ -1,10 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
 
-import batesSecurityLogo from "/public/sponsors/white-version/bates-security-logo.svg";
-import schneiderElectricLogo from "/public/sponsors/white-version/schneider-electric-logo.svg";
-import newtonsAtticLogo from "/public/sponsors/white-version/newton's-attic-logo.svg";
-import ukEngineeringLogo from "/public/sponsors/white-version/uk-engineering-logo.svg";
+import batesSecurityLogo from "/public/sponsors/bates-security-logo.svg";
+import schneiderElectricLogo from "/public/sponsors/schneider-electric-logo.png";
+import newtonsAtticLogo from "/public/sponsors/newton's-attic-logo.png";
+import ukEngineeringLogo from "/public/sponsors/uk-engineering-logo.png";
 
 // this list of sponsors is different from the one in SponsorLogos.jsx as it uses white colored logos instead of the colored ones.
 const sponsors = [
@@ -66,7 +66,7 @@ export default function SponsorsSlider() {
         key={sponsor.name}
       >
         <div className="w-28">
-          <Image src={sponsor.image} alt={sponsor.name} priority={true}/>
+          <Image src={sponsor.image} alt={sponsor.name} priority={true} />
         </div>
       </Link>
     );
@@ -74,7 +74,7 @@ export default function SponsorsSlider() {
 
   return (
     <section className="w-full flex justify-center">
-      <div className="overflow-hidden py-8 whitespace-nowrap w-[95vw] xl:w-[1200px] relative">
+      <div className="overflow-hidden py-8 whitespace-nowrap w-[95vw] md:w-[80vw] xl:w-[1200px] relative">
         <div className="absolute h-full w-[15%] inset-0 bg-gradient-to-r from-black z-50 "></div>
         <div className="inline-block animate-slide-left">
           <div className="flex items-center space-x-20 mx-10">

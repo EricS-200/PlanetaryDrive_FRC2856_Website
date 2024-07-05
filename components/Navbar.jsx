@@ -204,7 +204,7 @@ export default function Navbar() {
 
         <div className={`${isActive()} group relative pl-4 cursor-default`}>
           <p
-            className={`select-none md:block md:pointer-events-auto hidden pointer-events-none ${
+            className={`select-none md:block md:pointer-events-auto hidden pointer-events-none leading-normal ${
               otherPages.map((item) => item.page).includes(pathname)
                 ? "text-white"
                 : "text-neutral-300"
