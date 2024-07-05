@@ -167,7 +167,7 @@ export default function Navbar() {
       {/* ABOVE WAS CODE FOR SIDE NAV BAR FOR SMALL SCREENS
        * BELOW IS CODE FOR MAIN NAV BAR*/}
 
-      <div className="w-full bg-black h-16 flex justify-center items-center relative mb-0 p-0 border-b-[1px] border-zinc-950">
+      <div className="w-full bg-black h-16 flex justify-center items-center relative mb-0 p-0 border-b border-neutral-800">
         <svg
           onClick={() => setMNav((prev) => !prev)}
           className="left-5 absolute md:hidden cursor-pointer fill-gray-300 stroke-gray-300"

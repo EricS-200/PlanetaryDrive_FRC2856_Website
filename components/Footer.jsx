@@ -3,7 +3,7 @@ import { Button } from "./ui/button";
 
 export default function Footer() {
   return (
-    <footer className="relative bg-zinc-950 w-full mt-8 p-6 border-t-[1px] border-slate-700 flex px-8 md:px-32 xl:px-64 pb-16 md:pb-12 flex-col items-center md:flex-row md:justify-around">
+    <footer className="relative bg-zinc-950 w-full  p-6 border-t-[1px] border-slate-700 flex px-8 md:px-32 xl:px-64 pb-16 md:pb-12 flex-col items-center md:flex-row md:justify-around">
       <div className="flex flex-col items-center md:block">
         <h2 className="pl-2 text-xl font-semibold mb-3">
           Contact & Information

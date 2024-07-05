@@ -13,7 +13,7 @@ import mailIcon from "/public/mail-icon.svg";
 
 export default function Join() {
   return (
-    <main className="flex flex-col items-center w-full ">
+    <main className="flex flex-col items-center w-full mb-8">
       <ParallaxBanner
         speed={0.5}
         src={mainBanner}
@@ -214,6 +214,12 @@ export default function Join() {
           >
             <Button variant="link" className="p-0 text-lg">
               WPI Java Library
+            </Button>
+          </Link>
+          . Consider checking out our own robot code from previous years on our{" "}
+          <Link href={"https://github.com/TeamPlanetaryDrive"} target="_blank">
+            <Button variant="link" className="p-0 text-lg">
+              GitHub
             </Button>
           </Link>
           .
