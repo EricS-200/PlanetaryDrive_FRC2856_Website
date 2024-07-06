@@ -1,8 +1,11 @@
 "use client";
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import emailjs from "@emailjs/browser";
 import { Loader2 } from "lucide-react";
+import discordIcon from "/public/footer/discord-icon.svg";
+import Image from "next/image";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -127,104 +130,134 @@ export default function Contact() {
   });
 
   return (
-    <main className=" w-full h-[calc(100vh-4rem)] flex flex-col items-center">
-      <h1 className="text-center my-4">Contact Us</h1>
-
-      <form
-        noValidate
-        onChange={() => {
-          setHasChanged(true);
-        }}
-        className={
-          "flex flex-col w-2/5 p-8 bg-neutral-950 rounded-lg border-2 border-gray-600"
-        }
-      >
-        <h2 className="text-center">Email Form</h2>
-        <p className="leading-normal my-2">
-          Feel free to send us an email for any question or request you may
-          have. We will try to get back to you as soon as possible.
+    <main className=" w-full min-h-[calc(100vh-4rem)] flex flex-col items-center pb-8">
+      <section className="w-full flex items-center flex-col">
+        <h1 className="text-center mt-4">Contact Us</h1>
+        <p className="text-xl w-[95vw] md:w-3/4 lg:w-3/5 xl:w-1/2 mb-4 text-center">
+          You can use the contact form below to send us a message, or email us
+          directly at{" "}
+          <Link href={"mailto:planetarydrive2856@gmail.com"}>
+            <Button className="text-xl dark p-0" variant="link">
+              planetarydrive2856@gmail.com
+            </Button>
+          </Link>{" "}
+          with any question or request. We will respond as soon as possible.
         </p>
-        <label className={"text-white text-lg mb-1 font-semibold"}>Name</label>
-        <input
-          className={`w-full h-10 bg-gray-700 text-white  p-1.5 rounded-lg border border-gray-500 ${
-            nameIsEmpty
-              ? "border-red-700 outline-none focus:ring-1 focus:ring-red-600"
-              : "mb-3"
-          }`}
-          placeholder={"Your Name"}
-          value={name}
-          onChange={(event) => {
-            setName(event.target.value);
-          }}
-        />
-        {nameIsEmpty && (
-          <p className="text-red-500 mb-1">
-            This field is required. Please input your name.
+      </section>
+      <div className="flex  justify-center">
+        <section className="flex flex-col items-center">
+          <h2 className="text-center">Information</h2>
+          <p>
+            If you plan on joining the team, contact us through our member
+            Discord.
           </p>
-        )}
-        <label className={"text-white text-lg mb-1 font-semibold"}>Email</label>
-        <input
-          className={`w-full h-10 bg-gray-700 text-white  p-1.5 rounded-lg border border-gray-500 ${
-            emailIsEmpty || emailIsInvalid
-              ? "border-red-700 outline-none focus:ring-1 focus:ring-red-600"
-              : "mb-3"
-          }`}
-          type="email"
-          placeholder={"Your Email"}
-          value={email}
-          onChange={(event) => {
-            setEmail(event.target.value);
-          }}
-        />
-        {emailIsEmpty && (
-          <p className="text-red-500 mb-1">
-            This field is required. Please input your email address.
-          </p>
-        )}
-        {!emailIsEmpty && emailIsInvalid && (
-          <p className="text-red-500 mb-1">
-            Please input a valid email address.
-          </p>
-        )}
+          <Link href="https://discord.gg/d36XRMfYUF" target="_blank">
+            <Button className="dark p-8 my-3" variant="outline">
+              <Image src={discordIcon} width={30} className="mr-4" />
+              <p className="text-2xl">Member Discord</p>
+            </Button>
+          </Link>
+        </section>
+        <section className="flex justify-center">
+          <form
+            noValidate
+            onChange={() => {
+              setHasChanged(true);
+            }}
+            className={
+              "flex flex-col p-8 bg-neutral-950 rounded-lg border-2 border-gray-600"
+            }
+          >
+            <h2 className="text-center">Email Form</h2>
+            <p className="leading-normal my-2">
+              Feel free to send us an email for any question or request you may
+              have. We will try to get back to you as soon as possible.
+            </p>
+            <label className={"text-white text-lg mb-1 font-semibold"}>
+              Name
+            </label>
+            <input
+              className={`w-full h-10 bg-gray-700 text-white  p-1.5 rounded-lg border border-gray-500 ${
+                nameIsEmpty
+                  ? "border-red-700 outline-none focus:ring-1 focus:ring-red-600"
+                  : "mb-3"
+              }`}
+              placeholder={"Your Name"}
+              value={name}
+              onChange={(event) => {
+                setName(event.target.value);
+              }}
+            />
+            {nameIsEmpty && (
+              <p className="text-red-500 mb-1">
+                This field is required. Please input your name.
+              </p>
+            )}
+            <label className={"text-white text-lg mb-1 font-semibold"}>
+              Email
+            </label>
+            <input
+              className={`w-full h-10 bg-gray-700 text-white  p-1.5 rounded-lg border border-gray-500 ${
+                emailIsEmpty || emailIsInvalid
+                  ? "border-red-700 outline-none focus:ring-1 focus:ring-red-600"
+                  : "mb-3"
+              }`}
+              type="email"
+              placeholder={"Your Email"}
+              value={email}
+              onChange={(event) => {
+                setEmail(event.target.value);
+              }}
+            />
+            {emailIsEmpty && (
+              <p className="text-red-500 mb-1">
+                This field is required. Please input your email address.
+              </p>
+            )}
+            {!emailIsEmpty && emailIsInvalid && (
+              <p className="text-red-500 mb-1">
+                Please input a valid email address.
+              </p>
+            )}
 
-        <label className={"text-white text-lg mb-1 font-semibold"}>
-          Message
-        </label>
-        <textarea
-          className={`w-full h-28 bg-gray-700 text-white  p-1.5 rounded-lg resize-none border border-gray-500 ${
-            messageIsEmpty
-              ? "border-red-700 outline-none focus:ring-1 focus:ring-red-600"
-              : "mb-3"
-          }`}
-          placeholder={"Your Message"}
-          value={message}
-          onChange={(event) => {
-            setMessage(event.target.value);
-          }}
-        />
-        {messageIsEmpty && (
-          <p className="text-red-500 mb-1">
-            This field is required. Please input your message.
-          </p>
-        )}
-        <i className="mb-2">We will send you a confirmation email.</i>
-        <p>{status}</p>
-        <Button
-          onClick={handleSubmit}
-          className="dark bg-neutral-950 hover:bg-neutral-800 text-xl w-full"
-          size="lg"
-          variant="outline"
-          disabled={loading}
-          type="button"
-        >
-          <Loader2
-            className={`mr-2 h-4 w-4 animate-spin ${
-              loading ? "block" : "hidden"
-            }`}
-          />
-          {loading ? <p>Submitting</p> : <p>Submit</p>}
-        </Button>
-        {/* <AlertDialog className="">
+            <label className={"text-white text-lg mb-1 font-semibold"}>
+              Message
+            </label>
+            <textarea
+              className={`w-full h-28 bg-gray-700 text-white  p-1.5 rounded-lg resize-none border border-gray-500 ${
+                messageIsEmpty
+                  ? "border-red-700 outline-none focus:ring-1 focus:ring-red-600"
+                  : "mb-3"
+              }`}
+              placeholder={"Your Message"}
+              value={message}
+              onChange={(event) => {
+                setMessage(event.target.value);
+              }}
+            />
+            {messageIsEmpty && (
+              <p className="text-red-500 mb-1">
+                This field is required. Please input your message.
+              </p>
+            )}
+            <i className="mb-2">We will send you a confirmation email.</i>
+            <p>{status}</p>
+            <Button
+              onClick={handleSubmit}
+              className="dark bg-neutral-950 hover:bg-neutral-800 text-xl w-full"
+              size="lg"
+              variant="outline"
+              disabled={loading}
+              type="button"
+            >
+              <Loader2
+                className={`mr-2 h-4 w-4 animate-spin ${
+                  loading ? "block" : "hidden"
+                }`}
+              />
+              {loading ? <p>Submitting</p> : <p>Submit</p>}
+            </Button>
+            {/* <AlertDialog className="">
           <AlertDialogTrigger asChild>
             <Button
               className="dark bg-neutral-950 hover:bg-neutral-800 text-xl w-full"
@@ -260,7 +293,9 @@ export default function Contact() {
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog> */}
-      </form>
+          </form>
+        </section>
+      </div>
     </main>
   );
 }
