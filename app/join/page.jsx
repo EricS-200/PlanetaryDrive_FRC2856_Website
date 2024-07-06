@@ -13,7 +13,7 @@ import mailIcon from "/public/mail-icon.svg";
 
 export default function Join() {
   return (
-    <main className="flex flex-col items-center w-full ">
+    <main className="flex flex-col items-center w-full mb-8">
       <ParallaxBanner
         speed={0.5}
         src={mainBanner}
@@ -157,15 +157,15 @@ export default function Join() {
           </Link>{" "}
           for the most up-to-date information.
         </p>
-        <div className="flex justify-center relative h-[450px] my-3">
-          <Image
-            src={workshop}
-            placeholder="blur"
-            className="rounded-lg w-[90vw] sm:w-3/5 md:w-1/2 object-cover object-bottom"
-          />
-        </div>
+
+        <Image
+          src={workshop}
+          placeholder="blur"
+          className="rounded-lg w-[90vw] sm:w-3/5 md:w-1/2 object-cover object-bottom"
+        />
+
         <h4 className="mt-4">Usual Schedule</h4>
-        <p className="text-xl leading-loose">
+        <p className="text-xl leading-loose text-center">
           Monday, Wendesday, Friday - 4-9PM
         </p>
         <p className="text-xl leading-loose">Saturday - 10AM-4PM</p>
@@ -216,14 +216,19 @@ export default function Join() {
               WPI Java Library
             </Button>
           </Link>
-          .
+          . Consider checking out our own robot code from previous years on our{" "}
+          <Link href={"https://github.com/TeamPlanetaryDrive"} target="_blank">
+            <Button variant="link" className="p-0 text-lg">
+              GitHub.
+            </Button>
+          </Link>
         </p>
       </section>
       <section className="w-full flex flex-col items-center">
         <p className="my-4 text-xl font-semibold w-[95vw] sm:w-3/5 md:w-1/2 text-center">
           Interested or have any questions?
         </p>
-        <div className="flex justify-center items-center space-x-12">
+        <div className="flex justify-center items-center sm:space-y-0 space-y-4 flex-col sm:flex-row sm:space-x-12">
           <Link href="https://discord.gg/d36XRMfYUF" target="_blank">
             <Button className="dark p-6" variant="outline">
               <Image src={discordIcon} width={30} className="mr-4" />

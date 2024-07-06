@@ -10,7 +10,7 @@ import SponsorsSlider from "@/components/SponsorsSlider";
 
 export default function Home() {
   return (
-    <main className="flex items-center flex-col h-full w-full">
+    <main className="flex items-center flex-col h-full w-full mb-8">
       <ParallaxBanner
         src={mainBanner}
         className="h-[50vh] xl:h-[65vh]"

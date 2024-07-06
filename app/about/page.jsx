@@ -10,7 +10,7 @@ import Members from "/app/(more)/members/page.jsx";
 
 export default function AboutUs() {
   return (
-    <main className="h-full w-full flex flex-col items-center">
+    <main className="h-full w-full flex flex-col items-center mb-8">
       <ParallaxBanner
         src={engineeringImage}
         className="h-[43vh] relative"
