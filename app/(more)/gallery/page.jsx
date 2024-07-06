@@ -1,3 +1,9 @@
+import ContactForm from "@/components/ContactForm";
+
 export default function Gallery() {
-    return <div>Gallery</div>
+  return (
+    <div>
+      <ContactForm />
+    </div>
+  );
 }

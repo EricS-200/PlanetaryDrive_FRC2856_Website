@@ -112,6 +112,22 @@ html::-webkit-scrollbar-track {
   @apply bg-zinc-950;
 }
 
+/* textarea::-webkit-scrollbar {
+  @apply w-3 rounded-lg;
+}
+
+textarea::-webkit-scrollbar-thumb {
+  @apply bg-gray-800 rounded-lg;
+}
+
+textarea::-webkit-scrollbar-thumb:hover {
+  @apply bg-neutral-500;
+}
+
+textarea::-webkit-scrollbar-track {
+  @apply bg-gray-600 rounded-lg;
+} */
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
