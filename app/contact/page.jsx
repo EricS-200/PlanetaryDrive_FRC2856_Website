@@ -1,21 +1,44 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import emailjs from "@emailjs/browser";
 import { Loader2 } from "lucide-react";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 import underConstruction from "/public/under-construction.jpeg";
+
+const emailValidationRegex =
+  /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$/;
 
 const publicKey = "y9wI_ohJZlN5vidjt";
 const serviceID = "gmail4958epkftub9349";
 const templateID = "frc_contactUs";
 
 export default function Contact() {
+  const [hasChanged, setHasChanged] = useState(false);
+
+  // keeps track of input field values
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState("");
   const [loading, setLoading] = useState(false);
+
+  // keeps track of whether fields are empty or not & whether email is valid
+  const [nameIsEmpty, setNameIsEmpty] = useState(false);
+  const [emailIsEmpty, setEmailIsEmpty] = useState(false);
+  const [messageIsEmpty, setMessageIsEmpty] = useState(false);
+  const [emailIsInvalid, setEmailIsInvalid] = useState(false);
 
   const params = {
     name: name,
@@ -23,12 +46,61 @@ export default function Contact() {
     message: message,
   };
 
+  useEffect(() => {
+    if (!hasChanged) return;
+    const handleBeforeUnload = (event) => {
+      event.preventDefault();
+      event.returnValue = "";
+      return "";
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload, {
+      capture: true,
+    });
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload, {
+        capture: true,
+      });
+    };
+  }, [hasChanged]);
+
   function validateForm() {
-    return true;
+    let status = true; // whether the form is ready to submit or not (all fields filled & email valid)
+
+    if (name.trim() === "") {
+      setNameIsEmpty(true);
+      status = false;
+    } else {
+      setNameIsEmpty(false);
+    }
+
+    if (email.trim() === "") {
+      setEmailIsEmpty(true);
+      status = false;
+    } else {
+      setEmailIsEmpty(false);
+    }
+
+    if (message.trim() === "") {
+      setMessageIsEmpty(true);
+      status = false;
+    } else {
+      setMessageIsEmpty(false);
+    }
+
+    if (!emailValidationRegex.test(email)) {
+      setEmailIsInvalid(true);
+      status = false;
+    } else {
+      setEmailIsInvalid(false);
+    }
+
+    return status;
   }
 
-  function handleSubmit() {
-    if (!validateForm) {
+  const handleSubmit = () => {
+    if (!validateForm()) {
       return;
     }
     setLoading(true);
@@ -42,7 +114,7 @@ export default function Contact() {
         setStatus(`Failed. An error occured: ${error.text}`);
       }
     );
-  }
+  };
 
   emailjs.init({
     publicKey: publicKey,
@@ -55,32 +127,48 @@ export default function Contact() {
   });
 
   return (
-    <main className=" w-full h-[calc(100vh-4rem)] flex flex-col items-center ">
+    <main className=" w-full h-[calc(100vh-4rem)] flex flex-col items-center">
       <h1 className="text-center my-4">Contact Us</h1>
+
       <form
-        className={"flex flex-col w-2/5"}
-        onSubmit={(event) => {
-          event.preventDefault();
-          handleSubmit();
+        noValidate
+        onChange={() => {
+          setHasChanged(true);
         }}
+        className={
+          "flex flex-col w-2/5 p-8 bg-neutral-950 rounded-lg border-2 border-gray-600"
+        }
       >
         <h2 className="text-center">Email Form</h2>
-        <p className="leading-normal">
+        <p className="leading-normal my-2">
           Feel free to send us an email for any question or request you may
           have. We will try to get back to you as soon as possible.
         </p>
         <label className={"text-white text-lg mb-1 font-semibold"}>Name</label>
         <input
-          className={"w-full h-10 bg-gray-700 text-white mb-3 p-1.5 rounded-lg"}
+          className={`w-full h-10 bg-gray-700 text-white  p-1.5 rounded-lg border border-gray-500 ${
+            nameIsEmpty
+              ? "border-red-700 outline-none focus:ring-1 focus:ring-red-600"
+              : "mb-3"
+          }`}
           placeholder={"Your Name"}
           value={name}
           onChange={(event) => {
             setName(event.target.value);
           }}
         />
+        {nameIsEmpty && (
+          <p className="text-red-500 mb-1">
+            This field is required. Please input your name.
+          </p>
+        )}
         <label className={"text-white text-lg mb-1 font-semibold"}>Email</label>
         <input
-          className={"w-full h-10 bg-gray-700 text-white mb-3 p-1.5 rounded-lg"}
+          className={`w-full h-10 bg-gray-700 text-white  p-1.5 rounded-lg border border-gray-500 ${
+            emailIsEmpty || emailIsInvalid
+              ? "border-red-700 outline-none focus:ring-1 focus:ring-red-600"
+              : "mb-3"
+          }`}
           type="email"
           placeholder={"Your Email"}
           value={email}
@@ -88,28 +176,46 @@ export default function Contact() {
             setEmail(event.target.value);
           }}
         />
+        {emailIsEmpty && (
+          <p className="text-red-500 mb-1">
+            This field is required. Please input your email address.
+          </p>
+        )}
+        {!emailIsEmpty && emailIsInvalid && (
+          <p className="text-red-500 mb-1">
+            Please input a valid email address.
+          </p>
+        )}
 
         <label className={"text-white text-lg mb-1 font-semibold"}>
           Message
         </label>
         <textarea
-          className={
-            "w-full h-28 bg-gray-700 text-white mb-3 p-1.5 rounded-lg resize-none"
-          }
+          className={`w-full h-28 bg-gray-700 text-white  p-1.5 rounded-lg resize-none border border-gray-500 ${
+            messageIsEmpty
+              ? "border-red-700 outline-none focus:ring-1 focus:ring-red-600"
+              : "mb-3"
+          }`}
           placeholder={"Your Message"}
           value={message}
           onChange={(event) => {
             setMessage(event.target.value);
           }}
         />
+        {messageIsEmpty && (
+          <p className="text-red-500 mb-1">
+            This field is required. Please input your message.
+          </p>
+        )}
         <i className="mb-2">We will send you a confirmation email.</i>
         <p>{status}</p>
         <Button
-          className="dark text-xl"
+          onClick={handleSubmit}
+          className="dark bg-neutral-950 hover:bg-neutral-800 text-xl w-full"
           size="lg"
           variant="outline"
-          type="submit"
           disabled={loading}
+          type="button"
         >
           <Loader2
             className={`mr-2 h-4 w-4 animate-spin ${
@@ -118,6 +224,42 @@ export default function Contact() {
           />
           {loading ? <p>Submitting</p> : <p>Submit</p>}
         </Button>
+        {/* <AlertDialog className="">
+          <AlertDialogTrigger asChild>
+            <Button
+              className="dark bg-neutral-950 hover:bg-neutral-800 text-xl w-full"
+              size="lg"
+              variant="outline"
+              disabled={loading}
+              type="button"
+            >
+              <Loader2
+                className={`mr-2 h-4 w-4 animate-spin ${
+                  loading ? "block" : "hidden"
+                }`}
+              />
+              {loading ? <p>Submitting</p> : <p>Submit</p>}
+            </Button>
+          </AlertDialogTrigger>
+          <AlertDialogContent className="dark">
+            <AlertDialogHeader>
+              <AlertDialogTitle>
+                Are you sure you want to send this?
+              </AlertDialogTitle>
+              <AlertDialogDescription>
+                Make sure you have filled out all the fields and written
+                everything you have to say. We will try to get back to you as
+                soon as possible.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Cancel</AlertDialogCancel>
+              <AlertDialogAction onClick={handleSubmit}>
+                Submit
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog> */}
       </form>
     </main>
   );
