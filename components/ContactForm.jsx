@@ -143,10 +143,13 @@ export default function ContactForm({ className }) {
     <section className={className}>
       {messageSent && (
         <div className="w-full h-min rounded-lg bg-neutral-950 border-2 border-gray-600 p-8 flex flex-col items-center text-center">
-          <h3>Thank you for sending us a message.</h3>
-          <h4 className="mt-2">
+          <h3 className="text-center">Thank you for sending us a message.</h3>
+          <h4 className="mt-2 text-center">
             We will try to get back to you as soon as possible.
           </h4>
+          <p className="text-xl text-center mt-2">
+            We have sent a copy of your message to your email.
+          </p>
         </div>
       )}
       {status === statusErrorMessage && (

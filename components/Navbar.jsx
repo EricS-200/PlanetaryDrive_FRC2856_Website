@@ -114,7 +114,7 @@ export default function Navbar() {
           </Link>
         ))}
         <div className="relative w-full flex justify-center">
-          <p
+          {/* <p
             onClick={() => setMNavDropdown((prev) => !prev)}
             className={`select-none m-2 text-xl transition duration-100 hover:text-neutral-100 cursor-pointer relative pr-4 ${
               otherPages.map((item) => item.page).includes(pathname)
@@ -141,7 +141,7 @@ export default function Navbar() {
                 />
               </svg>
             </span>
-          </p>
+          </p> */}
 
           <div className={`absolute top-10 overflow-hidden`}>
             <ul className={`flex flex-col items-center ${openMNavDropdown()}`}>
@@ -203,7 +203,7 @@ export default function Navbar() {
         ))}
 
         <div className={`${isActive()} group relative pl-4 cursor-default`}>
-          <p
+          {/* <p
             className={`select-none md:block md:pointer-events-auto hidden pointer-events-none leading-normal ${
               otherPages.map((item) => item.page).includes(pathname)
                 ? "text-white"
@@ -230,7 +230,7 @@ export default function Navbar() {
                 />
               </svg>
             </span>
-          </p>
+          </p> */}
           <div className="pointer-events-none	group-hover:pointer-events-auto	overflow-hidden absolute left-0 top-full">
             <div className="opacity-0 bg-black w-44 px-4 pt-4 pb-2 -translate-y-full group-hover:translate-y-0 transition-transform duration-500 group-hover:opacity-100">
               <ul>
