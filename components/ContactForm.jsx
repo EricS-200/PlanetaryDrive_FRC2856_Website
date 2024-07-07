@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
-
+import Image from "next/image";
+import checkmark from "/public/green-checkmark.svg";
 import { Button } from "@/components/ui/button";
 import emailjs from "@emailjs/browser";
 import { Loader2 } from "lucide-react";
@@ -143,6 +144,7 @@ export default function ContactForm({ className }) {
     <section className={className}>
       {messageSent && (
         <div className="w-full h-min rounded-lg bg-neutral-950 border-2 border-gray-600 p-8 flex flex-col items-center text-center">
+          <Image src={checkmark} className="w-64" />
           <h3 className="text-center">Thank you for sending us a message.</h3>
           <h4 className="mt-2 text-center">
             We will try to get back to you as soon as possible.
