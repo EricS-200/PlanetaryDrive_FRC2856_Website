@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <style type="text/css">
+       h1, h2, h3, h4, p, body {
+          margin: 0; 
+          padding: 0;
+      }
+
+      body, div {
+        box-sizing: border-box;
+        }
+
+      .container {
+        width: 100%
+        }
+    
+      @media only screen and (min-width: 768px) {
+      .container{
+        width: 50%
+        }
+    }
+    </style>
+  </head>
+  <body>
+  <font face="Arial, sans-serif">
+  <div style="display: flex; justify-content: center">
+    <div style="border: 1px solid gray; border-radius: 10px; padding: 25; margin: 0.8rem; " class='container'>
+      <div style="display:flex; flex-direction: column; align-items: center; ">
+        <img src="https://i.imgur.com/AVBUr6W.png" style="width: 100"/>
+        <h1 style="text-align:center; margin: 8 0 8 0">Planetary Drive Robotics</h1>
+        <h4 style="text-align:center;">{{name}}, thank you for contacting us. We have received your message and will respond as soon as possible.</h4>
+        <p style="text-align:center; margin: 8 0 8 0;">If this does not concern you, please ignore it. Do not open any suspicious links. </p>
+        <h4 style="margin: 5 0 0 0"> Copy of message:</h4>
+        <div style="border: 1px solid lightgray; border-radius: 5px; width: 100%; margin: 15 0 
+ 15 0; padding: 15">
+          <p><strong>From: </strong>{{name}} [{{email}}]</p>
+          <p style="margin: 10 0 0 0"><strong>Message</strong>: {{message}}</p>
+          
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  </body>
+</html>

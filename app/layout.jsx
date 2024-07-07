@@ -7,7 +7,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Planetary Drive Robotics",
-  description: "First Robotics Competition Team 2856 Official Website",
+  description:
+    "First Robotics Competition Team 2856 Official Website. We are a high school robotics team based in Lexington, Kentucky.",
 };
 
 export default function RootLayout({ children }) {
