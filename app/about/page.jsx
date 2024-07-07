@@ -6,7 +6,7 @@ import engineeringImage from "/public/about-us/engineering-image.jpg";
 import teamworkImage from "/public/about-us/robot-work.jpg";
 import teamworkImage2 from "/public/about-us/robot-work2.jpg";
 import SponsorsSlider from "@/components/SponsorsSlider";
-import Members from "/app/(more)/members/page.jsx";
+import Members from "@/components/Unused Pages/(more)/members/page.jsx";
 
 export default function AboutUs() {
   return (
