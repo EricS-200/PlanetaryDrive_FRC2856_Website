@@ -24,7 +24,7 @@ export default function Contact() {
   return (
     <main className=" w-full min-h-[calc(100vh-4rem)] flex flex-col items-center pb-8">
       <section className="w-full flex items-center flex-col">
-        <h1 className="text-center mt-4">Contact Us</h1>
+        <h1 className="sm:text-8xl text-6xl text-center mt-4">Contact Us</h1>
         <p className="text-xl w-[95vw] md:w-3/4 lg:w-3/5 xl:w-1/2 mb-4 text-center">
           You can use the contact form below to send us a message, or email us
           directly at{" "}
