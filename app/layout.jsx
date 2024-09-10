@@ -20,6 +20,8 @@ export default function RootLayout({ children }) {
           name="google-site-verification"
           content="1k0kd9k30wNoi2sM_bQy1cpmSY85Ol_P5RnZKvAQjsU"
         />
+        <title>{metadata.title}</title>
+        <meta name="description" content={metadata.description} />
       </head>
       <body className={inter.className}>
         <div>
