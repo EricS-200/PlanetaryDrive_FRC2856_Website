@@ -115,11 +115,11 @@ export default function Home() {
                 </p>
               </Button>
             </Link>
-            <Link href="/gallery" className="">
+            {/* <Link href="/gallery" className="">
               <Button className="dark mt-2" variant="outline" size="lg">
                 Team Pictures
               </Button>
-            </Link>
+            </Link> */}
           </div>
         </div>
       </section>

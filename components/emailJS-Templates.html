@@ -1,45 +1,167 @@
+<!-- <!DOCTYPE html>
 <html>
-  <head>
-    <style type="text/css">
-       h1, h2, h3, h4, p, body {
-          margin: 0; 
-          padding: 0;
-      }
-
-      body, div {
-        box-sizing: border-box;
-        }
-
-      .container {
-        width: 100%
-        }
-    
-      @media only screen and (min-width: 768px) {
-      .container{
-        width: 50%
-        }
+<head>
+  <style type="text/css">
+    body, table, td, h1, h2, h3, h4, p {
+      margin: 0;
+      padding: 0;
     }
+
+    body, table, td {
+      box-sizing: border-box;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 600px; /* Approximate 50% width on larger screens */
+      border: 1px solid gray;
+      border-radius: 10px;
+      padding: 25px;
+      margin: 0.8rem auto;
+      text-align: center;
+    }
+
+    .content {
+      width: 100%;
+    }
+
+    .message-box {
+      border: 1px solid lightgray;
+      border-radius: 5px;
+      width: 100%;
+      margin: 15px 0;
+      padding: 15px;
+      text-align: left;
+    }
+
+    .divider {
+      border-top: 1px solid gray;
+      margin: 15px 0;
+    }
+  </style>
+</head>
+<body>
+  <font face="Arial, sans-serif">
+  <table role="presentation" width="100%" style="border-collapse: collapse;">
+    <tr>
+      <td align="center">
+        <table role="presentation" class="container">
+          <tr>
+            <td>
+              <img src="https://i.imgur.com/AVBUr6W.png" alt="Logo" style="width: %;dgdsgd gdsjkgjkdj">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <h1 style="margin: 8px 0;">New Message Received</h1>
+              <h4 style="margin: 0;">A user has sent a message through the <a href="https://teamplanetarydrive.vercel.app/contact">TeamPlanetaryDrive website contact page.</a></h4>
+              <p style="margin: 8px 0;">Respond as soon as possible, or ignore if this is spam. Do not open any suspicious links or attachments.</p>
+              <h4 style="margin: 5px 0 0;">Copy of message:</h4>
+            </td>
+          </tr>
+          <tr>
+            <td class="message-box">
+              <p><strong>From: </strong>{{name}} [{{email}}]</p>
+              <p style="margin: 10px 0 0;"><strong>Message</strong>: {{message}}</p>
+            </td>
+          </tr>
+            <tr>
+            <td>
+              <div style="border-top: 1px solid gray; margin: 20px 0;"></div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="https://teamplanetarydrive.vercel.app/">Planetary Drive Robotics FRC#2856</a>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  </font>
+</body>
+</html>
+
+<head>
+    <style type="text/css">
+      body, table, td, h1, h2, h3, h4, p {
+        margin: 0;
+        padding: 0;
+      }
+  
+      body, table, td {
+        box-sizing: border-box;
+      }
+  
+      .container {
+        width: 100%;
+        max-width: 600px; /* Approximate 50% width on larger screens */
+        border: 1px solid gray;
+        border-radius: 10px;
+        padding: 25px;
+        margin: 0.8rem auto;
+        text-align: center;
+      }
+  
+      .content {
+        width: 100%;
+      }
+  
+      .message-box {
+        border: 1px solid lightgray;
+        border-radius: 5px;
+        width: 100%;
+        margin: 15px 0;
+        padding: 15px;
+        text-align: left;
+      }
+  
+      .divider {
+        border-top: 1px solid gray;
+        margin: 15px 0;
+      }
     </style>
   </head>
   <body>
-  <font face="Arial, sans-serif">
-  <div style="display: flex; justify-content: center">
-    <div style="border: 1px solid gray; border-radius: 10px; padding: 25; margin: 0.8rem; " class='container'>
-      <div style="display:flex; flex-direction: column; align-items: center; ">
-        <img src="https://i.imgur.com/AVBUr6W.png" style="width: 100"/>
-        <h1 style="text-align:center; margin: 8 0 8 0">Planetary Drive Robotics</h1>
-        <h4 style="text-align:center;">{{name}}, thank you for contacting us. We have received your message and will respond as soon as possible.</h4>
-        <p style="text-align:center; margin: 8 0 8 0;">If this does not concern you, please ignore it. Do not open any suspicious links. </p>
-        <h4 style="margin: 5 0 0 0"> Copy of message:</h4>
-        <div style="border: 1px solid lightgray; border-radius: 5px; width: 100%; margin: 15 0 
- 15 0; padding: 15">
-          <p><strong>From: </strong>{{name}} [{{email}}]</p>
-          <p style="margin: 10 0 0 0"><strong>Message</strong>: {{message}}</p>
-          
-        </div>
-      </div>
-      
-    </div>
-  </div>
+    <font face="Arial, sans-serif">
+    <table role="presentation" width="100%" style="border-collapse: collapse;">
+      <tr>
+        <td align="center">
+          <table role="presentation" class="container">
+            <tr>
+              <td>
+                <img src="https://i.imgur.com/AVBUr6W.png" alt="Logo" >
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h1 style="margin: 8px 0;">Planetary Drive Robotics</h1>
+                <h4 style="margin: 0;">{{name}}, thank you for contacting us. We have received your message and will respond as soon as possible.</h4>
+                <p style="margin: 8px 0;">If this does not concern you, please ignore it. Do not open any suspicious links.</p>
+                <h4 style="margin: 5px 0 0;">Copy of message:</h4>
+              </td>
+            </tr>
+            <tr>
+              <td class="message-box">
+                <p><strong>From: </strong>{{name}} [{{email}}]</p>
+                <p style="margin: 10px 0 0;"><strong>Message</strong>: {{message}}</p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div style="border-top: 1px solid gray; margin: 15px 0;"></div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="https://teamplanetarydrive.vercel.app/">Planetary Drive Robotics FRC#2856</a>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+    </font>
   </body>
-</html>
+  </html> -->

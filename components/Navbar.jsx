@@ -74,7 +74,7 @@ export default function Navbar() {
   }
 
   return (
-    <nav className={`${mNav ? "" : "sticky top-0"} z-50`}>
+    <nav className={`${mNav ? "" : "sticky top-0"} z-[99]`}>
       <div
         className={`${openNav()} z-10 h-full fixed bg-black left-0 flex flex-col items-center w-full`}
       >
@@ -185,7 +185,12 @@ export default function Navbar() {
         </svg>
         <Link href="/" className="absolute md:left-[8%] lg:left-[10%]">
           <div className="flex md:items-center ">
-            <Image alt="" src="/logo.png" height={50} width={50}></Image>
+            <Image
+              alt="Team Logo - Return To Home"
+              src="/logo.png"
+              height={50}
+              width={50}
+            ></Image>
             <h1 className="m-4 font-semibold text-2xl xl:block hidden">
               Planetary Drive
             </h1>

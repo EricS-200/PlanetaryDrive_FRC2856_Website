@@ -75,7 +75,7 @@ export default function SponsorsSlider() {
   return (
     <section className="w-full flex justify-center">
       <div className="overflow-hidden py-8 whitespace-nowrap w-[95vw] md:w-[80vw] xl:w-[1200px] relative">
-        <div className="absolute h-full w-[15%] inset-0 bg-gradient-to-r from-black z-50 "></div>
+        <div className="absolute h-full w-[15%] inset-0 bg-gradient-to-r from-black z-30 "></div>
         <div className="inline-block animate-slide-left">
           <div className="flex items-center space-x-20 mx-10">
             {sponsors.map((sponsor) => displayLogos(sponsor))}
@@ -87,7 +87,7 @@ export default function SponsorsSlider() {
             {sponsors.map((sponsor) => displayLogos(sponsor))}
           </div>
         </div>
-        <div className="h-full w-[15%] absolute top-0 right-0 bg-gradient-to-l from-black z-50"></div>
+        <div className="h-full w-[15%] absolute top-0 right-0 bg-gradient-to-l from-black z-30"></div>
       </div>
     </section>
   );

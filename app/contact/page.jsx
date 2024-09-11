@@ -8,18 +8,6 @@ import discordIcon from "/public/footer/discord-icon.svg";
 import Image from "next/image";
 import ContactForm from "@/components/ContactForm";
 
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
-
 export default function Contact() {
   return (
     <main className=" w-full min-h-[calc(100vh-4rem)] flex flex-col items-center pb-8">
