@@ -6,7 +6,7 @@ import engineeringImage from "/public/about-us/engineering-image.jpg";
 import teamworkImage from "/public/about-us/robot-work.jpg";
 import teamworkImage2 from "/public/about-us/robot-work2.jpg";
 import SponsorsSlider from "@/components/SponsorsSlider";
-import Members from "/app/(more)/members/page.jsx";
+import Leadership from "@/components/Leadership.jsx";
 
 export default function AboutUs() {
   return (
@@ -114,7 +114,7 @@ export default function AboutUs() {
         </Button>
       </Link>
       <div className="border-t-[1px] w-[80%] my-8 border-slate-700 bg-black"></div>
-      <Members banner={false}></Members>
+      <Leadership />
     </main>
   );
 }

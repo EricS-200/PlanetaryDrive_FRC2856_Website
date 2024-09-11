@@ -3,6 +3,7 @@
 import Link from "next/link";
 import ParallaxBanner from "@/components/ParallaxBanner";
 
+import { Button } from "@/components/ui/button";
 import mainBanner from "/public/sponsors/sponsors-banner2.png";
 import { useRef } from "react";
 import SponsorLogos from "@/components/SponsorLogos";
@@ -18,7 +19,7 @@ export default function Sponsors() {
       <section className="from-96% md:from-90% bg-gradient-to-b from-zinc-950 to-black flex flex-col items-center pt-6 pb-10 min-h-[50vh] w-full relative">
         <div className="absolute w-full h-[150px] top-0 bg-gradient-to-t from-zinc-950 -translate-y-[99%]"></div>
 
-        <div className="space-y-5 w-[90vw] lg:w-2/3 2xl:w-1/2 flex flex-col ">
+        <div className="space-y-5 w-[90vw] lg:w-2/3 2xl:w-1/2 flex flex-col items-center">
           <h1 className="text-white text-center sm:text-8xl text-6xl">
             Our Sponsors
           </h1>
@@ -43,10 +44,24 @@ export default function Sponsors() {
               href="/contact"
               className="hover:underline underline-offset-2"
             >
-              <strong>contact us</strong>
+              <Button variant="link" className=" text-md p-0">
+                contact us
+              </Button>
             </Link>
             !
           </p>
+          <Link
+            href="/sponsors/sponsorship-packet.pdf"
+            target="_blank"
+            className="w-min"
+          >
+            <Button className="dark bg-zinc-950" variant="outline" size="lg">
+              <p className="text-slate-200 text-lg text-normal">
+                Sponsorship Packet
+              </p>
+            </Button>
+          </Link>
+
           <button onClick={scrollToLogos}>
             <p className="text-xl text-center flex items-center justify-center">
               Make sure to check out our sponsors below!

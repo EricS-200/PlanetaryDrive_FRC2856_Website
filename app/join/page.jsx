@@ -5,10 +5,10 @@ import Image from "next/image";
 import discordIcon from "/public/footer/discord-icon.svg";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import programmingIcon from "/public/join/programming-icon.svg";
+import programmingIcon from "/public/programming-icon.svg";
 import workshop from "/public/join/workshop.jpg";
-import buildIcon from "/public/join/build-icon.svg";
-import helmetIcon from "/public/join/helmet-icon.svg";
+import buildIcon from "/public/build-icon.svg";
+import helmetIcon from "/public/helmet-icon.svg";
 import mailIcon from "/public/mail-icon.svg";
 
 export default function Join() {
