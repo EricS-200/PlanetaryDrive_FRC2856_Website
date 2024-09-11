@@ -2,9 +2,9 @@
 
 This repository contains all the code for the website Team Planetary Drive First Robotics Team #2856
 
-[placeholder]
+https://www.teamplanetarydrive.com/
 
-It was created and maintained by the First Robotics Team 2856 - Planetary Drive, based in Lexington, Kentucky.
+It was created and is now being maintained by the First Robotics Team 2856 - Planetary Drive, based in Lexington, Kentucky.
 
 If there is anything you believe we can improve on for this website, please feel free to contact us through the contact page or email us directly at [planetarydrive2856@gmail.com](mailto:planetarydrive2856@gmail.com).
 
@@ -15,7 +15,9 @@ This application uses the following software and libraries (additional software 
 
 ## Check it out locally
 
-First, download all the files from this repository at the main branch.
+Testing branches may not be up-to-date or even in use. 
+
+First, download the files of this repository from the main branch.
 
 Then, open it in VSCode or another code editor and install all dependencies:
 
