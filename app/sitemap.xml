@@ -1,30 +1,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-    <loc>https://teamplanetarydrive.vercel.app/</loc>
+    <loc>https://www.teamplanetarydrive.com/</loc>
     <lastmod>2024-07-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1</priority>
   </url>
   <url>
-    <loc>https://teamplanetarydrive.vercel.app/about</loc>
+    <loc>https://www.teamplanetarydrive.com/about</loc>
     <lastmod>2024-07-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://teamplanetarydrive.vercel.app/contact</loc>
+    <loc>https://www.teamplanetarydrive.com/contact</loc>
     <lastmod>2024-07-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.2</priority>
   </url>
   <url>
-    <loc>https://teamplanetarydrive.vercel.app/join</loc>
+    <loc>https://www.teamplanetarydrive.com/join</loc>
     <lastmod>2024-07-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://teamplanetarydrive.vercel.app/sponsors</loc>
+    <loc>https://www.teamplanetarydrive.com/sponsors</loc>
     <lastmod>2024-07-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
