@@ -51,7 +51,7 @@ export default function Sponsors() {
             !
           </p>
           <Link
-            href="/sponsors/sponsorship-packet.pdf"
+            href="/sponsors/Sponsorship-Packet.pdf"
             target="_blank"
             className="w-min"
           >
