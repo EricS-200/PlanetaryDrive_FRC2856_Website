@@ -22,10 +22,10 @@ export default function Home() {
 
         <h1 className="text-center sm:text-8xl text-6xl mt-6 mb-2">
           Planetary Drive Robotics
+          <p className="text-center	text-4xl mt-6 font-normal">
+            <i>FIRST</i> Robotics Team #2856
+          </p>
         </h1>
-        <p className="text-center	text-2xl mb-4 m-2">
-          <i>FIRST</i> Robotics Team #2856
-        </p>
       </section>
       <section className="flex flex-col items-center justify-center bg-black w-full pt-8">
         <div className="flex flex-col lg:flex-row justify-around items-center ">

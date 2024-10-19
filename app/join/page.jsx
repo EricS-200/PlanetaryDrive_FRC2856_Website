@@ -11,6 +11,10 @@ import buildIcon from "/public/build-icon.svg";
 import helmetIcon from "/public/helmet-icon.svg";
 import mailIcon from "/public/mail-icon.svg";
 
+export const metadata = {
+  title: "Join",
+};
+
 export default function Join() {
   return (
     <main className="flex flex-col items-center w-full mb-8">

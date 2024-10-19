@@ -1,12 +1,13 @@
-"use client";
-import { useState, useEffect } from "react";
+// "use client";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import emailjs from "@emailjs/browser";
-import { Loader2 } from "lucide-react";
 import discordIcon from "/public/footer/discord-icon.svg";
 import Image from "next/image";
 import ContactForm from "@/components/ContactForm";
+
+export const metadata = {
+  title: "Contact",
+};
 
 export default function Contact() {
   return (

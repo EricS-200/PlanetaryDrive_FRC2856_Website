@@ -8,6 +8,10 @@ import teamworkImage2 from "/public/about-us/robot-work2.jpg";
 import SponsorsSlider from "@/components/SponsorsSlider";
 import Leadership from "@/components/Leadership.jsx";
 
+export const metadata = {
+  title: "About",
+};
+
 export default function AboutUs() {
   return (
     <main className="h-full w-full flex flex-col items-center mb-8">
