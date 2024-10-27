@@ -87,14 +87,13 @@ export default function MobileNavbar({ pages }) {
         <ul className="flex flex-col justify-start ml-16 space-y-3">
           {pages.map(({ name, page }, index) => (
             <button
+              key={name}
               onClick={() => setIsOpen((prev) => !prev)}
               className={`${isActive(page)} ${stagger(
                 index
               )} w-fit inline-block text-lg transiton-transform duration-500`}
             >
-              <Link key={name} href={page}>
-                {name}
-              </Link>
+              <Link href={page}>{name}</Link>
             </button>
           ))}
         </ul>
