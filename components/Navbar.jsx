@@ -27,20 +27,20 @@ export const pages = [
   },
 ];
 
-export const otherPages = [
-  {
-    name: "Members",
-    page: "/members",
-  },
-  {
-    name: "Photos",
-    page: "/gallery",
-  },
-  {
-    name: "Robots",
-    page: "/robots",
-  },
-];
+// export const otherPages = [
+//   {
+//     name: "Members",
+//     page: "/members",
+//   },
+//   {
+//     name: "Photos",
+//     page: "/gallery",
+//   },
+//   {
+//     name: "Robots",
+//     page: "/robots",
+//   },
+// ];
 
 export default function Navbar() {
   const pathname = usePathname(); // checks which page you are on
@@ -143,7 +143,7 @@ export default function Navbar() {
             </span>
           </p> */}
 
-          <div className={`absolute top-10 overflow-hidden`}>
+          {/* <div className={`absolute top-10 overflow-hidden`}>
             <ul className={`flex flex-col items-center ${openMNavDropdown()}`}>
               {otherPages.map((link) => (
                 <li
@@ -160,7 +160,7 @@ export default function Navbar() {
                 </li>
               ))}
             </ul>
-          </div>
+          </div> */}
         </div>
       </div>
 
@@ -236,7 +236,7 @@ export default function Navbar() {
               </svg>
             </span>
           </p> */}
-          <div className="pointer-events-none	group-hover:pointer-events-auto	overflow-hidden absolute left-0 top-full">
+          {/* <div className="pointer-events-none	group-hover:pointer-events-auto	overflow-hidden absolute left-0 top-full">
             <div className="opacity-0 bg-black w-44 px-4 pt-4 pb-2 -translate-y-full group-hover:translate-y-0 transition-transform duration-500 group-hover:opacity-100">
               <ul>
                 {otherPages.map((link) => (
@@ -251,7 +251,7 @@ export default function Navbar() {
                 ))}
               </ul>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </nav>

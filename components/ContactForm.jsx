@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button";
 import emailjs from "@emailjs/browser";
 import { Loader2 } from "lucide-react";
 
+import { useContactFormContext } from "@/contexts/ContactFormContext";
+
 import {
   AlertDialog,
   AlertDialogAction,
@@ -38,6 +40,8 @@ export default function ContactForm({ className }) {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState("");
+  const { contactFormData, setContactFormData } = useContactFormContext();
+
   const [loading, setLoading] = useState(false);
 
   // keeps track of whether fields are empty or not & whether email is valid
@@ -50,9 +54,9 @@ export default function ContactForm({ className }) {
     "An error occured. Try again or email us directly.";
 
   const params = {
-    name: name,
-    email: email,
-    message: message,
+    name: contactFormData.name,
+    email: contactFormData.email,
+    message: contactFormData.message,
   };
 
   useEffect(() => {
@@ -77,28 +81,28 @@ export default function ContactForm({ className }) {
   function validateForm() {
     let status = true; // whether the form is ready to submit or not (all fields filled & email valid)
 
-    if (name.trim() === "") {
+    if (contactFormData.name.trim() === "") {
       setNameIsEmpty(true);
       status = false;
     } else {
       setNameIsEmpty(false);
     }
 
-    if (email.trim() === "") {
+    if (contactFormData.email.trim() === "") {
       setEmailIsEmpty(true);
       status = false;
     } else {
       setEmailIsEmpty(false);
     }
 
-    if (message.trim() === "") {
+    if (contactFormData.message.trim() === "") {
       setMessageIsEmpty(true);
       status = false;
     } else {
       setMessageIsEmpty(false);
     }
 
-    if (!emailValidationRegex.test(email)) {
+    if (!emailValidationRegex.test(contactFormData.email)) {
       setEmailIsInvalid(true);
       status = false;
     } else {
@@ -119,8 +123,8 @@ export default function ContactForm({ className }) {
     emailjs.send(serviceID, templateID, params).then(
       () => {
         setStatus("Email Sent Successfully.");
-        setMessageSent(true);
         setLoading(false);
+        setContactFormData((prev) => ({ ...prev, messageSent: true }));
       },
       (error) => {
         setErrorModalOpen(true);
@@ -142,7 +146,8 @@ export default function ContactForm({ className }) {
   });
   return (
     <section className={className}>
-      {messageSent && (
+      <p>{JSON.stringify(contactFormData)}</p>
+      {contactFormData.messageSent && (
         <div className="w-full h-min rounded-lg bg-neutral-950 border-2 border-gray-600 p-8 flex flex-col items-center text-center">
           <Image src={checkmark} className="w-64" />
           <h3 className="text-center">Thank you for sending us a message.</h3>
@@ -175,7 +180,7 @@ export default function ContactForm({ className }) {
           </AlertDialogContent>
         </AlertDialog>
       )}
-      {!messageSent && (
+      {!contactFormData.messageSent && (
         <form
           noValidate
           onChange={() => {
@@ -190,6 +195,7 @@ export default function ContactForm({ className }) {
             Feel free to send us an email for any question or request you may
             have. We will try to get back to you as soon as possible.
           </p>
+
           <label className={"text-white text-lg mb-1 font-semibold"}>
             Name
           </label>
@@ -200,9 +206,12 @@ export default function ContactForm({ className }) {
                 : "mb-3"
             }`}
             placeholder={"Your Name"}
-            value={name}
+            value={contactFormData.name}
             onChange={(event) => {
-              setName(event.target.value);
+              setContactFormData((prev) => ({
+                ...prev,
+                name: event.target.value,
+              }));
             }}
           />
           {nameIsEmpty && (
@@ -210,6 +219,7 @@ export default function ContactForm({ className }) {
               This field is required. Please input your name.
             </p>
           )}
+
           <label className={"text-white text-lg mb-1 font-semibold"}>
             Email
           </label>
@@ -221,9 +231,12 @@ export default function ContactForm({ className }) {
             }`}
             type="email"
             placeholder={"Your Email"}
-            value={email}
+            value={contactFormData.email}
             onChange={(event) => {
-              setEmail(event.target.value);
+              setContactFormData((prev) => ({
+                ...prev,
+                email: event.target.value,
+              }));
             }}
           />
           {emailIsEmpty && (
@@ -247,9 +260,12 @@ export default function ContactForm({ className }) {
                 : "mb-3"
             }`}
             placeholder={"Your Message"}
-            value={message}
+            value={contactFormData.message}
             onChange={(event) => {
-              setMessage(event.target.value);
+              setContactFormData((prev) => ({
+                ...prev,
+                message: event.target.value,
+              }));
             }}
           />
           {messageIsEmpty && (

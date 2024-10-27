@@ -1,10 +1,11 @@
-import { Inter } from "next/font/google";
+import { Roboto } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar.jsx";
+import Navbar from "@/components/Navbar/Navbar.jsx";
 import Footer from "@/components/Footer.jsx";
 import Head from "next/head";
+import { ContactFormContextProvider } from "@/contexts/ContactFormContext";
 
-const inter = Inter({ subsets: ["latin"] });
+const roboto = Roboto({ subsets: ["latin"], weight: ["400", "500", "700"] });
 
 export const metadata = {
   title: {
@@ -33,13 +34,13 @@ export default function RootLayout({ children }) {
           content="1k0kd9k30wNoi2sM_bQy1cpmSY85Ol_P5RnZKvAQjsU"
         />
       </head>
-      <body className={inter.className}>
-        <div>
+      <ContactFormContextProvider>
+        <body className={roboto.className}>
           <Navbar />
           {children}
           <Footer />
-        </div>
-      </body>
+        </body>
+      </ContactFormContextProvider>
     </html>
   );
 }
