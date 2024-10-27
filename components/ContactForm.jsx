@@ -146,7 +146,6 @@ export default function ContactForm({ className }) {
   });
   return (
     <section className={className}>
-      <p>{JSON.stringify(contactFormData)}</p>
       {contactFormData.messageSent && (
         <div className="w-full h-min rounded-lg bg-neutral-950 border-2 border-gray-600 p-8 flex flex-col items-center text-center">
           <Image src={checkmark} className="w-64" />
