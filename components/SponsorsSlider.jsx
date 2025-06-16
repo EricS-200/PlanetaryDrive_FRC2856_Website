@@ -38,7 +38,7 @@ export default function SponsorsSlider() {
     if (sponsor.image === undefined || sponsor.website === undefined) {
       if (sponsor.website === undefined) {
         return (
-          <div className="inline-block">
+          <div className="inline-block" key={sponsor.name}>
             <p>
               <i className="font-serif text-4xl text-center ">{sponsor.name}</i>
             </p>
@@ -50,6 +50,7 @@ export default function SponsorsSlider() {
           href={sponsor.website}
           target="_blank"
           className="inline-block self-center"
+          key={sponsor.name}
         >
           <p>
             <i className="font-serif text-4xl text-center ">{sponsor.name}</i>

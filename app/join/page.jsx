@@ -46,7 +46,7 @@ export default function Join() {
           </p>
           <Link href="https://discord.gg/d36XRMfYUF" target="_blank">
             <Button className="dark p-8 my-8" variant="outline">
-              <Image src={discordIcon} width={30} className="mr-4" />
+              <Image src={discordIcon} width={30} className="mr-4" alt="" />
               <p className="text-2xl">Member Discord</p>
             </Button>
           </Link>
@@ -68,7 +68,7 @@ export default function Join() {
         </p>
         <div className="text-center flex flex-col lg:flex-row  w-[95vw] sm:w-3/5 md:w-1/2 lg:w-2/3  justify-center lg:space-x-16 ">
           <div className="flex flex-col items-center mb-8">
-            <Image src={programmingIcon} className=" w-28 mb-4" />
+            <Image src={programmingIcon} className=" w-28 mb-4" alt="" />
             <h3 className="mb-3">Programming Team</h3>
             <p className="">
               The programming team is tasked with coding the robot. No
@@ -88,7 +88,7 @@ export default function Join() {
             </p>
           </div>
           <div className="flex flex-col items-center ">
-            <Image src={buildIcon} className=" w-28 mb-4" />
+            <Image src={buildIcon} className=" w-28 mb-4" alt="" />
             <h3 className="mb-3">Electromechanical Team</h3>
             <p className="">
               The electromechanical, or build, team is charged with desiging and
@@ -100,7 +100,7 @@ export default function Join() {
             </p>
           </div>
         </div>
-        <Image src={helmetIcon} className="w-28 lg:mt-0 mt-8 mb-4" />
+        <Image src={helmetIcon} className="w-28 lg:mt-0 mt-8 mb-4" alt="" />
         <h3 className="mb-3">Mentors</h3>
         <p className="text-center w-[95vw] sm:w-3/5 md:w-1/2">
           Mentors are a crucial part of the robotics team as they help guide
@@ -166,6 +166,7 @@ export default function Join() {
           src={workshop}
           placeholder="blur"
           className="rounded-lg w-[90vw] sm:w-3/5 md:w-1/2 object-cover object-bottom"
+          alt=""
         />
 
         <h4 className="mt-4">Usual Schedule</h4>
@@ -235,13 +236,13 @@ export default function Join() {
         <div className="flex justify-center items-center sm:space-y-0 space-y-4 flex-col sm:flex-row sm:space-x-12">
           <Link href="https://discord.gg/d36XRMfYUF" target="_blank">
             <Button className="dark p-6" variant="outline">
-              <Image src={discordIcon} width={30} className="mr-4" />
+              <Image src={discordIcon} width={30} className="mr-4" alt="" />
               <p className="text-lg">Join Our Discord</p>
             </Button>
           </Link>
           <Link href="/contact" target="_blank">
             <Button className="dark p-6" variant="outline">
-              <Image src={mailIcon} width={30} className="mr-4" />
+              <Image src={mailIcon} width={30} className="mr-4" alt="" />
               <p className="text-lg">Contact Us</p>
             </Button>
           </Link>

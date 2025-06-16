@@ -9,6 +9,8 @@ import { Button } from "@/components/ui/button";
 import MemberCard from "@/components/MemberCard";
 import anthony from "/public/team_pics/anthony.jpg";
 import daniel from "/public/team_pics/daniel.jpg";
+import zach from "/public/team_pics/zach.jpg";
+import myles from "/public/team_pics/myles.jpg";
 
 import malePlaceholder from "/public/placeholder/male-profile-placeholder.jpg";
 import femalePlaceholder from "/public/placeholder/female-profile-placeholder.jpg";
@@ -29,26 +31,31 @@ import { LucideLoader } from "lucide-react";
 
 const mentors = [
   {
-    name: "Placeholder",
+    name: "Mohammad Ameen",
     picture: malePlaceholder,
     role: "Team Mentor",
   },
   {
-    name: "Placeholder",
+    name: "April Gonzalez",
     picture: femalePlaceholder,
-    role: "Team Mentor",
+    role: "Team Sponsor",
   },
 ];
 
 const leads = [
   {
-    name: "Daniel",
-    picture: daniel,
-    role: "Team Captain/Build Lead",
+    name: "Myles",
+    picture: myles,
+    role: "Build Lead",
   },
   {
-    name: "Anthony",
-    picture: anthony,
+    name: "Zach",
+    picture: zach,
+    role: "Build Lead",
+  },
+  {
+    name: "Eric",
+    picture: malePlaceholder,
     role: "Programming Lead",
   },
 ];
@@ -71,7 +78,7 @@ export default function Members() {
       </section>
       <section className="flex flex-col items-center w-full bg-black">
         <h2 className="text-center mt-8 mb-2 flex items-center">
-          <Image src={mentorIcon} className="w-20 mr-4" />
+          <Image src={mentorIcon} className="w-20 mr-4" alt="Mentor Icon" />
           Mentors
         </h2>
         <div className="justify-center items-center flex-wrap hidden lg:flex">
@@ -106,7 +113,7 @@ export default function Members() {
       </section>
       <section className="flex flex-col items-center w-full bg-black">
         <h2 className="text-center mt-8 mb-2 flex items-center">
-          <Image src={leadIcon} className="w-20 mr-4" />
+          <Image src={leadIcon} className="w-20 mr-4" alt="Leadership Icon" />
           Leadership
         </h2>
         <div className="lg:flex hidden justify-center items-center flex-wrap">
@@ -139,7 +146,11 @@ export default function Members() {
       </section>
       <section className="flex flex-col items-center w-full">
         <h2 className="text-center mt-8 mb-2 flex items-center">
-          <Image src={programmingIcon} className="w-20 mr-4" />
+          <Image
+            src={programmingIcon}
+            className="w-20 mr-4"
+            alt="Programming Icon"
+          />
           Programming Team
         </h2>
         <p className="text-center text-lg w-[95%] md:w-2/3 lg:w-1/2">
@@ -153,7 +164,7 @@ export default function Members() {
       </section>
       <section className="flex flex-col items-center w-full">
         <h2 className="text-center mt-8 mb-2 flex items-center">
-          <Image src={buildIcon} className="w-20 mr-4" />
+          <Image src={buildIcon} className="w-20 mr-4" alt="Electromech Icon" />
           Electromechanical Team
         </h2>
         <p className="text-center text-lg w-[95%] md:w-2/3 lg:w-1/2">

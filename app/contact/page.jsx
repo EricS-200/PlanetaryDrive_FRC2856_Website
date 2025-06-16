@@ -50,7 +50,7 @@ export default function Contact() {
       </p>
       <Link href="https://discord.gg/d36XRMfYUF" target="_blank">
         <Button className="dark p-8 mt-4" variant="outline">
-          <Image src={discordIcon} width={30} className="mr-4" />
+          <Image src={discordIcon} width={30} className="mr-4" alt="" />
           <p className="text-2xl">Member Discord</p>
         </Button>
       </Link>
