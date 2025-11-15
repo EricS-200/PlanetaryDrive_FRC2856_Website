@@ -7,10 +7,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import MemberCard from "@/components/MemberCard";
-import anthony from "/public/team_pics/anthony.jpg";
-import daniel from "/public/team_pics/daniel.jpg";
 import zach from "/public/team_pics/zach.jpg";
 import myles from "/public/team_pics/myles.jpg";
+import eric from "/public/team_pics/eric.png";
 
 import malePlaceholder from "/public/placeholder/male-profile-placeholder.jpg";
 import femalePlaceholder from "/public/placeholder/female-profile-placeholder.jpg";
@@ -34,29 +33,35 @@ const mentors = [
     name: "Mohammad Ameen",
     picture: malePlaceholder,
     role: "Team Mentor",
+    email: "muhammadameen335@gmail.com",
   },
   {
     name: "April Gonzalez",
     picture: femalePlaceholder,
     role: "Team Sponsor",
+    email: "april.gonzalez@fayette.kyschools.us",
   },
 ];
 
 const leads = [
   {
-    name: "Myles",
+    name: "Eric Su",
+    picture: eric,
+    role: "Programming Lead",
+    email: "eric@teamplanetarydrive.com",
+    primary: true,
+  },
+  {
+    name: "Myles Arnold",
     picture: myles,
     role: "Build Lead",
+    email: "myles@teamplanetarydrive.com",
   },
   {
-    name: "Zach",
+    name: "Zach Ye",
     picture: zach,
     role: "Build Lead",
-  },
-  {
-    name: "Eric",
-    picture: malePlaceholder,
-    role: "Programming Lead",
+    email: "zach@teamplanetarydrive.com",
   },
 ];
 
@@ -74,6 +79,39 @@ export default function Members() {
           love robotics! The students are divided into two teams: the
           electromechanical (build) and programming teams. Here is some
           information about those teams.
+        </p>
+      </section>
+      <section className="flex flex-col items-center w-full bg-black">
+        <h2 className="text-center mt-8 mb-2 flex items-center">
+          <Image src={leadIcon} className="w-20 mr-4" alt="Leadership Icon" />
+          Leadership
+        </h2>
+        <div className="lg:flex hidden justify-center items-center flex-wrap">
+          {leads.map((member) => (
+            <MemberCard member={member} key={member.name} />
+          ))}
+        </div>
+        <div className="flex justify-center w-auto lg:hidden">
+          <Carousel className="w-[450px] dark">
+            <CarouselContent className="">
+              {leads.map((member) => (
+                <CarouselItem key={member.name} className="">
+                  <MemberCard member={member} />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <div className="relative flex mx-[100px] mb-6 sm:static">
+              <CarouselPrevious className="" />
+              <CarouselNext />
+            </div>
+          </Carousel>
+        </div>
+        <p className="text-center text-lg w-[95%] md:w-2/3 lg:w-1/2">
+          The extremely driven and caring leadership is composed of experienced
+          members that organize everything including meetings, team structure,
+          as well as individual assignments. They help guide new members, and
+          plan the team strategy as well as the construction and design of the
+          robot based on the season event and everyone&apos;s input.
         </p>
       </section>
       <section className="flex flex-col items-center w-full bg-black">
@@ -109,39 +147,6 @@ export default function Members() {
           registration, and logistics of going to the competition! Their
           astounding commitment to the team and robotics as a whole is what
           allows this team to function.
-        </p>
-      </section>
-      <section className="flex flex-col items-center w-full bg-black">
-        <h2 className="text-center mt-8 mb-2 flex items-center">
-          <Image src={leadIcon} className="w-20 mr-4" alt="Leadership Icon" />
-          Leadership
-        </h2>
-        <div className="lg:flex hidden justify-center items-center flex-wrap">
-          {leads.map((member) => (
-            <MemberCard member={member} key={member.name} />
-          ))}
-        </div>
-        <div className="flex justify-center w-auto lg:hidden">
-          <Carousel className="w-[450px] dark">
-            <CarouselContent className="">
-              {leads.map((member) => (
-                <CarouselItem key={member.name} className="">
-                  <MemberCard member={member} />
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <div className="relative flex mx-[100px] mb-6 sm:static">
-              <CarouselPrevious className="" />
-              <CarouselNext />
-            </div>
-          </Carousel>
-        </div>
-        <p className="text-center text-lg w-[95%] md:w-2/3 lg:w-1/2">
-          The extremely driven and caring leadership is composed of experienced
-          members that organize everything including meetings, team structure,
-          as well as individual assignments. They help guide new members, and
-          plan the team strategy as well as the construction and design of the
-          robot based on the season event and everyone&apos;s input.
         </p>
       </section>
       <section className="flex flex-col items-center w-full">
