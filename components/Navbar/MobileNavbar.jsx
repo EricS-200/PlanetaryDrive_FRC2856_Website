@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 
-import logo from "/public/logo.png";
+import logo from "/public/white_wordmark.svg";
 import hamburger from "/public/navbar/hamburger-menu.svg";
 import close from "/public/navbar/close.svg";
 
@@ -62,7 +62,11 @@ export default function MobileNavbar({ pages }) {
         </button>
         <button>
           <Link href="/">
-            <Image src={logo} className="h-[50px] w-[50px]" alt="Logo - Home" />
+            <Image
+              src={logo}
+              className="h-[50px] w-[150px]"
+              alt="Logo - Home"
+            />
           </Link>
         </button>
       </div>

@@ -20,13 +20,13 @@ export default function DesktopNavbar({ pages }) {
         <div className="flex md:items-center ">
           <Image
             alt="Team Logo - Return To Home"
-            src="/logo.png"
-            height={50}
-            width={50}
+            src="/white_wordmark.svg"
+            height={60}
+            width={140}
           ></Image>
-          <h1 className="m-4 font-semibold text-2xl xl:block hidden">
+          {/* <h1 className="m-4 font-semibold text-2xl xl:block hidden">
             Planetary Drive
-          </h1>
+          </h1> */}
         </div>
       </Link>
 
