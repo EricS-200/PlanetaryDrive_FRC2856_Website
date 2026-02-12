@@ -23,6 +23,9 @@ export const metadata = {
     url: "https://www.teamplanetarydrive.com",
     siteName: "Planetary Drive Robotics - FRC Team 2856",
   },
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({ children }) {
