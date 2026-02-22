@@ -5,6 +5,9 @@ import batesSecurityLogo from "/public/sponsors/bates-security-logo.svg";
 import schneiderElectricLogo from "/public/sponsors/schneider-electric-logo.png";
 import newtonsAtticLogo from "/public/sponsors/newton's-attic-logo.png";
 import ukEngineeringLogo from "/public/sponsors/uk-engineering-logo.png";
+import homeDepotLogo from "/public/sponsors/home-depot-logo.jpg";
+import metalSupermarketsLogo from "/public/sponsors/metal-supermarkets-logo.png";
+import fcpsLogo from "/public/sponsors/fcps-logo.png";
 
 export default function SponsorLogos() {
   // to add/remove sponsors, simply add an object to the array. if no website/image logo, set to "undefined".
@@ -24,14 +27,28 @@ export default function SponsorLogos() {
       image: newtonsAtticLogo,
       website: "https://newtonsattic.com/",
     },
-
+    {
+      name: "Home Depot",
+      image: homeDepotLogo,
+      website: "https://www.homedepot.com/",
+    },
+    {
+      name: "Metal Supermarkets",
+      image: metalSupermarketsLogo,
+      website: "https://www.metalsupermarkets.com/",
+    },
+    {
+      name: "Fayette County Public Schools",
+      image: fcpsLogo,
+      website: "https://fcps.net/",
+    },
     {
       name: "Bates Security",
       image: batesSecurityLogo,
       website: "https://batessecurity.com/",
     },
 
-    { name: "Baines Builders Products", image: undefined, website: undefined },
+    // { name: "Baines Builders Products", image: undefined, website: undefined },
   ];
 
   function showSponsor({ name, image, website }) {
@@ -60,7 +77,7 @@ export default function SponsorLogos() {
           {sponsors
             .slice(
               Math.floor((sponsors.length - 1) / 2),
-              sponsors.length % 2 === 0 ? sponsors.length : sponsors.length - 1
+              sponsors.length % 2 === 0 ? sponsors.length : sponsors.length - 1,
             )
             .map(showSponsor)}
         </div>
