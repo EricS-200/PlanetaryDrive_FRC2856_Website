@@ -1,247 +1,279 @@
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import frc1 from "/public/home/frc-1-compressed.jpg";
-import home1 from "/public/home/home2.png";
-import ParallaxBanner from "@/components/ParallaxBanner";
-import mainBanner from "/public/team_pics/main-banner.png";
-import frcLogo from "/public/home/frc-logo.png";
-import SponsorsSlider from "@/components/SponsorsSlider";
+import {
+  ArrowRight,
+  Braces,
+  CircuitBoard,
+  DraftingCompass,
+  Wrench,
+} from "lucide-react";
+import HeroRobot from "@/components/HeroRobot";
+import Reveal from "@/components/Reveal";
+import SponsorGrid from "@/components/SponsorGrid";
+import pitRobot from "../public/images/team/IMG_1720.webp";
+import buildFloor from "../public/images/team/IMG_0627.webp";
+import fieldRobot from "../public/images/team/IMG_1740.webp";
+import pitWork from "../public/images/team/IMG_5151.webp";
+
+const buildPhases = [
+  {
+    number: "01",
+    title: "Understand the game",
+    text: "Read the rules, study how points are scored, and decide what the robot must do well.",
+    icon: DraftingCompass,
+  },
+  {
+    number: "02",
+    title: "Design and fabricate",
+    text: "Turn sketches and CAD into mechanisms, wiring, structure, and a machine that can take a hit.",
+    icon: Wrench,
+  },
+  {
+    number: "03",
+    title: "Write the controls",
+    text: "Build the Java and WPILib software that connects driver input, sensors, and every moving part.",
+    icon: Braces,
+  },
+  {
+    number: "04",
+    title: "Test, break, repeat",
+    text: "Run the robot, find the weak point, fix it, and go again until competition day.",
+    icon: CircuitBoard,
+  },
+];
 
 export default function Home() {
   return (
-    <main className="flex items-center flex-col h-full w-full mb-8">
-      <ParallaxBanner
-        src={mainBanner}
-        className="h-[50vh] xl:h-[65vh]"
-        speed={0.5}
-        priority={true}
-      />
-      <section className="w-full flex justify-center flex-col items-center bg-black relative">
-        <div className="absolute w-full h-[150px] top-0 bg-gradient-to-t from-black -translate-y-[99%]"></div>
-
-        <h1 className="text-center sm:text-8xl text-6xl mt-6 mb-2">
-          Planetary Drive Robotics
-          <p className="text-center	text-4xl mt-6 font-normal">
-            <i>FIRST</i> Robotics Team #2856
-          </p>
-        </h1>
-      </section>
-      <section className="flex flex-col items-center justify-center bg-black w-full pt-8">
-        <div className="flex flex-col lg:flex-row justify-around items-center ">
-          <Image
-            alt=""
-            src={home1}
-            className="w-[90%] sm:w-2/3 mb-8 lg:w-1/2 rounded-md"
-            placeholder="blur"
-          ></Image>
-          <div className="flex flex-col items-center justify-center lg:order-first">
-            <h2 className="text-center mb-2">Our Team</h2>
-            <p className="text-center max-w-[90%] sm:max-w-lg md:max-w-md text-lg leading-loose">
-              Established in 2009, Planetary Drive is a high school robotics
-              team competing in the <i>FIRST</i> Robotics Competition. Each
-              year, our extremely driven team of students along with our mentor
-              design, build, and code a fully fledged metal robot to then play
-              and compete against other teams from all over the country.
+    <main id="main-content">
+      <section className="home-hero">
+        <div className="site-shell home-hero-grid">
+          <div className="home-hero-copy">
+            <p className="eyebrow">FIRST ROBOTICS · TEAM 2856 · LEXINGTON, KY</p>
+            <h1>
+              We build robots
+              <span>that have to work.</span>
+            </h1>
+            <p className="hero-intro">
+              Planetary Drive is a student-led high-school engineering team. Every
+              season, we design, fabricate, wire, and program a new competition
+              robot from the ground up.
             </p>
-            <Link className="dark self-center m-4" href="/about">
-              <Button variant="outline" size="lg">
-                Learn More
-              </Button>
-            </Link>
-          </div>
-        </div>
-        <h2 className="text-3xl font-semibold mt-5 text-center lg:w-3/4 w-[95vw]">
-          Thanks to all the sponsors that allow us to keep working!
-        </h2>
-        <SponsorsSlider />
-        <Link href="/sponsors">
-          <Button variant="outline" className="dark m-6 text-xl" size="lg">
-            Our Sponsors
-          </Button>
-        </Link>
-      </section>
-      <section className="flex justify-center flex-col items-center bg-black">
-        <div className="border-t-[1px] w-[80%] my-8 border-slate-700 bg-black"></div>
-        <h2 className="my-4">
-          What is <i>FIRST</i>?
-        </h2>
-        <div className="flex justify-center items-center flex-col w-[90%] lg:w-[85%] 2xl:w-1/2">
-          <div className="relative">
-            <Image
-              src={frcLogo}
-              alt=""
-              className="absolute bottom-6 -right-4 w-32"
-            />
-            <Image
-              src={frc1}
-              alt=""
-              placeholder="blur"
-              className="rounded-lg mb-4"
-            />
-          </div>
-
-          <div className="flex flex-col items-center mb-4 xl:w-[90%]">
-            <h3 className="my-4 lg:w-[95%]">
-              <i>FIRST</i> inpires the engineers of tomorrow by giving us
-              experience and opportunities to apply our skills.
-            </h3>
-            <div className="flex justify-around w-full flex-col lg:flex-row space-y-8 lg:space-y-0">
-              <p className="text-lg leading-loose lg:max-w-[45%]">
-                The <i>FIRST</i> Robotics Competition is a yearly event where
-                teams accross the country build, design, and program a fully
-                functional robot all within two months. All that hard work
-                culminates in a three day regional event where the top teams can
-                then move on to the world championship.
-              </p>
-              <p className="text-lg leading-loose mt-2 lg:max-w-[45%]">
-                Robots are made from scratch, and a new one is made every year
-                to meet that year&apos;s event specifications. For the 2024
-                event CRESCENDO, we had to build a robot able to pick up a note
-                from the ground and shoot it into a speaker on the game field to
-                score against other teams.
-              </p>
+            <div className="button-row">
+              <Link href="/engineering" className="button button-primary">
+                Explore the robot <ArrowRight size={18} />
+              </Link>
+              <Link href="/join" className="button button-ghost">
+                Join Team 2856
+              </Link>
             </div>
           </div>
-          <div className="flex justify-around w-full mb-6 sm:flex-row flex-col items-center sm:space-y-0 space-y-4">
-            <Link
+          <HeroRobot />
+        </div>
+
+        <div className="site-shell hero-data-rail" aria-label="Team facts">
+          <div>
+            <span>2856</span>
+            <p>FRC team number</p>
+          </div>
+          <div>
+            <span>2009</span>
+            <p>Founded in Lexington</p>
+          </div>
+          <div>
+            <span>Every season</span>
+            <p>A new game and a new robot</p>
+          </div>
+          <div>
+            <span>Student led</span>
+            <p>Mentor supported</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="section home-story-section">
+        <div className="site-shell home-story-grid">
+          <Reveal className="home-story-copy">
+            <p className="eyebrow">THIS IS PLANETARY DRIVE</p>
+            <h2 className="display-heading">
+              A full-size robot is a very good reason to learn something new.
+            </h2>
+            <p className="large-copy">
+              We are FRC Team 2856, a group of Fayette County high-school students
+              who like making ambitious things real. Programming and
+              electromechanical students work side by side, guided by mentors and
+              a deadline that does not move.
+            </p>
+            <Link href="/about" className="text-link">
+              Meet the team <ArrowRight size={17} />
+            </Link>
+          </Reveal>
+
+          <Reveal className="home-photo-composition" delay={100}>
+            <figure className="photo-main">
+              <Image
+                src={pitRobot}
+                alt="Planetary Drive students working around their robot in the competition pits"
+                fill
+                placeholder="blur"
+                sizes="(max-width: 800px) 90vw, 48vw"
+              />
+              <figcaption>Competition pit · hands on, heads in</figcaption>
+            </figure>
+            <figure className="photo-inset">
+              <Image
+                src={buildFloor}
+                alt="Two Planetary Drive students assembling robot parts on the workshop floor"
+                fill
+                placeholder="blur"
+                sizes="(max-width: 800px) 42vw, 18vw"
+              />
+            </figure>
+            <span className="photo-index" aria-hidden="true">2856 / PEOPLE</span>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="first-section">
+        <div className="site-shell first-grid">
+          <Reveal className="first-media">
+            <Image
+              src={fieldRobot}
+              alt="Planetary Drive robot 2856 competing on a FIRST Robotics field"
+              fill
+              placeholder="blur"
+              sizes="(max-width: 800px) 100vw, 55vw"
+            />
+            <span>ROBOT 2856 · ON FIELD</span>
+          </Reveal>
+          <Reveal className="first-copy" delay={100}>
+            <p className="eyebrow">WHAT IS FIRST?</p>
+            <h2>Part engineering challenge. Part live sport.</h2>
+            <p>
+              Each January, FIRST releases a new game. Teams design and build a
+              robot for that game, then meet on a field where alliances compete,
+              troubleshoot, and help one another under real pressure.
+            </p>
+            <p>
+              The robot changes every year. The habits—curiosity, resilience,
+              communication, and learning from failure—stay with us much longer.
+            </p>
+            <a
               href="https://www.firstinspires.org/robotics/frc"
               target="_blank"
-              className=""
+              rel="noreferrer"
+              className="button button-light"
             >
-              <Button className="dark mt-2" variant="outline" size="lg">
-                <p>
-                  More About <i>FIRST</i>
-                </p>
-              </Button>
-            </Link>
-            {/* <Link href="/gallery" className="">
-              <Button className="dark mt-2" variant="outline" size="lg">
-                Team Pictures
-              </Button>
-            </Link> */}
-          </div>
+              About FIRST Robotics <ArrowRight size={18} />
+            </a>
+          </Reveal>
         </div>
       </section>
-      <section className="w-full flex justify-center items-center flex-col pt-12 bg-black">
-        <h2 className="text-center">Why We Love Robotics</h2>
-        <div className="flex my-8 w-full xl:w-3/4 2xl:w-2/3 lg:flex-row flex-col items-center lg:items-start">
-          <div className="flex w-full sm:w-[90%] lg:w-2/3 sm:space-x-10 sm:flex-row flex-col items-center sm:items-start">
-            <div className="flex flex-col items-center sm:w-1/2 w-[90%]">
-              <img src="/home/teamwork-icon.svg" alt="" className="w-32 mb-4" />
-              <h3 className="text-center">Teamwork</h3>
-              <p className="text-center leading-loose">
-                Through robotics, we get to meet, work with, and learn from many
-                smart and dedicated people from all different types of
-                backgrounds that love engineering & programming and it is an
-                amazing environment for anyone interested in STEM.
-              </p>
-            </div>
 
-            <div className="flex flex-col items-center sm:w-1/2 mt-12 w-[90%] sm:mt-0">
-              <img src="/home/gears-icon.svg" alt="" className="w-32 mb-4" />
-              <h3 className="text-center">Learn & Apply Skills</h3>
-              <p className="text-center leading-loose">
-                Robotics allows us to apply skills learned in classrooms and
-                beyond, and learn new skills through designing and building our
-                yearly robot while being guided by our mentor. We also get
-                experience in programming with Java and the WPI Library.
-              </p>
+      <section className="section process-section">
+        <div className="site-shell">
+          <Reveal className="section-heading-row">
+            <div>
+              <p className="eyebrow">HOW A SEASON MOVES</p>
+              <h2 className="display-heading">Idea. Metal. Code. Repeat.</h2>
             </div>
-          </div>
-
-          <div className="lg:ml-6 flex flex-col items-center w-[90%] sm:w-1/2 lg:w-1/3 mt-12 lg:mt-0">
-            <img src="/home/coins-icon.svg" alt="" className="w-32 mb-4" />
-            <h3 className="text-center">Opportunities</h3>
-            <p className="text-center leading-loose">
-              Through robotics, we gain leadership and communication skills and
-              are given opportunities to stand out and even win awards.
-              Furthermore, there are many scholarship opportunities associated
-              with <i>FIRST</i> - learn more on their website.
+            <p>
+              There is no single “robotics skill.” A working machine takes strategy,
+              CAD, fabrication, electronics, software, communication, and a lot of
+              iteration.
             </p>
-          </div>
-        </div>
-        <div className="flex flex-col items-center justify-center py-4">
-          <h3 className="text-center">Interested?</h3>
-          <p className="leading-loose text-xl text-center w-[95%] md:w-2/3">
-            If you are a student in Fayette County Public Schools (Lexington,
-            KY) and interested in STEM, consider joining us! Feel free to
-            contact us if you have any questions or concerns, or continue
-            reading about our team!
-          </p>
-          <div className="sm:space-x-8 flex sm:flex-row flex-col items-center justify-center">
-            <Link href="/join" className="text-lg">
-              <Button className="dark mt-5" variant="outline" size="lg">
-                Join the Team
-              </Button>
-            </Link>
-            <Link href="/about" className="text-lg">
-              <Button className="dark mt-5" variant="outline" size="lg">
-                More About Us
-              </Button>
-            </Link>
-            <Link href="/contact" className="text-lg">
-              <Button className="dark mt-5" variant="outline" size="lg">
-                Contact Us
-              </Button>
-            </Link>
+          </Reveal>
+
+          <div className="process-rail">
+            {buildPhases.map((phase, index) => {
+              const Icon = phase.icon;
+              return (
+                <Reveal className="process-step" delay={index * 80} key={phase.number}>
+                  <div className="process-step-top">
+                    <span>{phase.number}</span>
+                    <Icon size={23} strokeWidth={1.6} aria-hidden="true" />
+                  </div>
+                  <h3>{phase.title}</h3>
+                  <p>{phase.text}</p>
+                </Reveal>
+              );
+            })}
           </div>
         </div>
       </section>
-    </main>
-  );
-}
 
-{
-  /* <i>FIRST</i> Robotics offers students the opportunity to get
-hands-on engineering and programming experience. Students also
-develop skills in leadership, organization, and fundraising. On
-top of that, there are many scholarship opportunities with{" "}
-<i>FIRST</i>, and through all of their opportunities, they are
-forming the top engineers and programmers of the future. */
-}
+      <section className="section pathways-section">
+        <div className="site-shell pathways-grid">
+          <Reveal className="pathways-media">
+            <Image
+              src={pitWork}
+              alt="Planetary Drive students and a mentor inspecting their robot at competition"
+              fill
+              placeholder="blur"
+              sizes="(max-width: 800px) 100vw, 45vw"
+            />
+            <div className="pathways-media-label">NO EXPERIENCE REQUIRED</div>
+          </Reveal>
+          <Reveal className="pathways-copy" delay={100}>
+            <p className="eyebrow">THERE IS A PLACE TO START</p>
+            <h2 className="display-heading">Learn by contributing to something real.</h2>
+            <div className="pathway-row">
+              <span>01</span>
+              <div>
+                <h3>Programming</h3>
+                <p>Java, WPILib, sensors, controls, testing, and debugging on the actual robot.</p>
+              </div>
+            </div>
+            <div className="pathway-row">
+              <span>02</span>
+              <div>
+                <h3>Electromechanical</h3>
+                <p>CAD, fabrication, assembly, wiring, pneumatics, and safe workshop practice.</p>
+              </div>
+            </div>
+            <Link href="/join" className="button button-primary">
+              How to join <ArrowRight size={18} />
+            </Link>
+          </Reveal>
+        </div>
+      </section>
 
-{
-  /* <section className="flex flex-col lg:flex-row justify-center items-center mt-16">
-        <Image
-          src="/home/home2.png"
-          width={100000}
-          height={100}
-          className="w-1/2 mt-8 lg:mt-0 lg:w-1/3 lg:ml-20 rounded-md"
-        ></Image>
-        <div className="lg:ml-20 flex flex-col justify-center">
-          <h2 className="text-center text-4xl font-semibold mb-2">
-            Our Sponsors
-          </h2>
-          <p className="text-center  w-96  leading-loose">
-            The sponsors of Team Planteray Drive are the ones who allow our team
-            to build a robot and compete each year in FRC! Sponsoring us comes
-            with many benefits. We encourage you to check out our sponsors. If
-            you are willing to sponsor us, please contact us!
-          </p>
-          <p className="max-w-96 flex flex-col items-center mt-4">
-            Special thanks to our current biggest sponsor:{" "}
-            <span className="">
-              <Link href="https://www.se.com/us/en/" target="_blank">
-                <Button
-                  variant="link"
-                  className="dark p-0 m-0 text-md font-semibold"
-                  size="lg"
-                >
-                  Schneider Electric
-                </Button>
+      <section className="section home-sponsors-section">
+        <div className="site-shell">
+          <Reveal className="section-heading-row sponsor-heading">
+            <div>
+              <p className="eyebrow">POWERED BY COMMUNITY</p>
+              <h2 className="display-heading">The people behind the machine.</h2>
+            </div>
+            <div>
+              <p>
+                Sponsors help cover the parts, tools, registration, and travel that
+                turn a school-year project into a competition robot.
+              </p>
+              <Link href="/sponsors" className="text-link">
+                See every sponsor <ArrowRight size={17} />
               </Link>
-            </span>
-          </p>
-          <Link className="dark self-center m-4" href="/sponsors">
-            <Button variant="outline" size="lg">
-              Our Sponsors
-            </Button>
-          </Link>
+            </div>
+          </Reveal>
+          <Reveal delay={100}>
+            <SponsorGrid compact />
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="home-final-cta">
+        <div className="site-shell home-final-cta-inner">
+          <p className="eyebrow">YOUR NEXT MOVE</p>
+          <h2>Build with us. Back the team. Come see what 2856 can do.</h2>
+          <div className="button-row">
+            <Link href="/join" className="button button-light">
+              Join the team <ArrowRight size={18} />
+            </Link>
+            <Link href="/sponsors" className="button button-light-outline">
+              Sponsor Planetary Drive
+            </Link>
+          </div>
         </div>
       </section>
     </main>
   );
-*/
 }
-("");

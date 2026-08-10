@@ -1,325 +1,174 @@
 "use client";
-import { useState, useEffect } from "react";
-import Image from "next/image";
-import checkmark from "/public/green-checkmark.svg";
-import { Button } from "@/components/ui/button";
+
+import { useEffect, useState } from "react";
 import emailjs from "@emailjs/browser";
-import { Loader2 } from "lucide-react";
-
-import { useContactFormContext } from "@/contexts/ContactFormContext";
-
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
-
-const emailValidationRegex =
-  /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$/;
+import { Check, Loader2, Send } from "lucide-react";
 
 const publicKey = "y9wI_ohJZlN5vidjt";
 const serviceID = "service_wpond7o";
 const templateID = "frc_contactUs";
 
-export default function ContactForm({ className }) {
-  const [hasChanged, setHasChanged] = useState(false);
-  const [modalOpen, setModalOpen] = useState(false);
-  const [errorModalOpen, setErrorModalOpen] = useState(true);
-  const [errorMessage, setErrorMessage] = useState();
+const emptyForm = { name: "", email: "", message: "" };
 
-  const [messageSent, setMessageSent] = useState(false);
-
-  // keeps track of input field values
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
-  const [status, setStatus] = useState("");
-  const { contactFormData, setContactFormData } = useContactFormContext();
-
-  const [loading, setLoading] = useState(false);
-
-  // keeps track of whether fields are empty or not & whether email is valid
-  const [nameIsEmpty, setNameIsEmpty] = useState(false);
-  const [emailIsEmpty, setEmailIsEmpty] = useState(false);
-  const [messageIsEmpty, setMessageIsEmpty] = useState(false);
-  const [emailIsInvalid, setEmailIsInvalid] = useState(false);
-
-  const statusErrorMessage =
-    "An error occured. Try again or email us directly.";
-
-  const params = {
-    name: contactFormData.name,
-    email: contactFormData.email,
-    message: contactFormData.message,
-  };
+export default function ContactForm() {
+  const [form, setForm] = useState(emptyForm);
+  const [errors, setErrors] = useState({});
+  const [state, setState] = useState("idle");
+  const [statusMessage, setStatusMessage] = useState("");
 
   useEffect(() => {
-    if (!hasChanged) return;
-    const handleBeforeUnload = (event) => {
-      event.preventDefault();
-      event.returnValue = "";
-      return "";
-    };
-
-    window.addEventListener("beforeunload", handleBeforeUnload, {
-      capture: true,
+    emailjs.init({
+      publicKey,
+      blockHeadless: true,
+      limitRate: { id: "planetary-drive-contact", throttle: 5000 },
     });
+  }, []);
 
-    return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload, {
-        capture: true,
-      });
-    };
-  }, [hasChanged]);
-
-  function validateForm() {
-    let status = true; // whether the form is ready to submit or not (all fields filled & email valid)
-
-    if (contactFormData.name.trim() === "") {
-      setNameIsEmpty(true);
-      status = false;
-    } else {
-      setNameIsEmpty(false);
+  function updateField(event) {
+    const { name, value } = event.target;
+    setForm((current) => ({ ...current, [name]: value }));
+    if (errors[name]) {
+      setErrors((current) => ({ ...current, [name]: undefined }));
     }
-
-    if (contactFormData.email.trim() === "") {
-      setEmailIsEmpty(true);
-      status = false;
-    } else {
-      setEmailIsEmpty(false);
-    }
-
-    if (contactFormData.message.trim() === "") {
-      setMessageIsEmpty(true);
-      status = false;
-    } else {
-      setMessageIsEmpty(false);
-    }
-
-    if (!emailValidationRegex.test(contactFormData.email)) {
-      setEmailIsInvalid(true);
-      status = false;
-    } else {
-      setEmailIsInvalid(false);
-    }
-
-    return status;
   }
 
-  function confirmSubmit() {
-    if (!validateForm()) return;
-    setModalOpen(true);
+  function validate() {
+    const nextErrors = {};
+    if (!form.name.trim()) nextErrors.name = "Please enter your name.";
+    if (!form.email.trim()) {
+      nextErrors.email = "Please enter your email address.";
+    } else if (!/^\S+@\S+\.\S+$/.test(form.email)) {
+      nextErrors.email = "Please enter a valid email address.";
+    }
+    if (!form.message.trim()) nextErrors.message = "Please write a message.";
+    setErrors(nextErrors);
+    return Object.keys(nextErrors).length === 0;
   }
 
-  const handleSubmit = () => {
-    setModalOpen(false);
-    setLoading(true);
-    emailjs.send(serviceID, templateID, params).then(
-      () => {
-        setStatus("Email Sent Successfully.");
-        setLoading(false);
-        setContactFormData((prev) => ({ ...prev, messageSent: true }));
-      },
-      (error) => {
-        setErrorModalOpen(true);
-        setLoading(false);
-        setErrorMessage(error);
-        setStatus(statusErrorMessage);
-      }
-    );
-  };
+  async function handleSubmit(event) {
+    event.preventDefault();
+    if (!validate()) return;
 
-  emailjs.init({
-    publicKey: publicKey,
-    blockHeadless: true,
-    blockList: {},
-    limitRate: {
-      id: "app",
-      throttle: 5000,
-    },
-  });
-  return (
-    <section className={className}>
-      {contactFormData.messageSent && (
-        <div className="w-full h-min rounded-lg bg-neutral-950 border-2 border-gray-600 p-8 flex flex-col items-center text-center">
-          <Image src={checkmark} className="w-64" />
-          <h3 className="text-center">Thank you for sending us a message.</h3>
-          <h4 className="mt-2 text-center">
-            We will try to get back to you as soon as possible.
-          </h4>
-          <p className="text-xl text-center mt-2">
-            We have sent a copy of your message to your email.
-          </p>
-        </div>
-      )}
-      {status === statusErrorMessage && (
-        <AlertDialog open={errorModalOpen}>
-          <AlertDialogContent className="dark">
-            <AlertDialogHeader>
-              <AlertDialogTitle>An error occured.</AlertDialogTitle>
-              <AlertDialogDescription>
-                <p className="leading-normal">
-                  Your message could not be delivered due to an error. Please
-                  try again or email us directly. Error Code:{" "}
-                  {errorMessage.status}
-                </p>
-              </AlertDialogDescription>
-            </AlertDialogHeader>
-            <AlertDialogFooter>
-              <AlertDialogAction onClick={() => setErrorModalOpen(false)}>
-                Continue
-              </AlertDialogAction>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialog>
-      )}
-      {!contactFormData.messageSent && (
-        <form
-          noValidate
-          onChange={() => {
-            setHasChanged(true);
+    setState("sending");
+    setStatusMessage("Sending your message…");
+
+    try {
+      await emailjs.send(serviceID, templateID, form);
+      setState("sent");
+      setStatusMessage("Your message was sent successfully.");
+      setForm(emptyForm);
+    } catch {
+      setState("error");
+      setStatusMessage(
+        "We could not send that message. Please try again or email us directly.",
+      );
+    }
+  }
+
+  if (state === "sent") {
+    return (
+      <div className="contact-success" role="status">
+        <span><Check size={28} aria-hidden="true" /></span>
+        <p className="eyebrow">MESSAGE SENT</p>
+        <h2>Thank you for reaching out.</h2>
+        <p>
+          We will get back to you as soon as the team can. A copy of your message
+          should arrive at the email address you provided.
+        </p>
+        <button
+          type="button"
+          className="button button-ghost"
+          onClick={() => {
+            setState("idle");
+            setStatusMessage("");
           }}
-          className={
-            "flex flex-col p-8 bg-neutral-950 rounded-lg border-2 border-gray-600 w-full"
-          }
         >
-          <h2 className="text-center">Email Form</h2>
-          <p className="leading-normal my-2">
-            Feel free to send us an email for any question or request you may
-            have. We will try to get back to you as soon as possible.
-          </p>
+          Send another message
+        </button>
+      </div>
+    );
+  }
 
-          <label className={"text-white text-lg mb-1 font-semibold"}>
-            Name
-          </label>
-          <input
-            className={`w-full h-10 bg-gray-700 text-white  p-1.5 rounded-lg border border-gray-500 ${
-              nameIsEmpty
-                ? "border-red-700 outline-none focus:ring-1 focus:ring-red-600"
-                : "mb-3"
-            }`}
-            placeholder={"Your Name"}
-            value={contactFormData.name}
-            onChange={(event) => {
-              setContactFormData((prev) => ({
-                ...prev,
-                name: event.target.value,
-              }));
-            }}
-          />
-          {nameIsEmpty && (
-            <p className="text-red-500 mb-1">
-              This field is required. Please input your name.
-            </p>
-          )}
+  return (
+    <form className="contact-form" onSubmit={handleSubmit} noValidate>
+      <div className="contact-form-heading">
+        <div>
+          <p className="eyebrow">DIRECT TO THE TEAM</p>
+          <h2>Send a message</h2>
+        </div>
+        <span>ALL FIELDS REQUIRED</span>
+      </div>
 
-          <label className={"text-white text-lg mb-1 font-semibold"}>
-            Email
-          </label>
-          <input
-            className={`w-full h-10 bg-gray-700 text-white  p-1.5 rounded-lg border border-gray-500 ${
-              emailIsEmpty || emailIsInvalid
-                ? "border-red-700 outline-none focus:ring-1 focus:ring-red-600"
-                : "mb-3"
-            }`}
-            type="email"
-            placeholder={"Your Email"}
-            value={contactFormData.email}
-            onChange={(event) => {
-              setContactFormData((prev) => ({
-                ...prev,
-                email: event.target.value,
-              }));
-            }}
-          />
-          {emailIsEmpty && (
-            <p className="text-red-500 mb-1">
-              This field is required. Please input your email address.
-            </p>
-          )}
-          {!emailIsEmpty && emailIsInvalid && (
-            <p className="text-red-500 mb-1">
-              Please input a valid email address.
-            </p>
-          )}
+      <div className="form-field">
+        <label htmlFor="contact-name">Name</label>
+        <input
+          id="contact-name"
+          name="name"
+          type="text"
+          autoComplete="name"
+          value={form.name}
+          onChange={updateField}
+          aria-invalid={Boolean(errors.name)}
+          aria-describedby={errors.name ? "contact-name-error" : undefined}
+          placeholder="Your name"
+        />
+        {errors.name && <p id="contact-name-error" className="field-error">{errors.name}</p>}
+      </div>
 
-          <label className={"text-white text-lg mb-1 font-semibold"}>
-            Message
-          </label>
-          <textarea
-            className={`w-full h-36 bg-gray-700 text-white  p-1.5 rounded-lg resize-none border border-gray-500 ${
-              messageIsEmpty
-                ? "border-red-700 outline-none focus:ring-1 focus:ring-red-600"
-                : "mb-3"
-            }`}
-            placeholder={"Your Message"}
-            value={contactFormData.message}
-            onChange={(event) => {
-              setContactFormData((prev) => ({
-                ...prev,
-                message: event.target.value,
-              }));
-            }}
-          />
-          {messageIsEmpty && (
-            <p className="text-red-500">
-              This field is required. Please input your message.
-            </p>
+      <div className="form-field">
+        <label htmlFor="contact-email">Email</label>
+        <input
+          id="contact-email"
+          name="email"
+          type="email"
+          autoComplete="email"
+          value={form.email}
+          onChange={updateField}
+          aria-invalid={Boolean(errors.email)}
+          aria-describedby={errors.email ? "contact-email-error" : undefined}
+          placeholder="you@example.com"
+        />
+        {errors.email && <p id="contact-email-error" className="field-error">{errors.email}</p>}
+      </div>
+
+      <div className="form-field">
+        <label htmlFor="contact-message">Message</label>
+        <textarea
+          id="contact-message"
+          name="message"
+          rows={7}
+          value={form.message}
+          onChange={updateField}
+          aria-invalid={Boolean(errors.message)}
+          aria-describedby={errors.message ? "contact-message-error" : undefined}
+          placeholder="Tell us how we can help."
+        />
+        {errors.message && (
+          <p id="contact-message-error" className="field-error">{errors.message}</p>
+        )}
+      </div>
+
+      <div className="form-submit-row">
+        <p id="contact-form-status" role="status" aria-live="polite">
+          {statusMessage}
+        </p>
+        <button
+          className="button button-primary"
+          type="submit"
+          disabled={state === "sending"}
+          aria-describedby="contact-form-status"
+        >
+          {state === "sending" ? (
+            <>
+              Sending <Loader2 className="spinner" size={18} aria-hidden="true" />
+            </>
+          ) : (
+            <>
+              Send message <Send size={17} aria-hidden="true" />
+            </>
           )}
-          <i className="">We will send you a confirmation email.</i>
-          <p className="text-orange-700 p-0 m-0">{status}</p>
-          <AlertDialog className="" open={modalOpen}>
-            <AlertDialogTrigger asChild>
-              {/* For this confirmation modal from shadcn, the AlertDialogTrigger is not used, instead a state is used to control modal opening/closing to be able to integrate form validation before allowing the user to see the confirmation modal. */}
-              <Button
-                className="dark bg-neutral-950 hover:bg-neutral-800 text-xl w-full mt-3"
-                size="lg"
-                variant="outline"
-                disabled={loading}
-                type="button"
-                onClick={confirmSubmit}
-              >
-                <Loader2
-                  className={`mr-2 h-4 w-4 animate-spin ${
-                    loading ? "block" : "hidden"
-                  }`}
-                />
-                {loading ? <p>Submitting</p> : <p>Submit</p>}
-              </Button>
-            </AlertDialogTrigger>
-            <AlertDialogContent className="dark">
-              <AlertDialogHeader>
-                <AlertDialogTitle>
-                  Are you sure you want to send this?
-                </AlertDialogTitle>
-                <AlertDialogDescription>
-                  Make sure you have filled out all the fields and written
-                  everything you have to say. We will try to get back to you as
-                  soon as possible.
-                </AlertDialogDescription>
-              </AlertDialogHeader>
-              <AlertDialogFooter>
-                <AlertDialogCancel
-                  onClick={() => {
-                    setModalOpen(false);
-                  }}
-                >
-                  Cancel
-                </AlertDialogCancel>
-                <AlertDialogAction onClick={handleSubmit}>
-                  Submit
-                </AlertDialogAction>
-              </AlertDialogFooter>
-            </AlertDialogContent>
-          </AlertDialog>
-        </form>
-      )}
-    </section>
+        </button>
+      </div>
+    </form>
   );
 }
