@@ -7,6 +7,19 @@ const projectRoot = path.dirname(fileURLToPath(import.meta.url));
 const nextConfig = {
   agentRules: false,
   outputFileTracingRoot: projectRoot,
+  async headers() {
+    return [
+      {
+        source: "/cinematic/video/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+    ];
+  },
 };
 
 export default nextConfig;

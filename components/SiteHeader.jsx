@@ -27,7 +27,7 @@ export default function SiteHeader() {
     href === "/" ? pathname === href : pathname.startsWith(href);
 
   return (
-    <header className="site-header">
+    <header className={`site-header ${pathname === "/" ? "site-header-home" : ""}`}>
       <a className="skip-link" href="#main-content">
         Skip to content
       </a>
@@ -38,13 +38,13 @@ export default function SiteHeader() {
           aria-label="Planetary Drive home"
           onClick={() => setOpen(false)}
         >
-          <Image
-            src="/white_wordmark.svg"
-            alt="Planetary Drive"
-            width={843}
-            height={241}
-            priority
-          />
+          <span className="brand-mark">
+            <Image src="/logo.png" alt="" width={118} height={84} priority />
+          </span>
+          <span className="brand-copy">
+            <strong>Planetary Drive</strong>
+            <small>Robotics / 2856</small>
+          </span>
         </Link>
 
         <nav className="desktop-nav" aria-label="Primary navigation">

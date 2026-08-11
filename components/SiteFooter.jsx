@@ -9,13 +9,14 @@ export default function SiteFooter() {
       <div className="footer-orbit" aria-hidden="true" />
       <div className="site-shell footer-grid">
         <div className="footer-brand">
-          <Link href="/" aria-label="Planetary Drive home">
-            <Image
-              src="/white_wordmark.svg"
-              alt="Planetary Drive"
-              width={843}
-              height={241}
-            />
+          <Link href="/" aria-label="Planetary Drive home" className="footer-brand-link">
+            <span className="footer-brand-mark">
+              <Image src="/logo.png" alt="" width={180} height={128} />
+            </span>
+            <span>
+              <strong>Planetary Drive</strong>
+              <small>Robotics / FRC 2856</small>
+            </span>
           </Link>
           <p>
             A student-led FIRST Robotics Competition team designing, building,
