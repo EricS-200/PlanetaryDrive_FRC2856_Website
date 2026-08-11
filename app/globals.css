@@ -4746,7 +4746,9 @@ em {
 
   .cinematic-copy-orbit,
   .cinematic-copy-systems,
-  .cinematic-copy-assembly { top: 13%; }
+  .cinematic-copy-assembly {
+    top: calc(var(--header-height) + 4.6rem);
+  }
 
   .cinematic-copy-orbit,
   .cinematic-copy-systems,
@@ -4761,7 +4763,8 @@ em {
   .cinematic-copy-orbit h2,
   .cinematic-copy-systems h2,
   .cinematic-copy-assembly h2 {
-    max-width: 12ch;
+    width: 100%;
+    max-width: none;
     margin-inline: auto;
     font-size: clamp(2.35rem, 10.5vw, 3.35rem);
   }
@@ -4935,8 +4938,12 @@ em {
 
 @media (max-width: 430px) {
   .brand-copy { display: none; }
-  .cinematic-copy h1,
-  .cinematic-copy h2 { font-size: clamp(2.75rem, 13.2vw, 3.8rem); }
+  .cinematic-copy-reveal h1 { font-size: clamp(2.75rem, 13.2vw, 3.8rem); }
+  .cinematic-copy-orbit h2,
+  .cinematic-copy-systems h2,
+  .cinematic-copy-assembly h2 {
+    font-size: clamp(2.15rem, 9.7vw, 3rem);
+  }
   .machine-stage { inset: 0; width: 100%; height: 100%; }
   .system-callout { min-width: 96px; }
   .callout-controls { display: none; }
@@ -4944,6 +4951,22 @@ em {
   .human-photo-main,
   .human-photo-detail { min-height: 410px; }
   .human-photo-fieldshot { min-height: 270px; }
+}
+
+@media (max-width: 700px) and (max-height: 519px) {
+  .cinematic-copy-orbit,
+  .cinematic-copy-systems,
+  .cinematic-copy-assembly {
+    top: calc(var(--header-height) + 3.4rem);
+  }
+
+  .cinematic-copy-orbit h2,
+  .cinematic-copy-systems h2,
+  .cinematic-copy-assembly h2 {
+    font-size: clamp(1.9rem, 7.8vw, 2.5rem);
+  }
+
+  .cinematic-deck { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
