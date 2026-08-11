@@ -49,7 +49,7 @@ export default function EngineeringPage() {
         <div className="site-shell engineering-hero-grid">
           <div className="engineering-hero-copy">
             <p className="eyebrow">ROBOT / ENGINEERING / 2026</p>
-            <h1>The robot is the syllabus.</h1>
+            <h1>Engineering the 2026 robot.</h1>
             <p>
               A competition robot forces every discipline to meet in one machine.
               It has to survive contact, respond to code, fit the rules, and be
@@ -90,7 +90,7 @@ export default function EngineeringPage() {
           <Reveal className="section-heading-row cad-heading">
             <div>
               <p className="eyebrow">THE 2026 MACHINE</p>
-              <h2 className="display-heading">Study it from every side.</h2>
+              <h2 className="display-heading">Explore the full CAD assembly.</h2>
             </div>
             <p>
               The full CAD assembly lets the team inspect packaging, clearances,
@@ -109,7 +109,7 @@ export default function EngineeringPage() {
           <Reveal className="section-heading-row">
             <div>
               <p className="eyebrow">ONE ROBOT · MANY DISCIPLINES</p>
-              <h2 className="display-heading">Engineering is a relay race.</h2>
+              <h2 className="display-heading">Every system depends on the others.</h2>
             </div>
             <p>
               A mechanism is not finished when it looks right in CAD. It still has
@@ -174,7 +174,7 @@ export default function EngineeringPage() {
         <div className="site-shell iteration-grid">
           <Reveal className="iteration-copy">
             <p className="eyebrow">THE LOOP THAT MATTERS</p>
-            <h2 className="display-heading">Build it. Run it. Find the next problem.</h2>
+            <h2 className="display-heading">Test results drive the next revision.</h2>
             <p className="large-copy">
               Competition makes feedback immediate. A change that works in the
               shop still has to work with drivers, game pieces, defense, a match

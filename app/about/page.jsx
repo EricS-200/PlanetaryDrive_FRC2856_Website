@@ -1,6 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Braces, Heart, ShieldCheck, Sparkles, Users } from "lucide-react";
+import {
+  ArrowRight,
+  Braces,
+  BriefcaseBusiness,
+  Heart,
+  Megaphone,
+  ShieldCheck,
+  Sparkles,
+  Users,
+} from "lucide-react";
 import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
 import teamPhoto from "../../public/team_pics/main-banner2.jpg";
@@ -43,7 +52,7 @@ export default function AboutPage() {
     <main id="main-content" className="about-page">
       <PageHero
         eyebrow="ABOUT TEAM 2856"
-        title="A student team with real deadlines."
+        title="How Team 2856 works."
         intro="Planetary Drive brings Fayette County high-school students together to design, build, and program a new FIRST Robotics Competition robot each season."
         image={teamPhoto}
         imageAlt="Planetary Drive students together at a robotics event"
@@ -58,7 +67,7 @@ export default function AboutPage() {
         <div className="site-shell about-intro-grid">
           <Reveal>
             <p className="eyebrow">WHO WE ARE</p>
-            <h2 className="display-heading">Serious about the work. Still very much a team of students.</h2>
+            <h2 className="display-heading">Students lead the work from strategy through competition.</h2>
           </Reveal>
           <Reveal className="about-intro-copy" delay={100}>
             <p className="large-copy">
@@ -89,7 +98,7 @@ export default function AboutPage() {
           </Reveal>
           <Reveal className="about-mission-copy" delay={100}>
             <p className="eyebrow">OUR MISSION</p>
-            <h2>Make room for students to learn by doing.</h2>
+            <h2>Students learn by building and revising real systems.</h2>
             <p>
               We give members the chance to learn new skills, apply them to a real
               robot, and have fun doing it. The work develops critical thinking,
@@ -98,7 +107,7 @@ export default function AboutPage() {
             </p>
             <p className="mission-note">
               <span>WORKING PRINCIPLE</span>
-              Learning happens in the revision.
+              Every test informs the next revision.
             </p>
           </Reveal>
         </div>
@@ -109,7 +118,7 @@ export default function AboutPage() {
           <Reveal className="section-heading-row">
             <div>
               <p className="eyebrow">WHAT GUIDES THE WORK</p>
-              <h2 className="display-heading">Four values. Visible in the shop.</h2>
+              <h2 className="display-heading">The standards we work by.</h2>
             </div>
             <p>
               They are simple on purpose. The test is whether they still matter
@@ -136,7 +145,7 @@ export default function AboutPage() {
         <div className="site-shell team-roles-grid">
           <Reveal className="team-roles-copy">
             <p className="eyebrow">HOW THE TEAM FITS TOGETHER</p>
-            <h2 className="display-heading">Student-led. Mentor-supported. One robot.</h2>
+            <h2 className="display-heading">Four student groups, supported by mentors.</h2>
             <div className="role-item">
               <Braces size={25} aria-hidden="true" />
               <div>
@@ -156,6 +165,28 @@ export default function AboutPage() {
                   Students design and build the machine through CAD, fabrication,
                   mechanics, electronics, pneumatics, wiring, and safe workshop
                   practice.
+                </p>
+              </div>
+            </div>
+            <div className="role-item">
+              <BriefcaseBusiness size={25} aria-hidden="true" />
+              <div>
+                <h3>Business</h3>
+                <p>
+                  Students help manage budgets, purchasing, registration,
+                  sponsor communication, travel planning, and the organization
+                  required to complete a season.
+                </p>
+              </div>
+            </div>
+            <div className="role-item">
+              <Megaphone size={25} aria-hidden="true" />
+              <div>
+                <h3>Outreach</h3>
+                <p>
+                  Students plan demonstrations, document the team&apos;s work,
+                  create media, welcome new members, and connect the program
+                  with schools and the community.
                 </p>
               </div>
             </div>
@@ -198,7 +229,7 @@ export default function AboutPage() {
         <div className="site-shell history-grid">
           <Reveal>
             <p className="eyebrow">A SHORT HISTORY</p>
-            <h2>Built season by season since 2009.</h2>
+            <h2>Competing as Team 2856 since 2009.</h2>
           </Reveal>
           <div className="history-rail">
             <Reveal className="history-event">

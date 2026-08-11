@@ -6,14 +6,14 @@ import { ArrowDown, ArrowRight, MoveRight } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { sponsors } from "@/data/site";
 
-const PRELOAD_TIMEOUT_MS = 6_000;
-const SLOW_PRELOAD_TIMEOUT_MS = 5_500;
+const PRELOAD_TIMEOUT_MS = 30_000;
+const SLOW_PRELOAD_TIMEOUT_MS = 30_000;
 const DESKTOP_VIDEO = "/cinematic/video/robot-scroll-desktop-v2.mp4";
 const MEDIUM_VIDEO = "/cinematic/video/robot-scroll-medium-v2.mp4";
 const MOBILE_VIDEO = "/cinematic/video/robot-scroll-mobile-v2.mp4";
 const LITE_VIDEO = "/cinematic/video/robot-scroll-lite-v2.mp4";
-const SPRING_STIFFNESS = 135;
-const SPRING_DAMPING = 22;
+const SPRING_STIFFNESS = 320;
+const SPRING_DAMPING = 35;
 
 const pathways = [
   {
@@ -31,7 +31,7 @@ const pathways = [
   {
     number: "03",
     title: "Your place",
-    detail: "No robotics experience required. Start with curiosity.",
+    detail: "Programming, electromechanical, business, and outreach roles for students.",
     href: "/join",
   },
   {
@@ -431,15 +431,20 @@ export default function CinematicHome() {
             />
           </div>
 
-          {experience === "video" && (
-            <button
-              type="button"
-              className="cinematic-skip"
-              onClick={() => showStaticFallback("manual")}
-            >
-              Use static view
-            </button>
-          )}
+          <div className="cinematic-controls">
+            {experience === "video" && (
+              <button
+                type="button"
+                className="cinematic-skip"
+                onClick={() => showStaticFallback("manual")}
+              >
+                Static view
+              </button>
+            )}
+            <a className="cinematic-jump" href="#home-team">
+              Skip intro <ArrowDown size={14} aria-hidden="true" />
+            </a>
+          </div>
 
           <div className="cinematic-copy cinematic-copy-reveal">
             <p>FRC TEAM 2856 / LEXINGTON, KENTUCKY</p>
@@ -456,8 +461,8 @@ export default function CinematicHome() {
           <div className="cinematic-copy cinematic-copy-assembly">
             <p>01 / THE MACHINE</p>
             <h2>
-              One robot. One season.
-              <span>Every choice connected.</span>
+              The 2026 competition robot.
+              <span>Designed as one system.</span>
             </h2>
             <p className="cinematic-deck">
               Geometry, materials, wiring, and code have to work as one when
@@ -468,8 +473,8 @@ export default function CinematicHome() {
           <div className="cinematic-copy cinematic-copy-orbit">
             <p>02 / THE TEAM</p>
             <h2>
-              Built to compete.
-              <span>Built to learn.</span>
+              Students own the work.
+              <span>Mentors guide the process.</span>
             </h2>
             <p className="cinematic-deck">
               We are a student-led high-school engineering team in Lexington,
@@ -509,23 +514,22 @@ export default function CinematicHome() {
           </div>
 
           <div className="human-threshold" aria-hidden="true">
-            <span>THE MACHINE IS ONLY THE EVIDENCE.</span>
+            <span>STUDENT ENGINEERING, BUILT FOR COMPETITION.</span>
           </div>
         </div>
       </section>
 
-      <section className="human-story">
+      <section id="home-team" className="human-story" tabIndex={-1}>
         <div className="site-shell human-intro">
           <p className="eyebrow">THE PEOPLE BEHIND 2856</p>
           <h2>
-            The robot is what you see.
-            <span>The team is what makes it possible.</span>
+            The team behind the 2026 robot.
+            <span>Four student groups, one build season.</span>
           </h2>
           <p>
-            Programming and electromechanical students work side by side, guided
-            by mentors and a deadline that does not move. The result is more than
-            a machine: it is a season of decisions, mistakes, repairs, and shared
-            momentum.
+            Programming, electromechanical, business, and outreach students work
+            together throughout the season. Mentors teach and supervise while
+            students make the decisions, build the systems, and represent the team.
           </p>
         </div>
 
@@ -567,7 +571,11 @@ export default function CinematicHome() {
       <section className="season-loop">
         <div className="site-shell season-heading">
           <p className="eyebrow">THE SEASON MOVES FAST</p>
-          <h2>Game reveal to competition field.</h2>
+          <h2>
+            <span>From kickoff</span>
+            <span>to the competition</span>
+            <span>field.</span>
+          </h2>
         </div>
         <div className="season-marquee" aria-label="Team workflow">
           <span>STRATEGY</span><i />
@@ -601,7 +609,7 @@ export default function CinematicHome() {
         <div className="site-shell">
           <div className="pathways-heading">
             <p className="eyebrow">CHOOSE A PATH</p>
-            <h2>Go deeper.</h2>
+            <h2>Explore Team 2856.</h2>
           </div>
           <div className="editorial-links">
             {pathways.map((item) => (
@@ -620,7 +628,7 @@ export default function CinematicHome() {
         <div className="site-shell sponsor-band-heading">
           <div>
             <p className="eyebrow">POWERED BY COMMUNITY</p>
-            <h2>Support turns a school-year idea into a competition robot.</h2>
+            <h2>Sponsors fund the parts, tools, registration, and travel behind the season.</h2>
           </div>
           <Link href="/sponsors" className="cinematic-link dark-link">
             Meet our sponsors <MoveRight size={20} />
@@ -640,7 +648,7 @@ export default function CinematicHome() {
         <div className="site-shell final-action-grid">
           <div>
             <p className="eyebrow">YOUR NEXT MOVE</p>
-            <h2>Build with us.</h2>
+            <h2>Join the team.</h2>
             <p>Students can start without prior robotics experience.</p>
             <Link href="/join" className="button button-light">
               Join Team 2856 <ArrowRight size={18} />
@@ -648,7 +656,7 @@ export default function CinematicHome() {
           </div>
           <div>
             <p className="eyebrow">BACK THE WORK</p>
-            <h2>Power the next season.</h2>
+            <h2>Support the team.</h2>
             <p>Sponsors help make parts, tools, registration, and travel possible.</p>
             <Link href="/sponsors" className="button button-light-outline">
               Sponsor Planetary Drive <ArrowRight size={18} />

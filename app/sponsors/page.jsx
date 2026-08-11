@@ -82,20 +82,20 @@ export default function Sponsors() {
     <main id="main-content" className="sponsors-page">
       <PageHero
         eyebrow="SUPPORT TEAM 2856"
-        title="Back the work behind the robot."
-        intro="A competition robot begins with student ideas, but it takes materials, tools, registration, and travel to reach the field. Sponsors help Planetary Drive turn a school-year engineering challenge into hands-on experience."
+        title="Support Team 2856's competition season."
+        intro="Sponsor support pays for the materials, tools, registration, and travel that let students design a robot and bring it to competition."
         image={pitRobot}
         imageAlt="Planetary Drive students preparing robot 2856 in the competition pit"
         imagePosition="center 42%"
       >
         <div className="button-row sponsors-hero-actions">
           <a
-            href="/sponsors/Sponsorship-Packet.pdf"
+            href={site.sponsorshipPacket}
             target="_blank"
             rel="noreferrer"
             className="button button-primary"
           >
-            Sponsorship packet <FileText size={18} aria-hidden="true" />
+            View sponsorship packet <FileText size={18} aria-hidden="true" />
           </a>
           <Link href="/contact" className="button button-ghost">
             Start a conversation
@@ -108,7 +108,7 @@ export default function Sponsors() {
           <Reveal className="sponsors-case-copy">
             <p className="eyebrow">WHY SPONSORSHIP MATTERS</p>
             <h2 id="sponsors-case-title" className="display-heading">
-              A season is built from practical needs.
+              What it takes to complete an FRC season.
             </h2>
           </Reveal>
           <Reveal className="sponsors-case-detail" delay={100}>
@@ -184,7 +184,7 @@ export default function Sponsors() {
 
           <Reveal className="sponsors-in-kind-copy" delay={100}>
             <p className="eyebrow">MORE THAN A CHECK</p>
-            <h2 id="sponsors-in-kind-title">In-kind support belongs in the build, too.</h2>
+            <h2 id="sponsors-in-kind-title">Materials, equipment, and professional services help too.</h2>
             <p>
               Financial contributions are valuable, but organizations can also
               help by providing materials, parts, supplies, tools, equipment, or
@@ -213,7 +213,7 @@ export default function Sponsors() {
             <div>
               <p className="eyebrow">OUR SUPPORTERS</p>
               <h2 id="sponsors-grid-title" className="display-heading">
-                Thank you for investing in the work.
+                Organizations supporting Team 2856.
               </h2>
             </div>
             <p>
@@ -231,14 +231,14 @@ export default function Sponsors() {
         <div className="site-shell sponsors-final-cta-inner">
           <Reveal>
             <p className="eyebrow">BUILD THE NEXT SEASON WITH US</p>
-            <h2 id="sponsors-final-title">Let&apos;s find the most useful way to help.</h2>
+            <h2 id="sponsors-final-title">Help fund the next competition season.</h2>
             <p>
               Review the sponsorship packet, or contact Planetary Drive directly
               at <a href={`mailto:${site.email}`}>{site.email}</a>.
             </p>
             <div className="button-row sponsors-final-actions">
               <a
-                href="/sponsors/Sponsorship-Packet.pdf"
+                href={site.sponsorshipPacket}
                 target="_blank"
                 rel="noreferrer"
                 className="button button-light"

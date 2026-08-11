@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Github, Instagram, Mail, MapPin } from "lucide-react";
+import { ArrowUpRight, Github, Instagram, Mail, MapPin, MessageCircle } from "lucide-react";
 import { navigation, site } from "@/data/site";
 
 export default function SiteFooter() {
@@ -51,6 +51,9 @@ export default function SiteFooter() {
             </a>
             <a href={site.github} target="_blank" rel="noreferrer" aria-label="GitHub">
               <Github size={19} />
+            </a>
+            <a href={site.discord} target="_blank" rel="noreferrer" aria-label="Member Discord">
+              <MessageCircle size={19} />
             </a>
             <a href={site.first} target="_blank" rel="noreferrer" aria-label="FIRST Robotics">
               <ArrowUpRight size={19} />

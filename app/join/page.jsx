@@ -4,9 +4,11 @@ import {
   ArrowRight,
   ArrowUpRight,
   BookOpen,
+  BriefcaseBusiness,
   Check,
   Code2,
   MapPin,
+  Megaphone,
   ShieldCheck,
   Users,
   Wrench,
@@ -49,6 +51,30 @@ const pathways = [
       "Diagnose problems and improve the robot through testing",
     ],
   },
+  {
+    number: "03",
+    title: "Business",
+    icon: BriefcaseBusiness,
+    description:
+      "Keep the season organized through budgeting, purchasing, travel planning, sponsor relationships, and team operations.",
+    details: [
+      "Help plan budgets, purchases, registration, and travel",
+      "Prepare sponsor materials and maintain partner relationships",
+      "Learn project management and professional communication",
+    ],
+  },
+  {
+    number: "04",
+    title: "Outreach",
+    icon: Megaphone,
+    description:
+      "Share the team's work through school and community events, media, demonstrations, and student recruitment.",
+    details: [
+      "Plan demonstrations and community events",
+      "Create team photos, video, social updates, and printed materials",
+      "Help new students and visitors understand FIRST Robotics",
+    ],
+  },
 ];
 
 const resources = [
@@ -74,8 +100,8 @@ export default function Join() {
     <main id="main-content" className="join-page">
       <PageHero
         eyebrow="JOIN PLANETARY DRIVE"
-        title="Start curious. Build something real."
-        intro="Planetary Drive welcomes high-school students in Fayette County Public Schools. You do not need robotics experience before you arrive—we learn by working together on the robot."
+        title="Join Team 2856."
+        intro="Planetary Drive welcomes Fayette County high-school students interested in engineering, programming, business, or outreach. No previous robotics experience is required."
         image={pitWork}
         imageAlt="Planetary Drive students inspecting and repairing their competition robot"
         imagePosition="center 38%"
@@ -87,7 +113,7 @@ export default function Join() {
             rel="noreferrer"
             className="button button-primary"
           >
-            Join the team Discord <ArrowRight size={18} aria-hidden="true" />
+            Join the member Discord <ArrowRight size={18} aria-hidden="true" />
           </a>
           <Link href="/contact" className="button button-ghost">
             Ask a question
@@ -100,7 +126,7 @@ export default function Join() {
           <Reveal className="join-overview-copy">
             <p className="eyebrow">WHO CAN JOIN?</p>
             <h2 id="join-overview-title" className="display-heading">
-              No robotics resume required.
+              No prior robotics experience required.
             </h2>
             <p className="large-copy">
               If you are an FCPS high-school student, there is a place to start.
@@ -140,15 +166,15 @@ export default function Join() {
         <div className="site-shell">
           <Reveal className="section-heading-row join-pathways-heading">
             <div>
-              <p className="eyebrow">TWO WAYS INTO THE ROBOT</p>
+              <p className="eyebrow">FOUR WAYS TO CONTRIBUTE</p>
               <h2 id="join-pathways-title" className="display-heading">
-                Find a starting point, then follow the problem.
+                Choose where you want to contribute.
               </h2>
             </div>
             <p>
-              Programming and electromechanical students work side by side. You
-              can begin with the work that interests you and still learn how the
-              whole machine comes together.
+              Programming, electromechanical, business, and outreach students
+              work together throughout the season. Start with the work that
+              interests you and learn across groups as projects overlap.
             </p>
           </Reveal>
 
@@ -188,7 +214,7 @@ export default function Join() {
             </div>
             <div>
               <p className="eyebrow">MENTOR WITH US</p>
-              <h3>Experience is valuable when it is shared.</h3>
+              <h3>Mentors teach, supervise, and keep projects moving.</h3>
               <p>
                 Mentors guide students through programming, design, fabrication,
                 and problem-solving. They also help maintain safe workshop
@@ -206,7 +232,7 @@ export default function Join() {
         <div className="site-shell join-meetings-grid">
           <Reveal className="join-meetings-copy">
             <p className="eyebrow">BUILD-SEASON MEETINGS</p>
-            <h2 id="join-meetings-title">Where the work happens.</h2>
+            <h2 id="join-meetings-title">Meet at Newton&apos;s Attic.</h2>
             <p>
               Most build-season meetings are held at Newton&apos;s Attic in
               Lexington. The hours below are the team&apos;s typical schedule, not a
@@ -276,7 +302,7 @@ export default function Join() {
           <Reveal className="join-resources-heading">
             <p className="eyebrow">OPTIONAL, NOT REQUIRED</p>
             <h2 id="join-resources-title" className="display-heading">
-              Curious before your first meeting?
+              Resources for learning before a meeting.
             </h2>
             <p>
               There is no homework for joining. If you want a preview, these are
@@ -310,7 +336,7 @@ export default function Join() {
         <div className="site-shell join-final-cta-inner">
           <Reveal>
             <p className="eyebrow">YOUR FIRST STEP</p>
-            <h2 id="join-final-title">Come meet the team and see the robot up close.</h2>
+            <h2 id="join-final-title">Join the member Discord for current meeting details.</h2>
             <p>
               Use Discord for the latest meeting details, or send us a message at{" "}
               <a href={`mailto:${site.email}`}>{site.email}</a>.
@@ -322,7 +348,7 @@ export default function Join() {
                 rel="noreferrer"
                 className="button button-light"
               >
-                Open Discord <ArrowUpRight size={17} aria-hidden="true" />
+                Join the member Discord <ArrowUpRight size={17} aria-hidden="true" />
               </a>
               <Link href="/contact" className="button button-light-outline">
                 Contact Team 2856

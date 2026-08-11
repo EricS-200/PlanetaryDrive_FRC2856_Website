@@ -9,6 +9,7 @@ export const site = {
   mapUrl:
     "https://www.google.com/maps/place/Newton's+Attic/@38.0417397,-84.625191,17z",
   discord: "https://discord.gg/d36XRMfYUF",
+  sponsorshipPacket: "/sponsors/Sponsorship-Packet.pdf",
   instagram: "https://www.instagram.com/frc_2856/",
   twitter: "https://x.com/FRC_2856/",
   github: "https://github.com/TeamPlanetaryDrive",

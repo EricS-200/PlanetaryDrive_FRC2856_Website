@@ -1,6 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Github, Instagram, Mail, MapPin, MessageCircle } from "lucide-react";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  Github,
+  Instagram,
+  Mail,
+  MapPin,
+  MessageCircle,
+} from "lucide-react";
 import ContactForm from "@/components/ContactForm";
 import Reveal from "@/components/Reveal";
 import { site } from "@/data/site";
@@ -51,19 +59,28 @@ export default function ContactPage() {
           </Reveal>
           <Reveal className="contact-details" delay={100}>
             <p className="eyebrow">OTHER WAYS IN</p>
-            <h2>Choose the shortest path.</h2>
+            <h2>Contact the team directly.</h2>
+            <a
+              className="contact-discord-cta"
+              href={site.discord}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <span className="contact-discord-icon" aria-hidden="true">
+                <MessageCircle size={23} />
+              </span>
+              <span className="contact-discord-copy">
+                <small>STUDENTS &amp; MEMBERS</small>
+                <strong>Join the member Discord</strong>
+                <span>Current meeting times, team updates, and member coordination.</span>
+              </span>
+              <ArrowUpRight size={20} aria-hidden="true" />
+            </a>
             <div className="contact-detail-row">
               <Mail size={21} aria-hidden="true" />
               <div>
                 <span>Email</span>
                 <a href={`mailto:${site.email}`}>{site.email}</a>
-              </div>
-            </div>
-            <div className="contact-detail-row">
-              <MessageCircle size={21} aria-hidden="true" />
-              <div>
-                <span>Students joining the team</span>
-                <a href={site.discord} target="_blank" rel="noreferrer">Member Discord</a>
               </div>
             </div>
             <div className="contact-detail-row">
@@ -98,12 +115,12 @@ export default function ContactPage() {
           </Reveal>
           <Reveal className="contact-routing-copy" delay={100}>
             <p className="eyebrow">LOOKING FOR A SPECIFIC NEXT STEP?</p>
-            <h2>We made those easy to find.</h2>
+            <h2>More information by topic.</h2>
             <Link href="/join" className="routing-link">
               <span>01</span>
               <div>
                 <strong>Join or mentor</strong>
-                <p>Eligibility, team roles, meetings, and how to begin.</p>
+                <p>Eligibility, four student pathways, meetings, and mentoring.</p>
               </div>
               <ArrowRight size={20} />
             </Link>
