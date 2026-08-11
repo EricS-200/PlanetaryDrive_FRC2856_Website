@@ -1,251 +1,360 @@
-import ParallaxBanner from "@/components/ParallaxBanner";
-// currently using the same banner as the members page - members page will likely be removed and merged into about page.
-import mainBanner from "/public/team_pics/main-banner2.png";
 import Image from "next/image";
-import discordIcon from "/public/footer/discord-icon.svg";
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import programmingIcon from "/public/programming-icon.svg";
-import workshop from "/public/join/workshop.jpg";
-import buildIcon from "/public/build-icon.svg";
-import helmetIcon from "/public/helmet-icon.svg";
-import mailIcon from "/public/mail-icon.svg";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  BookOpen,
+  BriefcaseBusiness,
+  Check,
+  Code2,
+  MapPin,
+  Megaphone,
+  ShieldCheck,
+  Users,
+  Wrench,
+} from "lucide-react";
+import PageHero from "@/components/PageHero";
+import Reveal from "@/components/Reveal";
+import { site, typicalSchedule } from "@/data/site";
+import pitWork from "../../public/about-us/robot-work2.jpg";
+import workshop from "../../public/join/workshop.jpg";
 
 export const metadata = {
-  title: "Join",
+  title: "Join Team 2856",
+  description:
+    "Join Planetary Drive Robotics, FIRST Robotics Competition Team 2856 in Lexington, Kentucky. No previous robotics experience is required.",
+  alternates: { canonical: "/join" },
 };
+
+const pathways = [
+  {
+    number: "01",
+    title: "Programming",
+    icon: Code2,
+    description:
+      "Write and test the software that makes the robot respond to drivers, sensors, and the game around it.",
+    details: [
+      "Learn Java and the WPILib robotics library",
+      "Test, debug, and maintain code on the real robot",
+      "Work with the build team as mechanisms change",
+    ],
+  },
+  {
+    number: "02",
+    title: "Electromechanical",
+    icon: Wrench,
+    description:
+      "Turn ideas and CAD into a machine through fabrication, assembly, wiring, and careful iteration in the workshop.",
+    details: [
+      "Design and fabricate robot mechanisms",
+      "Build mechanical and electrical systems safely",
+      "Diagnose problems and improve the robot through testing",
+    ],
+  },
+  {
+    number: "03",
+    title: "Business",
+    icon: BriefcaseBusiness,
+    description:
+      "Keep the season organized through budgeting, purchasing, travel planning, sponsor relationships, and team operations.",
+    details: [
+      "Help plan budgets, purchases, registration, and travel",
+      "Prepare sponsor materials and maintain partner relationships",
+      "Learn project management and professional communication",
+    ],
+  },
+  {
+    number: "04",
+    title: "Outreach",
+    icon: Megaphone,
+    description:
+      "Share the team's work through school and community events, media, demonstrations, and student recruitment.",
+    details: [
+      "Plan demonstrations and community events",
+      "Create team photos, video, social updates, and printed materials",
+      "Help new students and visitors understand FIRST Robotics",
+    ],
+  },
+];
+
+const resources = [
+  {
+    title: "WPILib documentation",
+    description: "The software library and reference used by FRC programmers.",
+    href: "https://docs.wpilib.org/en/stable/index.html",
+  },
+  {
+    title: "Robot hardware basics",
+    description: "A visual introduction to the major systems found on an FRC robot.",
+    href: "https://docs.wpilib.org/en/stable/docs/hardware/hardware-basics/index.html",
+  },
+  {
+    title: "Planetary Drive on GitHub",
+    description: "Explore code from Team 2856 and see how a robot project is organized.",
+    href: site.github,
+  },
+];
 
 export default function Join() {
   return (
-    <main className="flex flex-col items-center w-full mb-8">
-      <ParallaxBanner
-        speed={0.5}
-        src={mainBanner}
-        className="w-full h-[50vh] lg:h-[65vh]"
-        imgClassName="object-top"
+    <main id="main-content" className="join-page">
+      <PageHero
+        eyebrow="JOIN PLANETARY DRIVE"
+        title="Join Team 2856."
+        intro="Planetary Drive welcomes Fayette County high-school students interested in engineering, programming, business, or outreach. No previous robotics experience is required."
+        image={pitWork}
+        imageAlt="Planetary Drive students inspecting and repairing their competition robot"
+        imagePosition="center 38%"
       >
-        <div className="absolute w-full h-[50vh] lg:h-[65vh] bg-black/40 flex justify-center">
-          <div className="flex flex-col items-center justify-center">
-            <h1 className="mt-4 sm:text-8xl text-6xl text-white text-center">
-              Join the Team
-            </h1>
-            <h3 className=" mt-4 text-white text-center px-4">
-              Information for anyone interested in joining
-            </h3>
-          </div>
-        </div>
-      </ParallaxBanner>
-      <section className="relative w-full bg-black flex flex-col items-center">
-        <div className="absolute w-full h-[150px] top-0 bg-gradient-to-t from-black -translate-y-[99%] "></div>
-        <div className="w-[95vw] md:w-3/4 lg:w-3/5 pt-8 space-y-2 flex flex-col items-center">
-          <h2 className="text-center mb-4">
-            Any high school student in FCPS (Lexington, KY) can join the team.
-          </h2>
-          <p className="text-center text-2xl">
-            <i>Most of our members are from Dunbar & Lafayette HS.</i>
-          </p>
-          <Link href="https://discord.gg/d36XRMfYUF" target="_blank">
-            <Button className="dark p-8 my-8" variant="outline">
-              <Image src={discordIcon} width={30} className="mr-4" alt="" />
-              <p className="text-2xl">Member Discord</p>
-            </Button>
+        <div className="button-row join-hero-actions">
+          <a
+            href={site.discord}
+            target="_blank"
+            rel="noreferrer"
+            className="button button-primary"
+          >
+            Join the member Discord <ArrowRight size={18} aria-hidden="true" />
+          </a>
+          <Link href="/contact" className="button button-ghost">
+            Ask a question
           </Link>
-          <h4 className="text-center">
-            Communications are done through our member Discord server
-          </h4>
-          <p className="text-xl text-center">
-            Make sure to check regularly for information.
-          </p>
+        </div>
+      </PageHero>
+
+      <section className="section join-overview-section" aria-labelledby="join-overview-title">
+        <div className="site-shell join-overview-grid">
+          <Reveal className="join-overview-copy">
+            <p className="eyebrow">WHO CAN JOIN?</p>
+            <h2 id="join-overview-title" className="display-heading">
+              No prior robotics experience required.
+            </h2>
+            <p className="large-copy">
+              If you are an FCPS high-school student, there is a place to start.
+              Prior Java, CAD, shop, or robotics experience is welcome, but none
+              is required. What matters is showing up ready to learn, ask
+              questions, and contribute.
+            </p>
+          </Reveal>
+
+          <Reveal className="join-fact-list" delay={100}>
+            <div className="join-fact">
+              <span aria-hidden="true">01</span>
+              <div>
+                <h3>Open to FCPS students</h3>
+                <p>High-school students across Fayette County Public Schools are welcome.</p>
+              </div>
+            </div>
+            <div className="join-fact">
+              <span aria-hidden="true">02</span>
+              <div>
+                <h3>Learn from the beginning</h3>
+                <p>Previous programming, CAD, shop, or robotics experience is not required.</p>
+              </div>
+            </div>
+            <div className="join-fact">
+              <span aria-hidden="true">03</span>
+              <div>
+                <h3>Build with a real team</h3>
+                <p>Students work alongside one another with guidance from mentors.</p>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 
-      <section className="w-full flex-col flex items-center bg-black mb-6">
-        <div className="border-t-[1px] w-[80%] my-8 lg:my-12 border-slate-700 bg-black"></div>
-        <h2 className="text-center mb-2">Our Teams</h2>
-        <p className="text-center text-lg w-[95vw] sm:w-3/4 lg:w-3/5 mb-6">
-          Members can choose one of two teams to be apart of: electromechanical
-          (build) or programming.
-        </p>
-        <div className="text-center flex flex-col lg:flex-row  w-[95vw] sm:w-3/5 md:w-1/2 lg:w-2/3  justify-center lg:space-x-16 ">
-          <div className="flex flex-col items-center mb-8">
-            <Image src={programmingIcon} className=" w-28 mb-4" alt="" />
-            <h3 className="mb-3">Programming Team</h3>
-            <p className="">
-              The programming team is tasked with coding the robot. No
-              experience is required, but some software development experience
-              would be useful, especially with Java. To code the robot, we use
-              Java and the{" "}
-              <Link
-                href={"https://docs.wpilib.org/en/stable/index.html"}
-                target="_blank"
-              >
-                <Button variant="link" className=" text-md p-0">
-                  WPI library
-                </Button>
-              </Link>
-              . Oftentimes, the programming team will ge done with their tasks
-              early on and may then help the build team assemble the robot.
+      <section className="section join-pathways-section" aria-labelledby="join-pathways-title">
+        <div className="site-shell">
+          <Reveal className="section-heading-row join-pathways-heading">
+            <div>
+              <p className="eyebrow">FOUR WAYS TO CONTRIBUTE</p>
+              <h2 id="join-pathways-title" className="display-heading">
+                Choose where you want to contribute.
+              </h2>
+            </div>
+            <p>
+              Programming, electromechanical, business, and outreach students
+              work together throughout the season. Start with the work that
+              interests you and learn across groups as projects overlap.
             </p>
-          </div>
-          <div className="flex flex-col items-center ">
-            <Image src={buildIcon} className=" w-28 mb-4" alt="" />
-            <h3 className="mb-3">Electromechanical Team</h3>
-            <p className="">
-              The electromechanical, or build, team is charged with desiging and
-              building the robot. This team spends the majority of their time in
-              the workshop doing hands-on work. No experience is required to
-              join, but any engineering experience can be helpful. We may decide
-              to use CAD in the future, so experience with it could be very
-              valuable.
-            </p>
-          </div>
-        </div>
-        <Image src={helmetIcon} className="w-28 lg:mt-0 mt-8 mb-4" alt="" />
-        <h3 className="mb-3">Mentors</h3>
-        <p className="text-center w-[95vw] sm:w-3/5 md:w-1/2">
-          Mentors are a crucial part of the robotics team as they help guide
-          students through the entire process of building a robot. Through their
-          experience and guidance, they are able to help students achieve their
-          full potential and inspire them to do their best. They also ensure
-          safety and help with registration & organization. If you are
-          interested in becoming a mentor, feel free to contact us!
-        </p>
-        <div className="flex sm:flex-row flex-col sm:space-x-12 sm:space-y-0 space-y-6 mt-4">
-          <Link href={"/contact"}>
-            <Button variant="outline" className="dark text-md" size="lg">
-              Contact Us
-            </Button>
-          </Link>
-          <Link
-            href={
-              "https://www.firstinspires.org/ways-to-help/volunteer/mentors-and-coaches"
-            }
-            target="_blank"
-          >
-            <Button variant="outline" className="dark text-md" size="lg">
-              Learn More
-            </Button>
-          </Link>
-        </div>
-      </section>
+          </Reveal>
 
-      <section className="flex flex-col items-center text-lg">
-        <h2 className="mb-2 mt-4 text-center">Meeting Information</h2>
+          <div className="join-pathway-grid">
+            {pathways.map((pathway, index) => {
+              const Icon = pathway.icon;
+              return (
+                <Reveal
+                  as="article"
+                  className="join-pathway"
+                  delay={index * 90}
+                  key={pathway.title}
+                >
+                  <div className="join-pathway-top">
+                    <span>{pathway.number}</span>
+                    <Icon size={29} strokeWidth={1.5} aria-hidden="true" />
+                  </div>
+                  <h3>{pathway.title}</h3>
+                  <p>{pathway.description}</p>
+                  <ul>
+                    {pathway.details.map((detail) => (
+                      <li key={detail}>
+                        <Check size={17} aria-hidden="true" />
+                        <span>{detail}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </Reveal>
+              );
+            })}
+          </div>
 
-        <p className="text-center w-[95vw] sm:w-3/5 md:w-1/2">
-          Most of our meetings are held at{" "}
-          <Link
-            target="_blank"
-            href="https://www.google.com/maps/place/Newton's+Attic/@38.0417358,-84.6280191,16.86z/data=!4m6!3m5!1s0x88426814862fca05:0x3014855aa1105d18!8m2!3d38.0417397!4d-84.625191!16s%2Fg%2F1263r6v8x?entry=ttu"
-          >
-            <Button variant="link" className="dark p-0">
-              <p className=" font-semibold text-slate-200 text-lg">
-                Newton&apos;s Attic
+          <Reveal as="article" className="join-mentor-callout" delay={120}>
+            <div className="join-mentor-icon" aria-hidden="true">
+              <Users size={26} strokeWidth={1.5} />
+              <ShieldCheck size={19} strokeWidth={1.5} />
+            </div>
+            <div>
+              <p className="eyebrow">MENTOR WITH US</p>
+              <h3>Mentors teach, supervise, and keep projects moving.</h3>
+              <p>
+                Mentors guide students through programming, design, fabrication,
+                and problem-solving. They also help maintain safe workshop
+                practices and support the organization that keeps a season moving.
               </p>
-            </Button>
-          </Link>
-          , during the second school semester, after the{" "}
-          <Link
-            target="_blank"
-            href={"https://www.firstinspires.org/robotics/frc/kickoff"}
-          >
-            <Button variant="link" className="dark p-0 text-lg">
-              FRC Kickoff
-            </Button>
-          </Link>
-          . This may differ on occasions. Check our{" "}
-          <Link target="_blank" href={"https://discord.gg/d36XRMfYUF"}>
-            <Button variant="link" className="dark p-0 text-lg">
-              Discord server
-            </Button>
-          </Link>{" "}
-          for the most up-to-date information.
-        </p>
-
-        <Image
-          src={workshop}
-          placeholder="blur"
-          className="rounded-lg w-[90vw] sm:w-3/5 md:w-1/2 object-cover object-bottom"
-          alt=""
-        />
-
-        <h4 className="mt-4">Usual Schedule</h4>
-        <p className="text-xl leading-loose text-center">
-          Monday, Wendesday, Friday - 4-9PM
-        </p>
-        <p className="text-xl leading-loose">Saturday - 10AM-4PM</p>
-        <p className="text-center text-lg w-[95vw] sm:w-3/5 md:w-1/2">
-          Members don&apos;t have to attend every single meeting, or be there
-          the entire time. However, only members who attend regularly usually go
-          to the competition in March as we have limited resources.
-        </p>
-        <div className="border-t-[1px] w-[80%] my-8 lg:my-12 border-slate-700 bg-black"></div>
+            </div>
+            <Link href="/contact" className="text-link">
+              Ask about mentoring <ArrowRight size={17} aria-hidden="true" />
+            </Link>
+          </Reveal>
+        </div>
       </section>
-      <section className="w-full flex flex-col items-center">
-        {/* <h2 className="text-center">Resources</h2> */}
-        <h4 className="text-center w-[95vw] sm:w-3/5 md:w-1/2 my-2">
-          It may be useful to get a good idea of what robotics looks like before
-          joining.
-        </h4>
-        <p className="text-center w-[95vw] sm:w-3/5 md:w-1/2 my-2 text-lg leading-loose">
-          Get familiar with how robots work. Take a look at the{" "}
-          <Link
-            href={
-              "https://docs.wpilib.org/en/stable/docs/hardware/hardware-basics/index.html"
-            }
-            target="_blank"
-          >
-            <Button variant="link" className="p-0 text-lg">
-              documentation
-            </Button>
-          </Link>
-          , as well as some past robots that winning teams have built that you
-          can find on YouTube. If you plan on joining the programming team, try
-          to get familiar with{" "}
-          <Link
-            href={"https://www.youtube.com/watch?v=xk4_1vDrzzo"}
-            target="_blank"
-          >
-            <Button variant="link" className="p-0 text-lg">
-              Java
-            </Button>
-          </Link>{" "}
-          and the{" "}
-          <Link
-            href={
-              "https://docs.wpilib.org/en/stable/stubs/programming-basics-stub.html"
-            }
-            target="_blank"
-          >
-            <Button variant="link" className="p-0 text-lg">
-              WPI Java Library
-            </Button>
-          </Link>
-          . Consider checking out our own robot code from previous years on our{" "}
-          <Link href={"https://github.com/TeamPlanetaryDrive"} target="_blank">
-            <Button variant="link" className="p-0 text-lg">
-              GitHub.
-            </Button>
-          </Link>
-        </p>
+
+      <section className="join-meetings-section" aria-labelledby="join-meetings-title">
+        <div className="site-shell join-meetings-grid">
+          <Reveal className="join-meetings-copy">
+            <p className="eyebrow">BUILD-SEASON MEETINGS</p>
+            <h2 id="join-meetings-title">Meet at Newton&apos;s Attic.</h2>
+            <p>
+              Most build-season meetings are held at Newton&apos;s Attic in
+              Lexington. The hours below are the team&apos;s typical schedule, not a
+              guarantee—plans can change as the season and robot change.
+            </p>
+
+            <a
+              className="join-location-link"
+              href={site.mapUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <MapPin size={20} aria-hidden="true" />
+              <span>
+                <strong>Newton&apos;s Attic</strong>
+                {site.address}
+              </span>
+              <ArrowUpRight size={17} aria-hidden="true" />
+            </a>
+
+            <dl className="join-schedule">
+              {typicalSchedule.map((meeting) => (
+                <div key={meeting.days}>
+                  <dt>{meeting.days}</dt>
+                  <dd>{meeting.time}</dd>
+                </div>
+              ))}
+            </dl>
+
+            <div className="join-schedule-note">
+              <BookOpen size={21} aria-hidden="true" />
+              <p>
+                Confirm the current meeting time in Discord before traveling.
+                Members do not need to attend every minute, but regular
+                participation matters—especially for competition travel.
+              </p>
+            </div>
+
+            <a
+              href={site.discord}
+              target="_blank"
+              rel="noreferrer"
+              className="button button-light"
+            >
+              Check Discord <ArrowUpRight size={17} aria-hidden="true" />
+            </a>
+          </Reveal>
+
+          <Reveal as="figure" className="join-workshop-photo" delay={100}>
+            <Image
+              src={workshop}
+              alt="The wood and metal workshop at Newton's Attic where Planetary Drive often meets"
+              fill
+              placeholder="blur"
+              sizes="(max-width: 800px) 100vw, 48vw"
+            />
+            <figcaption>
+              <span>NEWTON&apos;S ATTIC</span>
+              <span>TYPICAL BUILD-SEASON WORKSPACE</span>
+            </figcaption>
+          </Reveal>
+        </div>
       </section>
-      <section className="w-full flex flex-col items-center">
-        <p className="my-4 text-xl font-semibold w-[95vw] sm:w-3/5 md:w-1/2 text-center">
-          Interested or have any questions?
-        </p>
-        <div className="flex justify-center items-center sm:space-y-0 space-y-4 flex-col sm:flex-row sm:space-x-12">
-          <Link href="https://discord.gg/d36XRMfYUF" target="_blank">
-            <Button className="dark p-6" variant="outline">
-              <Image src={discordIcon} width={30} className="mr-4" alt="" />
-              <p className="text-lg">Join Our Discord</p>
-            </Button>
-          </Link>
-          <Link href="/contact" target="_blank">
-            <Button className="dark p-6" variant="outline">
-              <Image src={mailIcon} width={30} className="mr-4" alt="" />
-              <p className="text-lg">Contact Us</p>
-            </Button>
-          </Link>
+
+      <section className="section join-resources-section" aria-labelledby="join-resources-title">
+        <div className="site-shell">
+          <Reveal className="join-resources-heading">
+            <p className="eyebrow">OPTIONAL, NOT REQUIRED</p>
+            <h2 id="join-resources-title" className="display-heading">
+              Resources for learning before a meeting.
+            </h2>
+            <p>
+              There is no homework for joining. If you want a preview, these are
+              useful places to explore how FRC hardware and software fit together.
+            </p>
+          </Reveal>
+
+          <ul className="join-resource-list">
+            {resources.map((resource, index) => (
+              <Reveal
+                as="li"
+                className="join-resource-item"
+                delay={index * 70}
+                key={resource.title}
+              >
+                <a href={resource.href} target="_blank" rel="noreferrer">
+                  <span className="join-resource-number">0{index + 1}</span>
+                  <span className="join-resource-copy">
+                    <strong>{resource.title}</strong>
+                    <span>{resource.description}</span>
+                  </span>
+                  <ArrowUpRight size={20} aria-hidden="true" />
+                </a>
+              </Reveal>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section className="join-final-cta" aria-labelledby="join-final-title">
+        <div className="site-shell join-final-cta-inner">
+          <Reveal>
+            <p className="eyebrow">YOUR FIRST STEP</p>
+            <h2 id="join-final-title">Join the member Discord for current meeting details.</h2>
+            <p>
+              Use Discord for the latest meeting details, or send us a message at{" "}
+              <a href={`mailto:${site.email}`}>{site.email}</a>.
+            </p>
+            <div className="button-row join-final-actions">
+              <a
+                href={site.discord}
+                target="_blank"
+                rel="noreferrer"
+                className="button button-light"
+              >
+                Join the member Discord <ArrowUpRight size={17} aria-hidden="true" />
+              </a>
+              <Link href="/contact" className="button button-light-outline">
+                Contact Team 2856
+              </Link>
+            </div>
+          </Reveal>
         </div>
       </section>
     </main>

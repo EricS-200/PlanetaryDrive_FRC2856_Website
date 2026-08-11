@@ -1,0 +1,601 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Planetary Drive CAD explosion renderer</title>
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+        background: #000;
+      }
+
+      canvas {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      #status {
+        position: fixed;
+        left: 24px;
+        bottom: 20px;
+        color: rgba(255, 255, 255, 0.78);
+        font: 12px/1.4 ui-monospace, SFMono-Regular, Consolas, monospace;
+        letter-spacing: 0.06em;
+        pointer-events: none;
+      }
+
+      body.ready #status {
+        display: none;
+      }
+    </style>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "/tools/cad-explosion/vendor/three.module.js"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="status">LOADING CAD / 0%</div>
+    <script type="module">
+      import * as THREE from "three";
+      import { GLTFLoader } from "/tools/cad-explosion/vendor/loaders/GLTFLoader.js";
+      import { mergeGeometries } from "/tools/cad-explosion/vendor/utils/BufferGeometryUtils.js";
+
+      const renderParams = new URLSearchParams(location.search);
+      const WIDTH = Number(renderParams.get("width")) || 3840;
+      const HEIGHT = Number(renderParams.get("height")) || 2160;
+      const BACKGROUND = 0x000000;
+      const DEFAULT_EXPOSURE = 1.04;
+      const SHOOTER_WHEEL_PART_INDICES = new Set([
+        1609, 1610, 1611, 1612,
+        1613, 1614, 1615, 1616,
+        1617, 1618, 1619, 1620,
+      ]);
+      const CAMERA_DIRECTIONS = [
+        new THREE.Vector3(1, 1, 0.5),
+        new THREE.Vector3(-1, 1, 0.5),
+        new THREE.Vector3(1, -1, 0.5),
+        new THREE.Vector3(-1, -1, 0.5),
+      ];
+
+      const status = document.querySelector("#status");
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(BACKGROUND);
+
+      const renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        alpha: false,
+        powerPreference: "high-performance",
+        preserveDrawingBuffer: true,
+      });
+      renderer.setPixelRatio(1);
+      renderer.setSize(WIDTH, HEIGHT, false);
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = DEFAULT_EXPOSURE;
+      renderer.shadowMap.enabled = false;
+      document.body.prepend(renderer.domElement);
+
+      const environmentScene = new THREE.Scene();
+      environmentScene.background = new THREE.Color(0x000000);
+      const environmentPanels = [];
+      const addEnvironmentPanel = (color, intensity, position, dimensions) => {
+        const geometry = new THREE.PlaneGeometry(dimensions[0], dimensions[1]);
+        const material = new THREE.MeshBasicMaterial({
+          color,
+          side: THREE.DoubleSide,
+        });
+        material.color.multiplyScalar(intensity);
+        const panel = new THREE.Mesh(geometry, material);
+        panel.position.set(...position);
+        panel.lookAt(0, 0, 0);
+        environmentScene.add(panel);
+        environmentPanels.push(panel);
+      };
+      addEnvironmentPanel(0xffbd86, 3.2, [-4, -5, 3], [3.5, 7]);
+      addEnvironmentPanel(0x5f8fff, 2.8, [5, 1, 2], [2.2, 8]);
+      addEnvironmentPanel(0xdce9ff, 2.4, [0, 0, 6], [8, 3]);
+      const pmremGenerator = new THREE.PMREMGenerator(renderer);
+      const environmentTarget = pmremGenerator.fromScene(environmentScene, 0.04, 0.1, 100);
+      scene.environment = environmentTarget.texture;
+      pmremGenerator.dispose();
+      environmentPanels.forEach((panel) => {
+        panel.geometry.dispose();
+        panel.material.dispose();
+      });
+
+      const aspect = WIDTH / HEIGHT;
+      const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.01, 100000);
+      camera.up.set(0, 0, 1);
+
+      scene.add(new THREE.HemisphereLight(0x8ca8d5, 0x010103, 0.28));
+
+      const keyLight = new THREE.DirectionalLight(0xffd0aa, 3.15);
+      keyLight.position.set(-4, -6, 9);
+      scene.add(keyLight);
+
+      const fillLight = new THREE.DirectionalLight(0x577cff, 0.82);
+      fillLight.position.set(6, -1, 3);
+      scene.add(fillLight);
+
+      const rimLight = new THREE.DirectionalLight(0x79c8ff, 2.45);
+      rimLight.position.set(-5, 7, 5);
+      scene.add(rimLight);
+
+      const wheelKicker = new THREE.DirectionalLight(0xff8b3d, 0.72);
+      wheelKicker.position.set(5, 6, 4);
+      scene.add(wheelKicker);
+
+      let model;
+      let animationRoot;
+      let parts = [];
+      let assembledBox;
+      let fittedBox;
+      let cameraPreset = 0;
+      let gpuExplosion = false;
+      const explosionUniform = { value: 0 };
+
+      const clamp = (value, min = 0, max = 1) =>
+        Math.min(max, Math.max(min, value));
+
+      const smootherStep = (value) => {
+        const x = clamp(value);
+        return x * x * x * (x * (x * 6 - 15) + 10);
+      };
+
+      const axisBand = (value) => {
+        const magnitude = Math.abs(value);
+        if (magnitude < 0.16) return 0;
+        if (magnitude < 0.45) return Math.sign(value) * 0.42;
+        if (magnitude < 0.73) return Math.sign(value) * 0.72;
+        return Math.sign(value);
+      };
+
+      function prepareMaterial(material) {
+        if (!material) return;
+        const namedColor = material.name.match(/(?:Opaque\()?\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*\)?/i);
+        if (namedColor && material.color) {
+          material.color.setRGB(
+            Number(namedColor[1]) / 255,
+            Number(namedColor[2]) / 255,
+            Number(namedColor[3]) / 255,
+            THREE.SRGBColorSpace,
+          );
+        } else if (material.color) {
+          const namedMaterials = {
+            "Aluminum_-_Satin": 0xc7cbd0,
+            "Steel_-_Satin": 0x989fa6,
+            "Plastic_-_Glossy_(Red)": 0xa9161a,
+            "Plastic_-_Glossy_(White)": 0xebedf0,
+            "Plastic_-_Glossy_(Black)": 0x252b33,
+            "Rubber_-_Soft": 0x202226,
+            "Rubber_-_Hard_(1)": 0x181a1d,
+            "Fabric_(Blue)": 0x090957,
+            "3D_Pine_-_Unfinished": 0xd7bd8e,
+            "Polycarbonate_(Clear)": 0x89929e,
+          };
+          if (namedMaterials[material.name] !== undefined) {
+            material.color.setHex(namedMaterials[material.name]);
+          }
+        }
+        if (material.name === "Polycarbonate_(Clear)") {
+          material.opacity = 0.28;
+          material.transparent = true;
+        }
+        material.side = THREE.DoubleSide;
+        if (material.transparent || material.opacity < 0.995) {
+          material.transparent = true;
+          material.depthWrite = false;
+        }
+        if ("roughness" in material) material.roughness = 0.56;
+        if ("metalness" in material) material.metalness = 0.02;
+        if ("envMapIntensity" in material) material.envMapIntensity = 0.65;
+        if (material.name === "Aluminum_-_Satin") {
+          material.metalness = 0.62;
+          material.roughness = 0.28;
+          material.envMapIntensity = 1.25;
+        }
+        if (material.name === "Steel_-_Satin") {
+          material.metalness = 0.78;
+          material.roughness = 0.22;
+          material.envMapIntensity = 1.35;
+        }
+        if (material.name.startsWith("Plastic_-_Glossy")) {
+          material.metalness = 0.03;
+          material.roughness = 0.24;
+          material.envMapIntensity = 0.92;
+        }
+        if (/Rubber|Fabric/.test(material.name)) {
+          material.metalness = 0;
+          material.roughness = 0.82;
+          material.envMapIntensity = 0.22;
+        }
+        if (material.name === "Polycarbonate_(Clear)") {
+          material.roughness = 0.18;
+          material.envMapIntensity = 1.05;
+        }
+        material.needsUpdate = true;
+      }
+
+      function setExplosion(amount) {
+        const eased = smootherStep(amount);
+        if (gpuExplosion) {
+          explosionUniform.value = eased;
+          return;
+        }
+        for (const part of parts) {
+          part.object.position.copy(part.origin).addScaledVector(part.displacement, eased);
+        }
+        model.updateMatrixWorld(true);
+      }
+
+      function setReveal(amount) {
+        renderer.toneMappingExposure = DEFAULT_EXPOSURE * smootherStep(amount);
+      }
+
+      function setRobotRotation(radians) {
+        if (!animationRoot) return;
+        animationRoot.rotation.set(0, 0, radians);
+        animationRoot.updateMatrixWorld(true);
+      }
+
+      function animatedMaterial(source) {
+        const material = source.clone();
+        material.onBeforeCompile = (shader) => {
+          shader.uniforms.explosionAmount = explosionUniform;
+          shader.vertexShader = shader.vertexShader
+            .replace(
+              "#include <common>",
+              "#include <common>\nattribute vec3 explodeOffset;\nuniform float explosionAmount;",
+            )
+            .replace(
+              "#include <begin_vertex>",
+              "vec3 transformed = vec3(position + explodeOffset * explosionAmount);",
+            );
+        };
+        material.customProgramCacheKey = () => "cad-explosion-gpu-v1";
+        material.needsUpdate = true;
+        return material;
+      }
+
+      function materialBucketKey(material, indexed) {
+        return [
+          material.name,
+          material.color?.getHexString() || "none",
+          material.opacity,
+          material.transparent,
+          material.roughness,
+          material.metalness,
+          material.envMapIntensity,
+          indexed ? "indexed" : "nonindexed",
+        ].join("|");
+      }
+
+      function buildGpuAssembly() {
+        const buckets = new Map();
+        let sourceMeshCount = 0;
+
+        for (const part of parts) {
+          part.object.updateMatrixWorld(true);
+          part.object.traverse((child) => {
+            if (!child.isMesh || Array.isArray(child.material)) return;
+            sourceMeshCount += 1;
+            let geometry = child.geometry.clone();
+            geometry.applyMatrix4(child.matrixWorld);
+            for (const attributeName of Object.keys(geometry.attributes)) {
+              if (attributeName !== "position" && attributeName !== "normal") {
+                geometry.deleteAttribute(attributeName);
+              }
+            }
+            if (!geometry.getAttribute("normal")) geometry.computeVertexNormals();
+
+            const positionCount = geometry.getAttribute("position").count;
+            const offsets = new Float32Array(positionCount * 3);
+            for (let vertex = 0; vertex < positionCount; vertex += 1) {
+              const offset = vertex * 3;
+              offsets[offset] = part.displacement.x;
+              offsets[offset + 1] = part.displacement.y;
+              offsets[offset + 2] = part.displacement.z;
+            }
+            geometry.setAttribute("explodeOffset", new THREE.BufferAttribute(offsets, 3));
+
+            const key = materialBucketKey(child.material, Boolean(geometry.index));
+            if (!buckets.has(key)) {
+              buckets.set(key, { material: child.material, geometries: [] });
+            }
+            buckets.get(key).geometries.push(geometry);
+          });
+        }
+
+        const gpuAssembly = new THREE.Group();
+        gpuAssembly.name = "GPU_MERGED_ROBOT";
+        const rotationCenter = assembledBox.getCenter(new THREE.Vector3());
+        gpuAssembly.position.copy(rotationCenter);
+        let mergedMeshCount = 0;
+        for (const bucket of buckets.values()) {
+          const mergedGeometry = mergeGeometries(bucket.geometries, false);
+          bucket.geometries.forEach((geometry) => geometry.dispose());
+          if (!mergedGeometry) {
+            throw new Error(`Unable to merge CAD geometry bucket for ${bucket.material.name}`);
+          }
+          const mesh = new THREE.Mesh(mergedGeometry, animatedMaterial(bucket.material));
+          mesh.position.copy(rotationCenter).multiplyScalar(-1);
+          mesh.frustumCulled = false;
+          gpuAssembly.add(mesh);
+          mergedMeshCount += 1;
+        }
+
+        scene.remove(model);
+        scene.add(gpuAssembly);
+        animationRoot = gpuAssembly;
+        gpuExplosion = true;
+        return { sourceMeshCount, mergedMeshCount };
+      }
+
+      function fitCamera(preset = cameraPreset) {
+        cameraPreset = ((preset % CAMERA_DIRECTIONS.length) + CAMERA_DIRECTIONS.length) % CAMERA_DIRECTIONS.length;
+        const direction = CAMERA_DIRECTIONS[cameraPreset].clone().normalize();
+        const center = fittedBox.getCenter(new THREE.Vector3());
+        const sphere = fittedBox.getBoundingSphere(new THREE.Sphere());
+        const distance = sphere.radius * 4.0;
+        camera.position.copy(center).addScaledVector(direction, distance);
+        camera.lookAt(center);
+        camera.updateMatrixWorld(true);
+
+        const right = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 0);
+        const up = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 1);
+        let projectedHalfWidth = 0;
+        let projectedHalfHeight = 0;
+        const rotationCenter = assembledBox.getCenter(new THREE.Vector3());
+        for (let sample = 0; sample < 72; sample += 1) {
+          const angle = (sample / 72) * Math.PI * 2;
+          for (const x of [fittedBox.min.x, fittedBox.max.x]) {
+            for (const y of [fittedBox.min.y, fittedBox.max.y]) {
+              for (const z of [fittedBox.min.z, fittedBox.max.z]) {
+                const corner = new THREE.Vector3(x, y, z)
+                  .sub(rotationCenter)
+                  .applyAxisAngle(new THREE.Vector3(0, 0, 1), angle)
+                  .add(rotationCenter);
+                const offset = corner.sub(center);
+                projectedHalfWidth = Math.max(projectedHalfWidth, Math.abs(offset.dot(right)));
+                projectedHalfHeight = Math.max(projectedHalfHeight, Math.abs(offset.dot(up)));
+              }
+            }
+          }
+        }
+        const verticalHalf = Math.max(projectedHalfHeight, projectedHalfWidth / aspect) * 1.04;
+        camera.left = -verticalHalf * aspect;
+        camera.right = verticalHalf * aspect;
+        camera.top = verticalHalf;
+        camera.bottom = -verticalHalf;
+        camera.near = 0.01;
+        camera.far = sphere.radius * 10;
+        camera.updateProjectionMatrix();
+      }
+
+      function render() {
+        renderer.render(scene, camera);
+      }
+
+      window.renderExplosion = (amount) => {
+        setReveal(1);
+        setRobotRotation(0);
+        setExplosion(clamp(amount));
+        render();
+      };
+
+      window.renderSequenceState = ({ reveal = 1, explosion = 0, rotation = 0 } = {}) => {
+        setReveal(clamp(reveal));
+        setExplosion(clamp(explosion));
+        setRobotRotation(Number(rotation) || 0);
+        render();
+      };
+
+      window.setCameraPreset = (preset) => {
+        fitCamera(Number(preset) || 0);
+        render();
+        return cameraPreset;
+      };
+
+      window.recordExplosion = async ({ duration = 6, fps = 60 } = {}) => {
+        setExplosion(0);
+        render();
+
+        const stream = renderer.domElement.captureStream(fps);
+        const mimeCandidates = [
+          "video/webm;codecs=vp9",
+          "video/webm;codecs=vp8",
+          "video/webm",
+        ];
+        const mimeType = mimeCandidates.find((candidate) => MediaRecorder.isTypeSupported(candidate));
+        if (!mimeType) throw new Error("This browser has no WebM MediaRecorder encoder.");
+
+        const recorder = new MediaRecorder(stream, {
+          mimeType,
+          videoBitsPerSecond:
+            WIDTH >= 3840 ? (fps >= 60 ? 100_000_000 : 60_000_000) : 24_000_000,
+        });
+        const chunks = [];
+        recorder.ondataavailable = (event) => {
+          if (event.data.size) chunks.push(event.data);
+        };
+
+        const stopped = new Promise((resolve, reject) => {
+          recorder.onerror = (event) => reject(event.error || new Error("MediaRecorder failed"));
+          recorder.onstop = resolve;
+        });
+
+        recorder.start(250);
+        const started = performance.now();
+
+        await new Promise((resolve) => {
+          const step = (now) => {
+            const clipProgress = clamp((now - started) / (duration * 1000));
+            const explosionProgress = clamp((clipProgress - 0.13) / 0.70);
+            setExplosion(explosionProgress);
+            render();
+            if (clipProgress < 1) {
+              requestAnimationFrame(step);
+            } else {
+              resolve();
+            }
+          };
+          requestAnimationFrame(step);
+        });
+
+        await new Promise((resolve) => setTimeout(resolve, 220));
+        recorder.stop();
+        await stopped;
+        for (const track of stream.getTracks()) track.stop();
+
+        const blob = new Blob(chunks, { type: mimeType });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download =
+          WIDTH >= 3840
+            ? `robot-explosion-low-iso-4k${fps >= 60 ? "60" : "30"}-cinematic.webm`
+            : `robot-explosion-low-iso-${fps}fps-cinematic-preview.webm`;
+        document.body.append(link);
+        link.click();
+        link.remove();
+        window.setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+        return { bytes: blob.size, mimeType, fps };
+      };
+
+      const loader = new GLTFLoader();
+      loader.load(
+        "/robot-assets/source/robot.glb",
+        (gltf) => {
+          model = gltf.scene;
+          scene.add(model);
+          model.updateMatrixWorld(true);
+          assembledBox = new THREE.Box3().setFromObject(model);
+          const center = assembledBox.getCenter(new THREE.Vector3());
+          const size = assembledBox.getSize(new THREE.Vector3());
+          const half = size.clone().multiplyScalar(0.5);
+          const exportedRoot = model.children.length === 1 ? model.children[0] : model;
+
+          exportedRoot.updateMatrixWorld(true);
+          const inverseRoot = exportedRoot.matrixWorld.clone().invert();
+          const candidateParts = exportedRoot.children.length > 100 ? exportedRoot.children : model.children;
+
+          parts = candidateParts.map((object, index) => {
+            object.traverse((child) => {
+              if (!child.isMesh) return;
+              const materials = Array.isArray(child.material) ? child.material : [child.material];
+              materials.forEach(prepareMaterial);
+            });
+
+            const objectBox = new THREE.Box3().setFromObject(object);
+            const objectSize = objectBox.getSize(new THREE.Vector3());
+            const objectCenter = objectBox.getCenter(new THREE.Vector3()).applyMatrix4(inverseRoot);
+            const localCenter = center.clone().applyMatrix4(inverseRoot);
+            const relative = objectCenter.clone().sub(localCenter);
+            const normalized = new THREE.Vector3(
+              relative.x / Math.max(half.x, 1e-6),
+              relative.y / Math.max(half.y, 1e-6),
+              relative.z / Math.max(half.z, 1e-6),
+            );
+
+            const isShooterWheel = SHOOTER_WHEEL_PART_INDICES.has(index);
+            if (isShooterWheel) {
+              object.traverse((child) => {
+                if (!child.isMesh) return;
+                const recolor = (source) => {
+                  if (!source?.color) return source;
+                  const wheelMaterial = source.clone();
+                  wheelMaterial.color.setHex(0xf88701);
+                  wheelMaterial.roughness = 0.34;
+                  wheelMaterial.metalness = 0;
+                  wheelMaterial.envMapIntensity = 1.05;
+                  return wheelMaterial;
+                };
+                child.material = Array.isArray(child.material)
+                  ? child.material.map(recolor)
+                  : recolor(child.material);
+              });
+            }
+
+            const grouped = new THREE.Vector3(
+              axisBand(normalized.x) * size.x * 0.245,
+              axisBand(normalized.y) * size.y * 0.235,
+              axisBand(normalized.z) * size.z * 0.245,
+            );
+            const detail = new THREE.Vector3(
+              normalized.x * size.x * 0.035,
+              normalized.y * size.y * 0.03,
+              normalized.z * size.z * 0.035,
+            );
+
+            return {
+              object,
+              origin: object.position.clone(),
+              displacement: grouped.add(detail),
+              index,
+            };
+          });
+
+          setExplosion(1);
+          fittedBox = new THREE.Box3().setFromObject(model);
+          setExplosion(0);
+          fitCamera(Number(new URLSearchParams(location.search).get("camera")) || 0);
+          const gpuStats = buildGpuAssembly();
+          render();
+
+          window.robotMetadata = {
+            partCount: parts.length,
+            ...gpuStats,
+            renderSize: [WIDTH, HEIGHT],
+            size: size.toArray(),
+            assembledMin: assembledBox.min.toArray(),
+            assembledMax: assembledBox.max.toArray(),
+            explodedMin: fittedBox.min.toArray(),
+            explodedMax: fittedBox.max.toArray(),
+          };
+          window.getPartDiagnostics = () =>
+            parts.map(({ object, index }) => {
+              const box = new THREE.Box3().setFromObject(object);
+              const materialNames = new Set();
+              object.traverse((child) => {
+                if (!child.isMesh) return;
+                const materials = Array.isArray(child.material) ? child.material : [child.material];
+                materials.forEach((material) => materialNames.add(material?.name || ""));
+              });
+              return {
+                index,
+                name: object.name,
+                center: box.getCenter(new THREE.Vector3()).toArray(),
+                size: box.getSize(new THREE.Vector3()).toArray(),
+                materials: [...materialNames],
+              };
+            });
+          window.robotReady = true;
+          document.body.classList.add("ready");
+          console.log("ROBOT_READY", JSON.stringify(window.robotMetadata));
+        },
+        (event) => {
+          const progress = event.total ? Math.round((event.loaded / event.total) * 100) : 0;
+          window.robotProgress = {
+            loaded: event.loaded,
+            total: event.total || 0,
+            percent: progress,
+          };
+          status.textContent = `LOADING CAD / ${progress}%`;
+        },
+        (error) => {
+          window.robotError = String(error?.message || error);
+          status.textContent = `CAD LOAD FAILED / ${window.robotError}`;
+          console.error(error);
+        },
+      );
+    </script>
+  </body>
+</html>

@@ -34,3 +34,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Original robot CAD exports are local source material, not web assets.
+/robot-assets/source/
+
+# Full-resolution photo originals stay local; optimized derivatives are tracked.
+/source-assets/additional-photos/

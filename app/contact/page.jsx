@@ -1,59 +1,148 @@
-// "use client";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import discordIcon from "/public/footer/discord-icon.svg";
 import Image from "next/image";
+import Link from "next/link";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  Github,
+  Instagram,
+  Mail,
+  MapPin,
+  MessageCircle,
+} from "lucide-react";
 import ContactForm from "@/components/ContactForm";
+import Reveal from "@/components/Reveal";
+import { site } from "@/data/site";
+import workshop from "../../public/team_pics/workshop1.jpg";
+import teamWork from "../../public/images/team/IMG_5150.webp";
 
 export const metadata = {
   title: "Contact",
+  description:
+    "Contact Planetary Drive Robotics about joining FRC Team 2856, mentoring, sponsorship, or the team's work.",
+  alternates: { canonical: "/contact" },
 };
 
-export default function Contact() {
+export default function ContactPage() {
   return (
-    <main className=" w-full min-h-[calc(100vh-4rem)] flex flex-col items-center pb-8">
-      <section className="w-full flex items-center flex-col">
-        <h1 className="sm:text-8xl text-6xl text-center mt-4">Contact Us</h1>
-        <p className="text-xl w-[95vw] md:w-3/4 lg:w-3/5 xl:w-1/2 mb-4 text-center">
-          You can use the contact form below to send us a message, or email us
-          directly at{" "}
-          <Link href={"mailto:planetarydrive2856@gmail.com"}>
-            <Button className="text-xl dark p-0" variant="link">
-              planetarydrive2856@gmail.com
-            </Button>
-          </Link>{" "}
-          with any question or request. We will respond as soon as possible.
-        </p>
+    <main id="main-content" className="contact-page">
+      <section className="contact-hero">
+        <div className="site-shell contact-hero-grid">
+          <div className="contact-hero-copy">
+            <p className="eyebrow">CONTACT TEAM 2856</p>
+            <h1>Let’s talk about the team.</h1>
+            <p>
+              Joining, mentoring, sponsoring, visiting, or just curious about the
+              robot? Send us a note and it will reach Planetary Drive directly.
+            </p>
+            <a className="text-link" href={`mailto:${site.email}`}>
+              {site.email} <ArrowRight size={17} />
+            </a>
+          </div>
+          <figure className="contact-hero-media">
+            <Image
+              src={workshop}
+              alt="The workshop at Newton's Attic where Planetary Drive meets"
+              fill
+              priority
+              placeholder="blur"
+              sizes="(max-width: 800px) 100vw, 52vw"
+            />
+            <figcaption>NEWTON&apos;S ATTIC · LEXINGTON, KY</figcaption>
+          </figure>
+        </div>
       </section>
-      {/* <section className="flex flex-col items-center lg:flex-row lg:space-x-12 justify-center text-xl">
-        <section className="flex flex-col items-center w-1/2  ">
-          <h2 className="text-center">Information</h2>
-          <p className="text-center">
-            We are a high school robotics team based in Lexington, KY. We
-            participate in the annual <i>FIRST</i> Robotics Competition
-          </p>
-        </section>
-        <ContactForm
-          className={
-            "mx-6 my-6 lg:my-0 lg:mx-0 lg:mr-4  max-w-[800px] shadow-lg shadow-slate-800 rounded-xl"
-          }
-        />
-      </section> */}
-      <ContactForm
-        className={
-          "mx-6 my-6 lg:my-0 lg:mx-0 max-w-[800px] shadow-lg shadow-slate-800 rounded-xl"
-        }
-      />
-      <p className="text-center text-xl mt-8 max-w-[95vw]">
-        If you plan on joining the team, contact us directly through our member
-        Discord.
-      </p>
-      <Link href="https://discord.gg/d36XRMfYUF" target="_blank">
-        <Button className="dark p-8 mt-4" variant="outline">
-          <Image src={discordIcon} width={30} className="mr-4" alt="" />
-          <p className="text-2xl">Member Discord</p>
-        </Button>
-      </Link>
+
+      <section className="section contact-main-section">
+        <div className="site-shell contact-main-grid">
+          <Reveal className="contact-form-wrap">
+            <ContactForm />
+          </Reveal>
+          <Reveal className="contact-details" delay={100}>
+            <p className="eyebrow">OTHER WAYS IN</p>
+            <h2>Contact the team directly.</h2>
+            <a
+              className="contact-discord-cta"
+              href={site.discord}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <span className="contact-discord-icon" aria-hidden="true">
+                <MessageCircle size={23} />
+              </span>
+              <span className="contact-discord-copy">
+                <small>STUDENTS &amp; MEMBERS</small>
+                <strong>Join the member Discord</strong>
+                <span>Current meeting times, team updates, and member coordination.</span>
+              </span>
+              <ArrowUpRight size={20} aria-hidden="true" />
+            </a>
+            <div className="contact-detail-row">
+              <Mail size={21} aria-hidden="true" />
+              <div>
+                <span>Email</span>
+                <a href={`mailto:${site.email}`}>{site.email}</a>
+              </div>
+            </div>
+            <div className="contact-detail-row">
+              <MapPin size={21} aria-hidden="true" />
+              <div>
+                <span>Meeting location</span>
+                <a href={site.mapUrl} target="_blank" rel="noreferrer">{site.address}</a>
+              </div>
+            </div>
+            <div className="contact-social-row">
+              <a href={site.instagram} target="_blank" rel="noreferrer">
+                <Instagram size={19} /> Instagram
+              </a>
+              <a href={site.github} target="_blank" rel="noreferrer">
+                <Github size={19} /> GitHub
+              </a>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="contact-routing-section">
+        <div className="site-shell contact-routing-grid">
+          <Reveal className="contact-routing-media">
+            <Image
+              src={teamWork}
+              alt="Planetary Drive students working together around their competition robot"
+              fill
+              placeholder="blur"
+              sizes="(max-width: 800px) 100vw, 46vw"
+            />
+          </Reveal>
+          <Reveal className="contact-routing-copy" delay={100}>
+            <p className="eyebrow">LOOKING FOR A SPECIFIC NEXT STEP?</p>
+            <h2>More information by topic.</h2>
+            <Link href="/join" className="routing-link">
+              <span>01</span>
+              <div>
+                <strong>Join or mentor</strong>
+                <p>Eligibility, four student pathways, meetings, and mentoring.</p>
+              </div>
+              <ArrowRight size={20} />
+            </Link>
+            <Link href="/sponsors" className="routing-link">
+              <span>02</span>
+              <div>
+                <strong>Sponsor the team</strong>
+                <p>What support enables and how to start a conversation.</p>
+              </div>
+              <ArrowRight size={20} />
+            </Link>
+            <Link href="/engineering" className="routing-link">
+              <span>03</span>
+              <div>
+                <strong>Explore the robot</strong>
+                <p>2026 CAD, engineering disciplines, and team code.</p>
+              </div>
+              <ArrowRight size={20} />
+            </Link>
+          </Reveal>
+        </div>
+      </section>
     </main>
   );
 }
