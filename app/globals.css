@@ -3496,6 +3496,19 @@ em {
   color: var(--warm-white);
 }
 
+html:has(.cinematic-loader:not(.is-ready)),
+body:has(.cinematic-loader:not(.is-ready)),
+html.is-cinematic-loading,
+body.is-cinematic-loading {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+body:has(.cinematic-loader:not(.is-ready)),
+body.is-cinematic-loading {
+  touch-action: none;
+}
+
 .cinematic-loader {
   position: fixed;
   z-index: 1000;
@@ -3558,6 +3571,21 @@ em {
 .loader-readout strong {
   font-size: clamp(1.4rem, 3vw, 2.6rem);
   font-weight: 500;
+}
+
+.loader-note {
+  grid-column: 1 / -1;
+  max-width: 46rem;
+  margin: -0.25rem 0;
+  padding: 0.6rem 0.75rem;
+  border-left: 2px solid var(--signal-cyan);
+  background: linear-gradient(90deg, rgba(37, 211, 255, 0.12), transparent);
+  color: rgba(226, 237, 247, 0.96);
+  font-family: var(--mono);
+  font-size: clamp(0.66rem, 0.9vw, 0.76rem);
+  line-height: 1.55;
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
 }
 
 .loader-track {

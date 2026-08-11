@@ -98,6 +98,20 @@ export default function CinematicHome() {
   const [loadProgress, setLoadProgress] = useState(0);
   const [experience, setExperience] = useState("loading");
 
+  useEffect(() => {
+    if (experience !== "loading") return undefined;
+
+    const root = document.documentElement;
+    const body = document.body;
+    root.classList.add("is-cinematic-loading");
+    body.classList.add("is-cinematic-loading");
+
+    return () => {
+      root.classList.remove("is-cinematic-loading");
+      body.classList.remove("is-cinematic-loading");
+    };
+  }, [experience]);
+
   const showStaticFallback = useCallback((reason = "manual") => {
     skippedRef.current = true;
     mediaAbortRef.current?.abort();
@@ -394,6 +408,10 @@ export default function CinematicHome() {
           <span>Loading 2856 / 2026 machine</span>
           <strong>{String(loadProgress).padStart(3, "0")}%</strong>
         </div>
+        <p className="loader-note">
+          Preparing a high-detail 3D robot experience. This may take a moment
+          on slower connections.
+        </p>
         <div className="loader-track">
           <span style={{ width: `${loadProgress}%` }} />
         </div>
