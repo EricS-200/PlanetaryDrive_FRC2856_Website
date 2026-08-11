@@ -46,7 +46,7 @@ export default function HeroRobot() {
         />
       </div>
       <div className="robot-callout callout-one" aria-hidden="true">
-        <span>01</span> Roller assembly
+        <span>01</span> Shooter assembly
       </div>
       <div className="robot-callout callout-two" aria-hidden="true">
         <span>02</span> Fabricated frame
