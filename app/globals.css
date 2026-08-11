@@ -3839,22 +3839,26 @@ body.is-cinematic-loading {
 
 .cinematic-sequence.is-static {
   height: auto;
-  min-height: max(720px, 100svh);
+  min-height: max(860px, 100svh);
 }
 
 .cinematic-sequence.is-static .cinematic-sticky {
   position: relative;
-  min-height: max(720px, 100svh);
+  min-height: max(860px, 100svh);
 }
 
 .cinematic-sequence.is-static .machine-stage {
-  opacity: 1;
-  transform: none;
+  display: none;
 }
 
-.cinematic-sequence.is-static .machine-poster {
-  opacity: 1;
-  transform: translateX(9%) scale(1.08);
+.cinematic-static-robot {
+  position: absolute;
+  z-index: 5;
+  top: 42%;
+  left: 50%;
+  width: min(68vw, 720px);
+  transform: translateX(-50%);
+  pointer-events: auto;
 }
 
 .cinematic-sequence.is-static .machine-video,
@@ -3867,20 +3871,23 @@ body.is-cinematic-loading {
 }
 
 .cinematic-sequence.is-static .cinematic-copy-reveal {
-  top: 24%;
+  top: clamp(8.5rem, 15vh, 10rem);
+  right: var(--gutter);
   left: var(--gutter);
-  width: min(48vw, 800px);
+  width: auto;
   transform: none;
   opacity: 1;
-  text-align: left;
+  text-align: center;
 }
 
 .cinematic-sequence.is-static .cinematic-copy-reveal > p:first-child {
-  justify-content: flex-start;
+  justify-content: center;
 }
 
 .cinematic-sequence.is-static .cinematic-copy-reveal h1 {
-  font-size: clamp(4.4rem, 8.4vw, 9.4rem);
+  max-width: none;
+  margin-inline: auto;
+  font-size: clamp(4rem, 6.4vw, 7.2rem);
 }
 
 .cinematic-sequence.is-static .scroll-cue {
@@ -4741,12 +4748,8 @@ body.is-cinematic-loading {
     right: 1rem;
   }
 
-  .cinematic-sequence.is-static .machine-poster {
-    transform: translateY(6%) scale(1.04);
-  }
-
   .cinematic-sequence.is-static .cinematic-copy-reveal {
-    top: 17%;
+    top: calc(var(--header-height) + 4.4rem);
     right: var(--gutter);
     left: var(--gutter);
     width: auto;
@@ -4759,7 +4762,17 @@ body.is-cinematic-loading {
 
   .cinematic-sequence.is-static .cinematic-copy-reveal h1 {
     max-width: none;
-    font-size: clamp(3.45rem, 18vw, 5rem);
+    font-size: clamp(2.9rem, 14vw, 4.4rem);
+  }
+
+  .cinematic-sequence.is-static,
+  .cinematic-sequence.is-static .cinematic-sticky {
+    min-height: max(760px, 100svh);
+  }
+
+  .cinematic-static-robot {
+    top: 42%;
+    width: calc(100% - var(--gutter) * 2);
   }
 
   .machine-stage::after {

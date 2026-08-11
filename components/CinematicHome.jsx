@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowDown, ArrowRight, MoveRight } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { sponsors } from "@/data/site";
+import HeroRobot from "@/components/HeroRobot";
 
 const PRELOAD_TIMEOUT_MS = 30_000;
 const SLOW_PRELOAD_TIMEOUT_MS = 30_000;
@@ -448,6 +449,12 @@ export default function CinematicHome() {
               aria-label="The 2026 competition robot emerging, disassembling, rotating, and reassembling"
             />
           </div>
+
+          {experience === "static" && (
+            <div className="cinematic-static-robot">
+              <HeroRobot />
+            </div>
+          )}
 
           <div className="cinematic-controls">
             {experience === "video" && (
